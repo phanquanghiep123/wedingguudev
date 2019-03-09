@@ -1,0 +1,1 @@
+﻿<a href="<?php echo backend_url(@$base_controller.'/edit/'.@$item["ID"])?>">Sửa</a> | <a onclick="return confirm('Bạn có thật sự muốn xóa?');" href="<?php echo backend_url(@$base_controller.'/delete/'.@$item["ID"])?>">Xóa</a>
