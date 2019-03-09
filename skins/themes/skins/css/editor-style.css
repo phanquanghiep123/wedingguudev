@@ -1,0 +1,24 @@
+@import url("../fonts/001/stylesheet.css");
+@import url("../fonts/002/stylesheet.css");
+@import url("../fonts/003/stylesheet.css");
+@import url("../fonts/004/stylesheet.css");
+@import url("../fonts/005/stylesheet.css");
+@import url("../fonts/006/stylesheet.css");
+@import url("../fonts/007/stylesheet.css");
+@import url("../fonts/008/stylesheet.css");
+@import url("../fonts/009/stylesheet.css");
+@import url("../fonts/010/stylesheet.css");
+#tinymce {background-color : #fff; }
+.mce-menubtn.mce-fixed-width span { width: 50px !important; }
+#tinymce p,
+#tinymce span,
+#tinymce a,
+#tinymce h1,
+#tinymce h2,
+#tinymce h3,
+#tinymce h4,
+#tinymce h5,
+#tinymce h6,
+#tinymce i,
+#tinymce b
+{ color: #000 !important; } 

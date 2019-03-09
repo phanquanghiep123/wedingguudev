@@ -1,0 +1,49 @@
+#sc-box-timeline .sc-text-right{font-size:18px;}
+#sc-box-timeline .sc-text-left{font-size:18px;}
+.description_timeline,.name_timeline,.date_timeline,.thumb_timeline {display:none}
+#sc-box-timeline #list-time-line{
+	display: inline-block;
+    position: absolute;
+    top: 60px;
+    left: 223px;
+    right: 223px;
+}
+#sc-box-timeline {padding: 40px 0; }
+#sc-box-timeline #list-time-line .item{display:inline-block; position: relative;}
+#sc-box-timeline #list-time-line .item:hover{cursor: pointer;}
+#sc-box-timeline #list-time-line .item .hook_time{
+	margin: auto;
+	background :#fff;
+	width:20px; 
+	height:20px;
+	border-radius:100%;
+	display:block;
+	border: 3px solid #ccc; 
+	position: relative;
+	z-index: 3;
+}
+#box_tips_timeline {
+	position: absolute; 
+	background-color: #fff; 
+	border: 1px solid #ccc ;
+	border-radius: 5px; 
+	opacity: 0;
+	padding: 10px 5px;
+	z-index: 99;
+	max-width: 100%;
+}
+#box_tips_timeline .action{display: none;}
+#box_tips_timeline ul li {list-style: none;}
+#box_tips_timeline ul{padding: 0;margin: 0;}
+
+#sc-box-timeline #list-time-line .item:after{
+	content: "";
+    background: #ccc;
+    height: 2px;
+    width: 100%;
+    left: 0;
+    top: 9px;
+    z-index: 1;
+    position: absolute;
+}
+#box_tips_timeline .date-item{position: absolute;right: 5px ;top: 5px}

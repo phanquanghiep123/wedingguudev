@@ -1,0 +1,124 @@
+#waterfall {
+    margin: 10px;
+    overflow: hidden;
+    max-width: 1366px;
+    margin: 0 auto !important;
+    float: none;
+}
+#content-album-slider .modal-dialog{
+    background-color: transparent;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0;
+}
+#content-album-slider .modal-dialog .modal-content {
+    background-color: transparent;
+    width: 100%;
+    background-color: transparent;
+    width: 100%;
+    border: none;
+    box-shadow: none;
+}
+#content-album-slider .modal-dialog .close{
+    right: 10px !important;
+    top: 25px !important;
+}
+#content-album-slider .modal-body ul li img{
+    width: 100%;
+}
+#content-album-slider .modal-body{
+  max-height: initial; 
+}
+
+#content-album-slider .modal-content {
+    background-color: transparent;
+    width: 100%;
+    background-color: transparent;
+    width: 100%;
+    border: none;
+    box-shadow: none;
+}
+#content-album-slider .modal-header {
+    background-color: transparent;
+    width: 100%;
+    border: none;
+    box-shadow: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+}
+
+#waterfall #view-item-wedding-party {cursor: pointer;}
+#waterfall > li {
+    /*position: absolute;*/
+    left: 0;
+    top: 0;
+    opacity: 0;
+    z-index: 0;
+    transform: translateY(100px);
+}
+
+#waterfall > li:hover {
+    z-index: 1;
+}
+
+#waterfall > li.show {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.3s, top 1s;
+}
+#content-album-slider #waterfall .wedding-party-name{text-align: center; font-size: 24px;}
+#content-album-slider #waterfall .wedding-party-position{ font-size: 18px;}
+#waterfall > li>div {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 32px;
+    border-radius: 3px;
+    margin: 10px;
+    padding: 2px;
+    background: rgb(255, 255, 255);
+    border: 1px solid rgba(038, 191, 64, 0);
+    transition: all 0.5s;
+}
+
+#waterfall > li>div:hover {
+    transform: translateY(-10px);
+    border: 1px solid rgba(038, 191, 64, 1);
+    box-shadow: 0 30px 80px rgba(038, 191, 64, 0.3);
+    transition: all 0.3s;
+}
+
+#waterfall > li.min>div {
+    margin: 0;
+    transform: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+#content-album-slider .modal-header {
+    background-color: transparent;
+    width: 100%;
+    border: none;
+    box-shadow: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+}
+#content-album-slider .modal-header .close {
+    position: absolute;
+    right: 10px;
+    top: -40px;
+    font-size: 60px;
+    color: #fff;
+}
+#waterfall > li.min>div:hover {
+    transform: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}

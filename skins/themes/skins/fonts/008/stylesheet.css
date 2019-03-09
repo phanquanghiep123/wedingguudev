@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'HLTPoemScriptPro';
+    src: url('HLTPoemScriptPro.eot');
+    src: url('HLTPoemScriptPro.eot?#iefix') format('embedded-opentype'),
+        url('HLTPoemScriptPro.woff2') format('woff2'),
+        url('HLTPoemScriptPro.woff') format('woff'),
+        url('HLTPoemScriptPro.ttf') format('truetype'),
+        url('HLTPoemScriptPro.svg#HLTPoemScriptPro') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HLTBellissimaScriptPro';
+    src: url('HLTBellissimaScriptPro.eot');
+    src: url('HLTBellissimaScriptPro.eot?#iefix') format('embedded-opentype'),
+        url('HLTBellissimaScriptPro.woff2') format('woff2'),
+        url('HLTBellissimaScriptPro.woff') format('woff'),
+        url('HLTBellissimaScriptPro.ttf') format('truetype'),
+        url('HLTBellissimaScriptPro.svg#HLTBellissimaScriptPro') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+

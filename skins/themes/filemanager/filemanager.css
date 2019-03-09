@@ -1,0 +1,110 @@
+#modal-filemanager .modal-dialog {
+    width: 100%;
+    margin: 0;
+    padding: 25px 0 !important;
+    max-width: 1200px;
+    margin:  auto;
+    height: 100%;
+}
+.full-width{
+    width: 100% !important;
+}
+#is_page {max-width: 1140px; margin: 0 auto;}
+#modal-filemanager .modal-content{
+    height: 100%;
+}
+#modal-filemanager {
+    padding: 0 !important;
+}
+#box-chose-file{display: none !important;}
+#modal-filemanager .modal-content{border-radius: 0;max-height: 100%; overflow: hidden;}
+#modal-filemanager .close {
+    position: absolute;
+    right: -8px;
+    font-size: 32px;
+    top: 10px;
+    z-index: 9999;
+    line-height: 2px;
+    float: left;
+    float: left;
+    text-decoration: none;
+    width: 35px;
+    height: 35px;
+    border: 1px solid #ccc;
+    background: #fff;
+    border-radius: 100%;
+    opacity: 1;
+    color: red;
+}
+#box-log-upload{display: none !important;}
+#modal-filemanager #iframe-manager{
+    height: 100%;
+    width: 100%;
+}
+#modal-filemanager .modal-body{
+    padding: 0;
+    border:0;
+    height: 100%;
+    border: 2px solid #ccc;
+}
+#modal-filemanager #iframe-manager {
+    border: none;
+    z-index: 1;
+    position: relative;
+}
+#modal-filemanager .modal-body {
+    position: relative;
+}
+#modal-filemanager .modal-content{border: none;}
+#modal-filemanager .modal-body #loading-ajax{
+    position: absolute;
+    left: 0;
+    right: 0;
+    display: table;
+    top: 0;
+    bottom: 0;
+    z-index: 9999;
+    background-color: #cccccca3;
+    width: 100%;
+    height: 100%;
+    cursor: wait;
+    text-align: center;
+}
+#modal-filemanager .modal-body .loader {
+    border: 10px solid #f3f3f3; /* Light grey */
+    border-top: 10px solid #3498db; /* Blue */
+    margin:auto;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    animation: spin 2s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+#modal-filemanager .modal-body #loading-ajax .display-cell{
+    display: table-cell;
+    width: 129px;
+    vertical-align: middle;
+    height: 139px;
+}
+@media screen and (max-width: 1025px){
+    #modal-filemanager .modal-dialog {
+        width: 95%;
+        margin: 0;
+        padding: 25px 0 !important;
+        max-width: 1140px;
+        margin: auto;
+        height: 100%;
+    }
+
+    body #modal-filemanager .close, #page_theme .modal .modal-dialog .close {
+        font-size: 39px;
+    }
+}
+@media screen and (max-width: 768px){
+    #is_iframe #contaner-media, #is_iframe #treeDemo{
+        width: 100%;
+    }
+}

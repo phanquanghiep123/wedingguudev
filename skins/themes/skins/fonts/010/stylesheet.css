@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'HLTGulyesaScript';
+    src: url('HLTGulyesaScript.eot');
+    src: url('HLTGulyesaScript.eot?#iefix') format('embedded-opentype'),
+        url('HLTGulyesaScript.woff2') format('woff2'),
+        url('HLTGulyesaScript.woff') format('woff'),
+        url('HLTGulyesaScript.ttf') format('truetype'),
+        url('HLTGulyesaScript.svg#HLTGulyesaScript') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HLTPenabico';
+    src: url('HLTPenabico.eot');
+    src: url('HLTPenabico.eot?#iefix') format('embedded-opentype'),
+        url('HLTPenabico.woff2') format('woff2'),
+        url('HLTPenabico.woff') format('woff'),
+        url('HLTPenabico.ttf') format('truetype'),
+        url('HLTPenabico.svg#HLTPenabico') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'UVFSamanthaUprightPRO-Bold';
+    src: url('UVFSamanthaUprightPRO-Bold.eot');
+    src: url('UVFSamanthaUprightPRO-Bold.eot?#iefix') format('embedded-opentype'),
+        url('UVFSamanthaUprightPRO-Bold.woff2') format('woff2'),
+        url('UVFSamanthaUprightPRO-Bold.woff') format('woff'),
+        url('UVFSamanthaUprightPRO-Bold.ttf') format('truetype'),
+        url('UVFSamanthaUprightPRO-Bold.svg#UVFSamanthaUprightPRO-Bold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+

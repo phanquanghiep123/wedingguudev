@@ -1,0 +1,148 @@
+#sidebar .sidebar-main .logo{margin-bottom: 20px;padding-left: 5px;padding-top: 5px;}
+.show-sidebar-mobile{
+  position: fixed!important;
+  top: 40px!important;
+  left: 10px!important;
+  border: none!important;
+  background-color: rgba(0, 0, 0, 0.4)!important;
+  box-shadow: none!important;
+  outline: none!important;
+  z-index: 99999!important;
+  border-radius: 50%!important;
+  width: 40px!important;
+  height: 40px!important;
+  line-height: 0!important;
+  text-align: center!important;
+  padding: 0!important;
+}
+.show-sidebar-mobile:hover{
+
+}
+.show-sidebar-mobile .fa{font-size: 22px;color: #fff}
+#sidebar{
+  min-height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  top: 0;
+  background: #f5f1f6;
+  background: -moz-linear-gradient(left, #f5f1f6 92%, #d1cbd2 100%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(92%, #f5f1f6), color-stop(100%, #d1cbd2));
+  background: -webkit-linear-gradient(left, #f5f1f6 92%, #d1cbd2 100%);
+  background: -o-linear-gradient(left, #f5f1f6 92%, #d1cbd2 100%);
+  background: -ms-linear-gradient(left, #f5f1f6 92%, #d1cbd2 100%);
+  background: linear-gradient(to right, #f5f1f6 92%, #d1cbd2 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5f1f6', endColorstr='#d1cbd2',GradientType=1 );
+}
+.sidebar{
+  position: fixed!important;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: block;
+  padding: 0!important;
+  background-color: #f5f5f5;
+}
+
+.sidebar .sidebar-heading .select-heading{
+  padding: 20px 10px;
+  background-color: #00bbeb;
+  width: 100%!important;
+}
+.sidebar .sidebar-item .panel-heading{
+  background-color: #00bbeb!important;
+  border-radius: 0!important;
+  border-bottom: solid 1px #167188!important;
+  padding-top: 15px!important;
+  padding-bottom: 15px!important;
+
+}
+.sidebar .sidebar-item:last-child{border: none!important}
+.sidebar .sidebar-heading .select-heading button{
+  background-color: #00bbeb!important;
+  border-radius: 30px;
+  border:1px solid #fff!important;
+  outline: none!important;
+}
+.bootstrap-select.btn-group .dropdown-menu li a{outline: none!important;}
+.sidebar .sidebar-heading .select-heading .filter-option{
+  text-align: center!important;
+  text-transform: uppercase!important;
+  color: #fff !important;
+  font-size: 15px!important;
+  font-weight: bold;
+  background-color: #00bbeb!important;
+}
+
+.sidebar .sidebar-item{
+  margin-top: 0!important;
+  border-color: #00bbeb!important;
+  border-radius: 0!important;
+  border-right: 0!important;
+}
+.sidebar .sidebar-item .panel-heading{
+	position: relative;
+}
+.sidebar .sidebar-item .panel-body{background-color: #ede7db!important;text-align: center;}
+.sidebar .panel-group .sidebar-item .panel-heading .panel-title a{
+  display: block!important;
+  text-decoration: none!important;
+  text-transform: uppercase!important;
+  color: #fff!important;
+  font-weight: bold!important;
+  font-size: 14px!important;
+}
+.sidebar .panel-group .sidebar-item .panel-heading .panel-title a .fa{
+  font-size: 25px;
+  line-height: 25px;
+  background: #0b6d86;
+  width: 28px;
+  height: 28px;
+  border-radius: 100%;
+  text-align: center;
+  position: relative;
+  top: -8px;
+  text-indent: 1px;
+  padding-top: 2px;
+  position: absolute;
+  right: 5px;
+  top: 8px;
+}
+.sidebar .panel-group .sidebar-item .select-option{
+  width: 100%!important;
+  margin-bottom: 20px;
+}
+.sidebar .panel-group .sidebar-item .select-option:last-child{margin-bottom: 0}
+
+.sidebar .sidebar-main{min-height: 90%;}
+.sidebar .sidebar-main .sidebar-body{
+  background: #00bbeb;
+}
+
+.sidebar .sidebar-footer{
+  position: relative;
+  clear: both;
+  text-align: center;
+
+
+}
+.sidebar .sidebar-footer .btn-sidebar-footer{
+  background-color: #88b840!important;
+  border-color: #88b840!important;
+  text-transform: uppercase!important;
+  font-size: 14px;
+  color: #fff;
+  font-weight: bold;
+}
+#sidebar{display: block;}
+#sidebar {
+    display: block;
+    position: relative;
+    z-index: 9991;
+}
+@media screen and (max-width: 1367px){
+  #sidebar .evo-palette2 td{
+    padding: 5px 6px;
+  }
+ #sidebar .evo-color span{font-size: 13px;}
+}

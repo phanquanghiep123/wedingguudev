@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Html</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/ewedding.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script src="js/tinymce/tinymce.min.js"></script>
+</head>
+<body>
+	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-tagline-1"> modal Text </button>
+	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-tagline-2"> modal Name </button>
+	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-tagline-3"> Wedding Date </button>
+	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-slideshow"> Slideshow </button>
+	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-tagline-4"> Text Editer </button>
+	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-tagline-5"> Story </button>
+	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-tagline-6"> Section title </button>
+	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-tagline-7"> TICKER </button>
+	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-tagline-8"> WEDDING PARTY </button>
+	<!--Text type-->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="modal modal-editor" id="modal-tagline-1" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modal-tagline-1" aria-hidden="false">
+				    <div class="modal-dialog ">
+				        <div class="modal-content">
+				            <div class="modal-header ng-scope" ng-if="modal.header==true">
+				                <h4 class="modal-title ng-binding">Text</h4>
+				                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				            </div>
+				            <div ng-include="" src="modal.html" ng-show="!noHeart" class="ng-scope">
+				                <div class="modal-body ng-scope">
+				                    <div class="row">
+				                        <div class="form-group form-group-last col-lg-12">
+				                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid" id="tagline" placeholder="Your site tagline">
+				                        </div>
+				                    </div>
+				                </div>
+				            </div>
+				            <div class="modal-footer ng-scope" ng-if="modal.footer==true">
+				                <button type="button" class="btn btn-success btn-pad-3 btn-weight-semibold" data-dismiss="modal" aria-label="Close" >Close</button>
+				            </div>
+				            <!-- end ngIf: modal.footer==true -->
+				        </div>
+				    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--end Text type-->
+
+	<!--Name type-->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="modal modal-editor" id="modal-tagline-2" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modal-tagline-2" aria-hidden="false">
+				    <div class="modal-dialog">
+				        <div class="modal-content">
+				            <div class="modal-header ng-scope">
+				                <h4 class="modal-title ng-binding">Name</h4>
+				                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				            </div>
+				            <div class="ng-scope">
+				                <div class="modal-body ng-scope">
+				                    <div class="row">
+				                        <div class="form-group form-group-last col-lg-12">
+				                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid" id="couples-name" placeholder="Couple's Name" ng-model="mData.name">
+				                        </div>
+				                    </div>
+				                </div>
+				            </div>
+				            <div class="modal-footer ng-scope">
+				                <button type="button" class="btn btn-success btn-pad-3 btn-weight-semibold" data-dismiss="modal" aria-label="Close">Close</button>
+				            </div>
+				            <!-- end ngIf: modal.footer==true -->
+				        </div>
+				    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--end Name type-->
+
+	<!--Wedding Date type-->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="modal modal-editor" id="modal-tagline-3" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modal-tagline-3" aria-hidden="false">
+				    <div class="modal-dialog">
+				        <div class="modal-content">
+				            <div class="modal-header ng-scope">
+				                <h4 class="modal-title ng-binding">Wedding Date</h4>
+				                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				            </div>
+				            <div class="ng-scope">
+				                <div class="modal-body ng-scope">
+				                    <div class="row">
+				                        <div class="form-group form-group-last col-lg-12">
+				                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid" id="couples-name" placeholder="Wedding Date">
+				                        </div>
+				                    </div>
+				                </div>
+				            </div>
+				            <div class="modal-footer ng-scope">
+				                <button type="button" class="btn btn-success btn-pad-3 btn-weight-semibold" data-dismiss="modal" aria-label="Close">Close</button>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--end Wedding Date type-->
+
+	<!-- slideshow type-->
+	<div class="modal modal-editor" id="modal-slideshow" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modal-slideshow" aria-hidden="false" >
+		<div class="modal-dialog ">
+			<div class="modal-content">
+				<div class="modal-header ng-scope">
+					<h4 class="modal-title ng-binding"> Slideshow </h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<div ng-include=""  class="ng-scope">
+					<div class="modal-body ng-scope">
+						<div class="row">
+							<div class="form-group col-lg-12"> <br ng-show="fileError != ''">
+								<div media-uploader="" data="mData.slideshow" type="'images'" optimize="'slideshow'" crop="false" multiple="true" ratio="'2:1'" class="ng-isolate-scope">
+									<div id="photo-uploader" class="drag-to-upload ng-isolate-scope" ng-file-drop="uploadFile($files, type, data)" ng-file-drag-over-class="optional-css-class" ng-hide="uploading_saving" ng-multiple="multiple">
+										<div class="inner">
+											<span ng-if="gift != true" class="ng-scope">
+											<span ng-show="!multiple" class="ng-hide">Drag photo here </span> 
+											<span ng-show="multiple">Drag photos here </span> <br> or </span>
+											<input type="file" id="file_upload" name="file" multiple="" class="none">
+											<a href="javascript:;"><span ng-show="multiple">select files.</span> </span> </a>
+										</div>
+									</div>
+								</div>
+								<p class="help-block" id="reorder-delete"> Reorder or delete </p>
+							</div>
+							<section id="photo-listing" class="photo-listing sortable ng-pristine ng-untouched ng-valid ui-sortable" ui-sortable="sortableOptions" ng-model="mData.slideshow" ng-show="!loader">
+								<figure class="col-xs-6 col-sm-4 col-md-4 col-lg-2 img ng-scope ui-sortable-handle" ng-repeat="item in mData.slideshow" images-loaded="imgLoadedEvents"> <img class="img-rounded" ng-src="https://ewedding.imgix.net/default_files/images/slideshow/slide-5/slide-5.jpg?w=88&amp;h=88&amp;fit=crop&amp;crop=faces" src="https://ewedding.imgix.net/default_files/images/slideshow/slide-5/slide-5.jpg?w=88&amp;h=88&amp;fit=crop&amp;crop=faces">
+									<a href="" class="remove" ng-click="removeFile($index, mData.slideshow, 'image')"><span title="Remove photo" class="fa fa-times-circle"></span></a> 
+								</figure>
+								<figure class="col-xs-6 col-sm-4 col-md-4 col-lg-2 img ng-scope ui-sortable-handle" ng-repeat="item in mData.slideshow" images-loaded="imgLoadedEvents"> <img class="img-rounded" ng-src="https://ewedding.imgix.net/default_files/images/slideshow/slide-1/slide-1.jpg?w=88&amp;h=88&amp;fit=crop&amp;crop=faces" src="https://ewedding.imgix.net/default_files/images/slideshow/slide-1/slide-1.jpg?w=88&amp;h=88&amp;fit=crop&amp;crop=faces">
+									<a href="" class="remove" ng-click="removeFile($index, mData.slideshow, 'image')"><span title="Remove photo" class="fa fa-times-circle"></span></a>
+								</figure>
+								<figure class="col-xs-6 col-sm-4 col-md-4 col-lg-2 img ng-scope ui-sortable-handle" ng-repeat="item in mData.slideshow" images-loaded="imgLoadedEvents"> <img class="img-rounded" ng-src="https://ewedding.imgix.net/default_files/images/slideshow/slide-2/slide-2.jpg?w=88&amp;h=88&amp;fit=crop&amp;crop=faces" src="https://ewedding.imgix.net/default_files/images/slideshow/slide-2/slide-2.jpg?w=88&amp;h=88&amp;fit=crop&amp;crop=faces">
+									<a href="" class="remove" ng-click="removeFile($index, mData.slideshow, 'image')"><span title="Remove photo" class="fa fa-times-circle"></span></a>
+								</figure>
+								<figure class="col-xs-6 col-sm-4 col-md-4 col-lg-2 img ng-scope ui-sortable-handle" ng-repeat="item in mData.slideshow" images-loaded="imgLoadedEvents"> <img class="img-rounded" ng-src="https://ewedding.imgix.net/default_files/images/slideshow/slide-3/slide-3.jpg?w=88&amp;h=88&amp;fit=crop&amp;crop=faces" src="https://ewedding.imgix.net/default_files/images/slideshow/slide-3/slide-3.jpg?w=88&amp;h=88&amp;fit=crop&amp;crop=faces">
+									<a href="" class="remove" ng-click="removeFile($index, mData.slideshow, 'image')"><span title="Remove photo" class="fa fa-times-circle"></span></a>
+								</figure>
+								<figure class="col-xs-6 col-sm-4 col-md-4 col-lg-2 img ng-scope ui-sortable-handle" ng-repeat="item in mData.slideshow" images-loaded="imgLoadedEvents"> <img class="img-rounded" ng-src="https://ewedding.imgix.net/default_files/images/slideshow/slide-4/slide-4.jpg?w=88&amp;h=88&amp;fit=crop&amp;crop=faces" src="https://ewedding.imgix.net/default_files/images/slideshow/slide-4/slide-4.jpg?w=88&amp;h=88&amp;fit=crop&amp;crop=faces">
+							     	<a href="" class="remove" ng-click="removeFile($index, mData.slideshow, 'image')"><span title="Remove photo" class="fa fa-times-circle"></span></a>
+								</figure>
+							</section>
+						</div>
+					</div>
+				</div>			 
+				<div class="modal-footer ng-scope">
+					<button type="button" class="btn btn-success btn-pad-3 btn-weight-semibold" data-dismiss="modal" aria-label="Close">Close</button> 
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--end slideshow type-->
+    <!-- text edit type-->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="modal modal-editor" id="modal-tagline-4" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modal-tagline-4" aria-hidden="false">
+				    <div class="modal-dialog">
+				        <div class="modal-content">
+				            <div class="modal-header ng-scope">
+				                <h4 class="modal-title ng-binding">TEXT Editer</h4>
+				                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				            </div>
+				            <div class="ng-scope">
+				                <div class="modal-body ng-scope">
+				                    <div class="row">
+				                        <div class="form-group form-group-last col-lg-12">
+				                            <textarea id="textarea">It seemed like just yesterday I was introduced to Joshua. Who knew that just two years after meeting at a wedding, of all places, we would be planning our own! Josh asked me to marry him on New Years Eve and life has been like fireworks ever since. We're so excited to start this next chapter in our life and I'm so happy I can share it with you all on our awesome wedding website. Be sure to submit your addresses and song requests down below!</textarea>
+				                        </div>
+				                    </div>
+				                </div>
+				            </div>
+				            <div class="modal-footer ng-scope">
+				                <button type="button" class="btn btn-success btn-pad-3 btn-weight-semibold" data-dismiss="modal" aria-label="Close">Close</button>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- !text edit type-->
+
+
+	<!-- Story edit type-->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="modal modal-editor" id="modal-tagline-5" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modal-tagline-5" aria-hidden="false">
+				    <div class="modal-dialog">
+				        <div class="modal-content">
+				            <div class="modal-header ng-scope">
+				                <h4 class="modal-title ng-binding">STORY</h4>
+				                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				            </div>
+				            <div class="ng-scope">
+				                <div class="modal-body ng-scope">
+				                    <div class="row">
+				                        <div class="form-group col-lg-12">
+											<input type="text" class="form-control ng-pristine ng-valid ng-touched" id="story-title" placeholder="Title" ng-model="mData.name">
+										</div>
+				                        <div class="form-group form-group-last col-lg-12">
+				                            <textarea id="textarea1">Did you even read Amanda's story? Seriously, how can I follow that? Honestly though, Amanda is unlike any person I have ever met. She's loving, kind, gentle, patient, and did I mention hot!? She's many more things, but those are the gifts I learned about her very quickly. Yes, I did make fun of her being from Canada that weekend we met, but who knew they didn't all live in igloos and have pet beavers? Knowing and growing closer to Amanda has been life changing. I'm not going to say 'wind beneath my wings' because that could be used against me for the rest of my life, but she has indeed made me a better person. I love her with all my heart and look forward to the day I call her my wife. Yes, I know, much shorter than hers, I'm an engineer, not a writer okay!</textarea>
+				                        </div>
+				                    </div>
+				                </div>
+				            </div>
+				            <div class="modal-footer ng-scope">
+				                <button type="button" class="btn btn-success btn-pad-3 btn-weight-semibold" data-dismiss="modal" aria-label="Close">Close</button>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- !Story edit type-->
+
+	<!--SECTION TITLE type-->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="modal modal-editor" id="modal-tagline-6" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modal-tagline-6" aria-hidden="false">
+				    <div class="modal-dialog ">
+				        <div class="modal-content">
+				            <div class="modal-header ng-scope" ng-if="modal.header==true">
+				                <h4 class="modal-title ng-binding">SECTION TITLE</h4>
+				                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				            </div>
+				            <div ng-include="" src="modal.html" ng-show="!noHeart" class="ng-scope">
+				                <div class="modal-body ng-scope">
+				                    <div class="row">
+				                        <div class="form-group form-group-last col-lg-12">
+				                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid" id="tagline" placeholder="Section Title">
+				                        </div>
+				                    </div>
+				                </div>
+				            </div>
+				            <div class="modal-footer ng-scope" ng-if="modal.footer==true">
+				                <button type="button" class="btn btn-success btn-pad-3 btn-weight-semibold" data-dismiss="modal" aria-label="Close" >Close</button>
+				            </div>
+				            <!-- end ngIf: modal.footer==true -->
+				        </div>
+				    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--end SECTION TITLE type-->
+
+	<!--TICKER type-->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="modal modal-editor" id="modal-tagline-7" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modal-tagline-7" aria-hidden="false">
+				    <div class="modal-dialog ">
+				        <div class="modal-content">
+				            <div class="modal-header ng-scope" ng-if="modal.header==true">
+				                <h4 class="modal-title ng-binding">TICKER</h4>
+				                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				            </div>
+				            <div ng-include="" src="modal.html" ng-show="!noHeart" class="ng-scope">
+				                <div class="modal-body ng-scope">
+				                    <div class="row">
+				                        <div class="form-group col-lg-12">
+											<input type="text" class="form-control ng-pristine ng-valid ng-touched" id="text-headline" placeholder="Text above ticker" ng-model="mData.top_text">
+										</div>
+										<div class="col-lg-12">
+											<div class="form-group">
+												<label class="control-label">Date</label>
+												<div class="input-group ng-isolate-scope" placeholder="'Date'">
+													<span class="input-group-btn">
+														<button class="btn btn-icon" type="button">
+															<span class="fa fa-calendar"></span>
+														</button>
+													</span>
+													<input id="dateInput" type="text" class="form-control">
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-12">
+											<div class="form-group">
+												<label class="control-label">Time</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-lg-12">
+											<label class="control-label">Format</label>
+											<input type="text" class="form-control">
+										</div>
+				                    </div>
+				                </div>
+				            </div>
+				            <div class="modal-footer ng-scope" ng-if="modal.footer==true">
+				                <button type="button" class="btn btn-success btn-pad-3 btn-weight-semibold" data-dismiss="modal" aria-label="Close" >Close</button>
+				            </div>
+				            <!-- end ngIf: modal.footer==true -->
+				        </div>
+				    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--end TICKER type-->
+
+
+    <!--WEDDING PARTY type-->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="modal modal-editor" id="modal-tagline-8" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modal-tagline-8" aria-hidden="false">
+				    <div class="modal-dialog">
+				        <div class="modal-content">
+				            <div class="modal-header ng-scope">
+				                <h4 class="modal-title ng-binding">WEDDING PARTY</h4>
+				                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				            </div>
+				            <div class="ng-scope">
+				                <div class="modal-body ng-scope">
+				                    <div class="row">
+				                        <div class="form-group col-lg-12">
+				                            <input type="text" class="form-control ng-pristine ng-valid ng-touched" id="member-name" placeholder="Name">
+				                        </div>
+				                        <div class="form-group col-lg-12">
+				                            <input type="text" class="form-control ng-pristine ng-valid ng-touched" id="member-name" placeholder="Position">
+				                        </div>
+				                        <div class="form-group col-lg-12">
+				                            <textarea id="textarea2">Did you even read Amanda's story? Seriously, how can I follow that? Honestly though, Amanda is unlike any person I have ever met. She's loving, kind, gentle, patient, and did I mention hot!? She's many more things, but those are the gifts I learned about her very quickly. Yes, I did make fun of her being from Canada that weekend we met, but who knew they didn't all live in igloos and have pet beavers? Knowing and growing closer to Amanda has been life changing. I'm not going to say 'wind beneath my wings' because that could be used against me for the rest of my life, but she has indeed made me a better person. I love her with all my heart and look forward to the day I call her my wife. Yes, I know, much shorter than hers, I'm an engineer, not a writer okay!</textarea>
+				                        </div>
+				                        <div class="form-group col-lg-12">
+											<!-- ngIf: checkImageAvailable(mData) --><figure class="img img-thumb ng-scope" ng-if="checkImageAvailable(mData)">
+												<img ng-src="https://ewedding.imgix.net/default_files/images/guys/guy-1/guy-1.jpg?w=88&amp;h=88&amp;fit=crop&amp;crop=faces" class="img-rounded" src="https://ewedding.imgix.net/default_files/images/guys/guy-1/guy-1.jpg?w=88&amp;h=88&amp;fit=crop&amp;crop=faces">
+												<!-- ngIf: mData.image[0].image_id != '0' && $root.onIE == false -->
+												<a href="" class="remove" ng-click="removeFile(0, mData.image, 'image')">
+													<span title="Remove photo" class="fa fa-times-circle"></span>
+												</a>
+											</figure><!-- end ngIf: checkImageAvailable(mData) -->
+											<!-- ngIf: !checkImageAvailable(mData) -->		
+										</div>
+				                    </div>
+				                </div>
+				            </div>
+				            <div class="modal-footer ng-scope">
+				                <button type="button" class="btn btn-success btn-pad-3 btn-weight-semibold" data-dismiss="modal" aria-label="Close">Close</button>
+				            </div>
+				            <!-- end ngIf: modal.footer==true -->
+				        </div>
+				    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--end WEDDING PARTY type-->
+
+	</body>
+	<script type="text/javascript">
+		tinymce.init({
+			selector: '#textarea',
+			height: 300,
+			menubar: false,
+			plugins: [
+			'advlist autolink lists link image charmap print preview anchor',
+			'searchreplace visualblocks code fullscreen',
+			'insertdatetime media table contextmenu paste code'
+			],
+			toolbar: ' styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+			content_css: ['css/editer.css']
+		});
+		tinymce.init({
+			selector: '#textarea1',
+			height: 300,
+			menubar: false,
+			plugins: [
+			'advlist autolink lists link image charmap print preview anchor',
+			'searchreplace visualblocks code fullscreen',
+			'insertdatetime media table contextmenu paste code'
+			],
+			toolbar: ' styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+			content_css: ['css/editer.css']
+		});
+		tinymce.init({
+			selector: '#textarea2',
+			height: 300,
+			menubar: false,
+			plugins: [
+			'advlist autolink lists link image charmap print preview anchor',
+			'searchreplace visualblocks code fullscreen',
+			'insertdatetime media table contextmenu paste code'
+			],
+			toolbar: ' styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+			content_css: ['css/editer.css']
+		});
+		$(document).on('focusin', function(e) {
+		    if ($(e.target).closest(".mce-window").length || $(e.target).closest(".moxman-window").length) {
+		        e.stopImmediatePropagation();
+		    }
+		})
+	</script>
+</html>

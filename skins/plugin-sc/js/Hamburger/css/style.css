@@ -1,0 +1,799 @@
+/* -----------------------------------------------------------------------------
+
+  FONTS
+  
+----------------------------------------------------------------------------- */
+@font-face {
+  font-family: 'Oxygen';
+  font-style: normal;
+  font-weight: 300;
+  src: url("../fonts/oxygen/oxygen-v5-latin-300.eot");
+  src: local("Oxygen Light"), local("Oxygen-Light"), url("../fonts/oxygen/oxygen-v5-latin-300.eot?#iefix") format("embedded-opentype"), url("../fonts/oxygen/oxygen-v5-latin-300.woff2") format("woff2"), url("../fonts/oxygen/oxygen-v5-latin-300.woff") format("woff"), url("../fonts/oxygen/oxygen-v5-latin-300.ttf") format("truetype"), url("../fonts/oxygen/oxygen-v5-latin-300.svg#Oxygen") format("svg");
+}
+@font-face {
+  font-family: 'Oxygen';
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/oxygen/oxygen-v5-latin-regular.eot");
+  src: local("Oxygen"), local("Oxygen-Regular"), url("../fonts/oxygen/oxygen-v5-latin-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/oxygen/oxygen-v5-latin-regular.woff2") format("woff2"), url("../fonts/oxygen/oxygen-v5-latin-regular.woff") format("woff"), url("../fonts/oxygen/oxygen-v5-latin-regular.ttf") format("truetype"), url("../fonts/oxygen/oxygen-v5-latin-regular.svg#Oxygen") format("svg");
+}
+@font-face {
+  font-family: 'Oxygen';
+  font-style: normal;
+  font-weight: 700;
+  src: url("../fonts/oxygen/oxygen-v5-latin-700.eot");
+  src: local("Oxygen Bold"), local("Oxygen-Bold"), url("../fonts/oxygen/oxygen-v5-latin-700.eot?#iefix") format("embedded-opentype"), url("../fonts/oxygen/oxygen-v5-latin-700.woff2") format("woff2"), url("../fonts/oxygen/oxygen-v5-latin-700.woff") format("woff"), url("../fonts/oxygen/oxygen-v5-latin-700.ttf") format("truetype"), url("../fonts/oxygen/oxygen-v5-latin-700.svg#Oxygen") format("svg");
+}
+/* -----------------------------------------------------------------------------
+
+  BOX SIZING RESET
+  
+----------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+/* -----------------------------------------------------------------------------
+
+  ROOT ELEMENTS
+  
+----------------------------------------------------------------------------- */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  color: #6d6d6d;
+  background-color: #fff;
+  font-family: "Oxygen", Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* -----------------------------------------------------------------------------
+
+  HEADING ELEMENTS
+  
+----------------------------------------------------------------------------- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #3b3b3b;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* -----------------------------------------------------------------------------
+
+  TEXT ELEMENTS
+  
+----------------------------------------------------------------------------- */
+a {
+  color: #28aadc;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #00648c;
+}
+
+b,
+strong {
+  font-weight: 700;
+}
+
+i,
+em {
+  font-style: italic;
+}
+
+/* -----------------------------------------------------------------------------
+
+  MEDIA ELEMENTS
+  
+----------------------------------------------------------------------------- */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* -----------------------------------------------------------------------------
+
+  CONTAINER OBJECTS
+  
+----------------------------------------------------------------------------- */
+.o-container {
+  margin: 0 auto;
+  padding: 0 12px;
+  max-width: 960px;
+}
+
+@media all and (min-width: 480px) {
+  .o-container {
+    padding: 0 ;
+  }
+}
+@media all and (min-width: 720px) {
+  .o-container {
+    padding: 0 ;
+  }
+}
+/* -----------------------------------------------------------------------------
+
+  GRID OBJECT
+  
+----------------------------------------------------------------------------- */
+.o-grid {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
+}
+
+.o-grid__item {
+  padding: 24px;
+  display: inline-block;
+  margin-right: 15px;
+}
+
+/* -----------------------------------------------------------------------------
+
+  HEADER OBJECT
+  
+----------------------------------------------------------------------------- */
+.o-header {
+  margin: 0;
+  padding: 0;
+}
+
+.o-header-nav {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: #3b3b3b;
+}
+
+.o-header-nav__link {
+  padding: 12px;
+  color: #fff;
+}
+
+.o-header-nav__link:hover {
+  color: #fff;
+  background-color: #080808;
+}
+
+.o-header__title {
+  margin: 24px;
+  padding: 0;
+  color: #818181;
+  font-size: 28px;
+  font-weight: 300;
+  text-align: center;
+}
+
+@media all and (min-width: 480px) {
+  .o-header__title {
+    margin: 36px;
+    font-size: 42px;
+  }
+}
+/* -----------------------------------------------------------------------------
+
+  MAIN OBJECT
+  
+----------------------------------------------------------------------------- */
+.o-main {
+  /**/
+}
+
+/* -----------------------------------------------------------------------------
+
+  SUB-NAVIGATION OBJECT
+  
+----------------------------------------------------------------------------- */
+.o-sub-nav {
+  margin: 0 0 24px 0;
+  padding: 0;
+}
+
+.o-sub-nav__items {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.o-sub-nav__item {
+  margin: 0;
+  padding: 4px;
+}
+
+.o-sub-nav__link {
+  display: block;
+  margin: 0;
+  padding: 4px 24px;
+  border: solid 2px #3b3b3b;
+}
+
+.o-sub-nav__link:hover,
+.o-sub-nav__item.active .o-sub-nav__link {
+  color: #fff;
+  background-color: #3b3b3b;
+}
+
+@media all and (min-width: 720px) {
+  .o-sub-nav {
+    margin: 0 0 48px 0;
+  }
+}
+/* -----------------------------------------------------------------------------
+
+  FOOTER OBJECT
+  
+----------------------------------------------------------------------------- */
+.o-footer {
+  padding: 12px 0;
+  text-align: center;
+}
+
+@media all and (min-width: 480px) {
+  .o-footer {
+    padding: 24px 0;
+  }
+}
+@media all and (min-width: 720px) {
+  .o-footer {
+    padding: 48px 0;
+  }
+}
+/* -----------------------------------------------------------------------------
+
+  HAMBURGER ICONS COMPONENT
+  
+----------------------------------------------------------------------------- */
+/**
+ * Toggle Switch Globals
+ *
+ * All switches should take on the class `c-hamburger` as well as their
+ * variant that will give them unique properties. This class is an overview
+ * class that acts as a reset for all versions of the icon.
+ */
+.c-hamburger {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  font-size: 0;
+  text-indent: -9999px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-shadow: none;
+  border-radius: 100%;
+  border: none;
+  cursor: pointer;
+  -webkit-transition: background 0.3s;
+  transition: background 0.3s;
+  border: 1px solid #c0c0c0;
+}
+
+.c-hamburger:focus {
+  outline: none;
+}
+
+.c-hamburger span {
+  display: block;
+  position: absolute;
+  top: 29px;
+  left: 8px;
+  right: 8px;
+  height: 3px;
+  background: white;
+}
+
+.c-hamburger span::before,
+.c-hamburger span::after {
+  position: absolute;
+  display: block;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #fff;
+  content: "";
+}
+
+.c-hamburger span::before {
+  top: -10px;
+}
+
+.c-hamburger span::after {
+  bottom: -10px;
+}
+
+/**
+ * Style 1
+ *
+ * Rotating hamburger icon (rot), that simply rotates 90 degrees when activated.
+ * Nothing too fancy, simple transition.
+ */
+.c-hamburger--rot {
+  background-color: #28aadc;
+}
+
+.c-hamburger--rot span {
+  -webkit-transition: -webkit-transform 0.3s;
+          transition: transform 0.3s;
+}
+
+/* active state, i.e. menu open */
+.c-hamburger--rot.is-active {
+  background-color: #433e3e;
+}
+
+.c-hamburger--rot.is-active span {
+  -webkit-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+/**
+ * Style 2
+ * 
+ * Hamburger to "x" (htx). Takes on a hamburger shape, bars slide
+ * down to center and transform into an "x".
+ */
+.c-hamburger--htx {
+  background-color: #fb0c98;
+}
+
+.c-hamburger--htx span {
+  -webkit-transition: background 0s 0.3s;
+          transition: background 0s 0.3s;
+}
+
+.c-hamburger--htx span::before,
+.c-hamburger--htx span::after {
+  -webkit-transition-duration: 0.3s, 0.3s;
+          transition-duration: 0.3s, 0.3s;
+  -webkit-transition-delay: 0.3s, 0s;
+          transition-delay: 0.3s, 0s;
+}
+
+.c-hamburger--htx span::before {
+  -webkit-transition-property: top, -webkit-transform;
+          transition-property: top, transform;
+}
+
+.c-hamburger--htx span::after {
+  -webkit-transition-property: bottom, -webkit-transform;
+          transition-property: bottom, transform;
+}
+
+/* active state, i.e. menu open */
+.c-hamburger--htx.is-active {
+  background-color: #433e3e;
+}
+
+.c-hamburger--htx.is-active span {
+  background: none;
+}
+
+.c-hamburger--htx.is-active span::before {
+  top: 0;
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.c-hamburger--htx.is-active span::after {
+  bottom: 0;
+  -webkit-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+.c-hamburger--htx.is-active span::before,
+.c-hamburger--htx.is-active span::after {
+  -webkit-transition-delay: 0s, 0.3s;
+          transition-delay: 0s, 0.3s;
+}
+
+/**
+ * Style 3
+ *
+ * Hamburger to left-arrow (htla). Hamburger menu transforms to a left-pointing
+ * arrow. Usually indicates an off canvas menu sliding in from left that
+ * will be close on re-click of the icon.
+ */
+.c-hamburger--htla {
+  background-color: #32dc64;
+}
+
+.c-hamburger--htla span {
+  -webkit-transition: -webkit-transform 0.3s;
+          transition: transform 0.3s;
+}
+
+.c-hamburger--htla span::before {
+  -webkit-transform-origin: top right;
+      -ms-transform-origin: top right;
+          transform-origin: top right;
+  -webkit-transition: -webkit-transform 0.3s, width 0.3s, top 0.3s;
+          transition: transform 0.3s, width 0.3s, top 0.3s;
+}
+
+.c-hamburger--htla span::after {
+  -webkit-transform-origin: bottom right;
+      -ms-transform-origin: bottom right;
+          transform-origin: bottom right;
+  -webkit-transition: -webkit-transform 0.3s, width 0.3s, bottom 0.3s;
+          transition: transform 0.3s, width 0.3s, bottom 0.3s;
+}
+
+/* active state, i.e. menu open */
+.c-hamburger--htla.is-active {
+  background-color: #433e3e;
+}
+
+.c-hamburger--htla.is-active span {
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.c-hamburger--htla.is-active span::before,
+.c-hamburger--htla.is-active span::after {
+  width: 50%;
+}
+
+.c-hamburger--htla.is-active span::before {
+  top: 0;
+  -webkit-transform: translateX(38px) translateY(4px) rotate(45deg);
+      -ms-transform: translateX(38px) translateY(4px) rotate(45deg);
+          transform: translateX(38px) translateY(4px) rotate(45deg);
+}
+
+.c-hamburger--htla.is-active span::after {
+  bottom: 0;
+  -webkit-transform: translateX(38px) translateY(-4px) rotate(-45deg);
+      -ms-transform: translateX(38px) translateY(-4px) rotate(-45deg);
+          transform: translateX(38px) translateY(-4px) rotate(-45deg);
+}
+
+/**
+ * Style 4
+ *
+ * Hamburger to right-arrow (htra). Hamburger menu transforms to a
+ * right-pointing arrow. Usually indicates an off canvas menu sliding in from 
+ * right that will be close on re-click of the icon.
+ */
+.c-hamburger--htra {
+  background-color: #28aadc;
+}
+.c-hamburger--htra#icon-cog-section {
+  background-color: #fb0c98;
+}
+.c-hamburger--htra span {
+  -webkit-transition: -webkit-transform 0.3s;
+          transition: transform 0.3s;
+}
+
+.c-hamburger--htra span::before {
+  -webkit-transform-origin: top left;
+      -ms-transform-origin: top left;
+          transform-origin: top left;
+  -webkit-transition: -webkit-transform 0.3s, width 0.3s, top 0.3s;
+          transition: transform 0.3s, width 0.3s, top 0.3s;
+}
+
+.c-hamburger--htra span::after {
+  -webkit-transform-origin: bottom left;
+      -ms-transform-origin: bottom left;
+          transform-origin: bottom left;
+  -webkit-transition: -webkit-transform 0.3s, width 0.3s, bottom 0.3s;
+          transition: transform 0.3s, width 0.3s, bottom 0.3s;
+}
+
+/* active state, i.e. menu open */
+.c-hamburger--htra.is-active {
+  background-color: #433e3e;
+}
+
+.c-hamburger--htra#icon-cog-section.is-active {
+   background-color: #433e3e;
+}
+.c-hamburger--htra.is-active span {
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.c-hamburger--htra.is-active span::before,
+.c-hamburger--htra.is-active span::after {
+  width: 50%;
+}
+
+.c-hamburger--htra.is-active span::before {
+  top: 0;
+    -webkit-transform: translateX(-4px) translateY(10px) rotate(-45deg);
+    -ms-transform: translateX(-4px) translateY(10px) rotate(-45deg);
+    transform: translateX(-4px) translateY(10px) rotate(-45deg);
+}
+
+.c-hamburger--htra.is-active span::after {
+  bottom: 0;
+    -webkit-transform: translateX(-4px) translateY(-9px) rotate(45deg);
+    -ms-transform: translateX(-4px) translateY(-9px) rotate(45deg);
+    transform: translateX(-4px) translateY(-9px) rotate(45deg);
+}
+
+/* -----------------------------------------------------------------------------
+
+  CARBON AD COMPONENT
+  
+----------------------------------------------------------------------------- */
+#carbonads {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  z-index: 1000;
+  padding: 24px 12px 12px 12px;
+  width: 154px;
+  background-color: #fff;
+  line-height: 1.1;
+  border: solid 1px #e7e7e7;
+}
+
+.carbon-wrap {
+  display: block;
+  margin: 0 0 4px 0;
+}
+
+.carbon-img {
+  display: block;
+  margin: 0 0 4px 0;
+  padding: 0;
+  width: 130px;
+  height: 100px;
+}
+
+.carbon-text {
+  color: #818181;
+  font-size: 12px;
+}
+
+.carbon-poweredby {
+  font-size: 10px;
+  font-style: italic;
+}
+
+.carbonad__close {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 12px;
+  height: 24px;
+  font-size: 11px;
+  line-height: 24px;
+}
+
+@media all and (max-width: 660px) {
+  #carbonads {
+    display: none;
+  }
+}
+#box-menu-hamburger {
+  position: fixed;
+  z-index: 10000;
+  left: 5px;
+  top: 3px;
+  width: 240px;
+  height: 50px;
+}
+#box-menu-hamburger ul {padding-left: 0;}
+#menu-hamburger-right .content-menu-hamburger{
+  display: none;
+  padding-top: 60px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: -15px;
+}
+#menu-hamburger-right .content-menu-hamburger.open{display: block;}
+#menu-hamburger-right ul li i {margin-right: 5px;}
+#box-menu-hamburger.open{z-index: 9999}
+#box-menu-hamburger #box-menu-hamburger {
+  padding: 0;
+  display: inline-block;
+  position: absolute;
+  left: 5px;
+  top: 25px;
+  z-index: 99;
+}
+#box-menu-hamburger .c-hamburger span{
+  top: 19px
+}
+#box-menu-hamburger .c-hamburger span::after{
+  bottom: -8px;
+}
+#box-menu-hamburger .c-hamburger span::before{
+  top: -8px;
+}
+#menu-hamburger-right.open-menu{
+  left: 0%;
+  -webkit-transition: left 0.5s; 
+  transition: left 0.5s;
+  z-index: 9999;
+}
+#menu-hamburger-right{
+  position: fixed;
+  top: 0;
+  left: -120%;
+  width: 240px;
+  bottom: 0;
+  height: -webkit-fill-available;
+  border-right: 2px solid #ccc;
+  -webkit-transition: left 0.5s; /* Safari */
+  transition: left 0.5s;
+  z-index: 0;
+}
+.content-menu-hamburger li {
+  list-style: none;
+}
+.content-menu-hamburger li a {color: #fff;text-decoration: none !important; }
+#content-menu-hamburger li a:hover,#content-menu-hamburger li a.active {
+  color: #fb0c98;
+  
+}
+#content-menu-setting li a:hover,#content-menu-setting li a.active {
+  color: #28aadc;
+}
+#box-menu-hamburger .redit-base img{width: 70px;}
+#box-menu-hamburger .o-grid__item{padding:0;}
+#box-menu-hamburger .o-grid__item #icon-home-section span:before{
+  content: "\f015";
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  background-color: transparent;
+  height: auto;
+  font-size: 30px;
+  color: #fff;
+  z-index: 999;
+  top: 0;
+  text-indent: 0;
+}
+#box-menu-hamburger .o-grid__item #icon-logout-section span:before{
+  content: "\f08b";
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  background-color: transparent;
+  height: auto;
+  font-size: 30px;
+  color: #fff;
+  z-index: 999;
+  top: 0;
+  text-indent: 0;
+}
+#box-menu-hamburger .o-grid__item #icon-logout-section.sign-in span:before{
+  content: "\f090";
+}
+#box-menu-hamburger .o-grid__item #icon-cog-section:not(.is-active) span:before {
+  content: "\f013";
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  background-color: transparent;
+  height: auto;
+  font-size: 30px;
+  color: #fff;
+  z-index: 999;
+  top: 0;
+  text-indent: 0;
+}
+#box-menu-hamburger #icon-home-section.c-hamburger--htra{
+  background-color: #ccc;
+}
+#box-menu-hamburger #icon-logout-section.c-hamburger--htra{
+  background-color: #ff0000;
+}
+#box-menu-hamburger .o-grid__item #icon-home-section span:after,
+#box-menu-hamburger .o-grid__item #icon-logout-section span:after{
+  display: none;
+  background-color: transparent;
+  height: auto;
+}
+#box-menu-hamburger .o-grid__item #icon-cog-section:not(.is-active) span:after {
+  display: none;
+  background-color: transparent;
+  height: auto;
+}
+#box-menu-hamburger .o-grid__item #icon-logout-section span,
+#box-menu-hamburger .o-grid__item #icon-home-section span,
+#box-menu-hamburger .o-grid__item #icon-cog-section:not(.is-active) span
+{
+    background-color: transparent;
+    top: 5px;
+    left: 7px;
+}
+.content-menu-hamburger{
+  min-height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  top: 0;
+  padding-left: 0;
+}
+.content-menu-hamburger li a {
+  font-size: 14px;
+  text-transform: uppercase;
+}
+#content-menu-hamburger{
+  background: #28aadc;
+}
+#content-menu-setting{
+  background: #fb0c98;
+}
+#content-menu-hamburger li {
+  background-color: #28aadc!important;
+  padding: 5px;
+}
+
+#content-menu-setting li {
+  background-color: #fb0c98!important;
+  padding: 5px;
+}
+
+#box-menu-hamburger ul li a i {margin-right: 10px;}
+.redit-base {
+    position: fixed;
+    left: 10px;
+    bottom: 10px;
+    z-index: 999;
+    width: 100px;
+}

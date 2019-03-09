@@ -1,0 +1,24 @@
+#modal-page #modal-edit-block .label-part{
+    display: none;
+}
+#modal-page #modal-edit-block .image .data-show-value{
+	text-align: center;
+}
+#page_theme #modal-edit-block.modal .modal-dialog{
+	width: 710px !important;
+	max-width: 100%;
+}
+
+#modal-page #modal-edit-block .image{
+	border: 1px solid #ccc;
+    padding: 20px 0;
+    margin-bottom: 20px;
+}
+
+#modal-page .modal .box-full{
+	margin-bottom: 0 !important;
+}
+#modal-page #modal-delete-item.modal .modal-dialog{
+	width: 400px;
+	text-align: center;
+}
