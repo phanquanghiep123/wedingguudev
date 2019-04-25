@@ -39,6 +39,18 @@
 				        		<div class="pladehoder">Mật khẩu</div>
 				        	</div>
 
+				        	<div style="height: 10px;"></div>
+				        	<div class="row">
+				        		<div class="col-xs-12">
+						        	<div class="form-group">
+		                            	<div class="checkbox" style="padding-left: 15px;">
+					        				<input id="is_dealer" type="checkbox" name="is_dealer" value="1">
+			                        		<label for="is_dealer">Đăng ký Cộng tác viên => <a href="<?php echo base_url('trang/cong-tac-vien'); ?>"> Xem thêm</a></label>
+				        				</div>
+		                            </div>
+		                   		</div> 
+		                   	</div>
+
 				        	<div class="form-group">
 				        		<label style="font-size: 12px;">TÊN WEBSITE CƯỚI</label>
 				        		<div class="input-group input-domain">
@@ -60,6 +72,7 @@
 				        			<button class="btn btn-primary btn-lg" type="submit" name="submit">Đăng ký</button>
 				        		</div>
 				        	</div>
+				        	<input type="hidden" name="fbclid" value="<?php echo $this->input->get("fbclid")?>">
 						</div>
 						<hr>
 						<div class="form-footer">

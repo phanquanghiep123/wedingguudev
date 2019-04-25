@@ -25,9 +25,12 @@
 								<tr class="headings">
 									<th>#</th>
 									<th>Người dùng</th>
+									<th>Tên liên hệ</th>
+									<th>SĐT</th>
 									<th>Gói dịch vụ</th>
 									<th>Số tháng</th>
 									<th>Tổng tiền</th>
+									<th>Phí hoa hồng</th>
 									<th>Ngày bắt đầu</th>
 									<th>Ngày hết hạn</th>
 									<th>Trạng thái</th>
@@ -40,9 +43,12 @@
 							    		<tr>
 											<td><?php echo ($key+1);?> </td>
 											<td><?php echo $item["last_name"]; ?></td>
-											<td><?php echo $item["name"]; ?></td>
+											<td><?php echo $item["nameContact"]; ?></td>
+											<td><?php echo $item["phone"]; ?></td>
+											<td><?php echo $item["label"]; ?></td>
 											<td><?php echo $item["months"]; ?></td>
 											<td><?php echo number_format($item["total_price"]); ?> VNĐ</td>
+											<td><?php echo number_format($item["commission_money"]); ?> VNĐ</td>
 											<td><?php echo date("d/m/Y",strtotime($item["start_date"])); ?></td>
 											<td><?php echo date("d/m/Y",strtotime($item["expired_at"])); ?></td>
 											<td>

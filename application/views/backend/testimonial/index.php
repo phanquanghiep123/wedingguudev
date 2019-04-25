@@ -11,7 +11,6 @@
 						    		<?php $this->load->view(@$backend_asset.'/includes/add_new',array('is_add' => @$is_add,'base_controller' => @$base_controller)); ?>	
 						    	</h2>
 						    </div>
-							<?php $this->load->view(@$backend_asset.'/includes/search'); ?>
 						</div>
 					</form>
 				</div>
@@ -27,8 +26,8 @@
 								<tr class="headings">
 									<th>#</th>
 									<th>Tiêu đề</th>
-									<th>Slug</th>
-									<th>Trạng thái</th>
+									<th>Địa chỉ</th>
+									<th>Số sao/th>
 									<th>Ngày tạo</th>
 									<th></th>
 								</tr>
@@ -38,12 +37,12 @@
 						        	<?php foreach ($pages as $key => $item) : ?>
 							    		<tr>
 											<td><?php echo ($key+1);?> </td>
-											<td><?php echo $item["Title"]; ?></td>
-											<td><?php echo $item["Key_Identify"]; ?></td>
-											<td><?php echo @$item["Status"] == 1 ? 'Hoạt động' : 'Ngưng hoạt động'; ?></td>
-											<td><?php echo date("d/m/Y, g:i A",strtotime($item["Create_at"])); ?></td>
+											<td><?php echo $item["name"]; ?></td>
+											<td><?php echo $item["address"]; ?></td>
+											<td><?php echo $item["rate"]; ?></td>
+											<td><?php echo date("d/m/Y, g:i A",strtotime($item["created_at"])); ?></td>
 											<td>
-												<?php $this->load->view(@$backend_asset.'/includes/edit_delete',array('id' => @$item["ID"],'is_edit' => @$is_edit,'is_delete' => @$is_delete,'base_controller' => @$base_controller)); ?>
+												<?php $this->load->view(@$backend_asset.'/includes/edit_delete',array('id' => @$item["id"],'is_edit' => @$is_edit,'is_delete' => @$is_delete,'base_controller' => @$base_controller)); ?>
 											</td>
 										</tr>
 							    	<?php endforeach; ?>

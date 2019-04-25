@@ -17,6 +17,7 @@ class Blog extends Frontend_Controller{
 
 	public function index(){
     	$where["Status"] = "1";
+        $where["Lang"] = $this->langId;
         if($this->input->get("keyword")){
             $where["Name Like"] = "%".$this->input->get("keyword")."%" ;
         }
@@ -44,15 +45,18 @@ class Blog extends Frontend_Controller{
                 $sql = "SELECT c.*
                         FROM {$this->table_category} AS c 
                         INNER JOIN {$this->table_post_category} AS pc ON pc.category_id = c.ID
-                        WHERE pc.post_id = '{$item['ID']}' AND c.Status = '1' 
+                        WHERE pc.post_id = '{$item['ID']}' AND c.Status = '1' AND c.Lang = {$this->langId}
                         ";//GROUP BY c.ID 
                 $this->data["data"][$key]['category'] = $this->Common_model->query_raw($sql);
             }
         }
-        $this->data["category"] = $this->Common_model->get_result($this->table_category,array('Status' => 1));
-        $this->data["last_post"] = $this->Common_model->get_result($this->table,array('Status' => 1),0,10,array('ID' => 'DESC'),true);
+        $this->data["category"] = $this->Common_model->get_result($this->table_category,array('Status' => 1,"Lang" => $this->langId));
+        $this->data["last_post"] = $this->Common_model->get_result(
+            $this->table,
+            array('Status' => 1,"Lang" => $this->langId),0,10,array('ID' => 'DESC'),true);
 		$this->data['title'] = 'Bài viết';
         $this->load->view($this->asset.'/blog/index',$this->data);
+        $this->load->view($this->asset.'/block/footer',$this->data);
 	}
 
 	public function category($slug = null){
@@ -71,8 +75,7 @@ class Blog extends Frontend_Controller{
                 FROM {$this->table_category} AS c 
                 INNER JOIN {$this->table_post_category} AS pc ON pc.category_id = c.ID
                 INNER JOIN {$this->table} AS p ON p.ID = pc.post_id
-                WHERE c.ID = '{$category['ID']}' AND p.Status = '1' $where
-                
+                WHERE c.ID = '{$category['ID']}' AND p.Status = '1' {$where} AND p.Lang = {$this->langId}        
                 LIMIT $offset,$per_page";//GROUP BY p.ID
 
         $sql_count = " SELECT count(c.ID) AS count
@@ -81,7 +84,7 @@ class Blog extends Frontend_Controller{
                     FROM {$this->table_category} AS c 
                     INNER JOIN {$this->table_post_category} AS pc ON pc.category_id = c.ID
                     INNER JOIN {$this->table} AS p ON p.ID = pc.post_id
-                    WHERE c.ID = '{$category['ID']}' AND p.Status = '1' $where
+                    WHERE c.ID = '{$category['ID']}' AND p.Status = '1' $where AND p.Lang = {$this->langId}   
                     
                 ) AS c";//GROUP BY p.ID
         
@@ -118,6 +121,7 @@ class Blog extends Frontend_Controller{
         $this->data["last_post"] = $this->Common_model->get_result($this->table,array('Status' => 1),0,10,array('ID' => 'DESC'),true);
 		$this->data['title'] = $category['Name'];
 		$this->load->view($this->asset.'/blog/index',$this->data);
+        $this->load->view($this->asset.'/block/footer',$this->data);
 	}
 
     public function detail($slug = null){
@@ -132,7 +136,7 @@ class Blog extends Frontend_Controller{
         $sql = "SELECT c.*
                 FROM {$this->table_category} AS c 
                 INNER JOIN {$this->table_post_category} AS pc ON pc.category_id = c.ID
-                WHERE pc.post_id = '{$post['ID']}' AND c.Status = '1' 
+                WHERE pc.post_id = '{$post['ID']}' AND c.Status = '1' AND c.Lang = {$this->langId}
                 ";//GROUP BY c.ID
         $this->data['post_category'] = $this->Common_model->query_raw($sql);
 
@@ -141,14 +145,15 @@ class Blog extends Frontend_Controller{
                 FROM {$this->table} AS p
                 INNER JOIN {$this->table_post_category} AS pc ON p.ID = pc.post_id
                 INNER JOIN {$this->table_category} AS c ON pc.category_id = c.ID
-                WHERE c.ID != '{$post['ID']}' AND c.Status = '1'  AND pc.category_id = '{$category_id}'
+                WHERE c.ID != '{$post['ID']}' AND c.Status = '1'  AND pc.category_id = '{$category_id}' AND p.Lang = {$this->langId}
                 LIMIT 0,5";//GROUP BY c.ID
         $this->data['post_relationship'] = $this->Common_model->query_raw($sql);
         $this->data["category"] = $this->Common_model->get_result($this->table_category,array('Status' => 1));
         $this->data["last_post"] = $this->Common_model->get_result($this->table,array('Status' => 1,'ID !=' => $post['ID']),0,10,array('ID' => 'DESC'),true);
-        $this->data["advertisement"] = $this->Common_model->get_record($this->table_advertisement,array("status" => 1),null,null,array('id' => 'RANDOM'));
+        $this->data["advertisement"] = $this->Common_model->get_record($this->table_advertisement,array("status" => 1,'is_home' => 0),null,null,array('id' => 'RANDOM'));
         $this->data['title'] = $post['Name'];
         $this->data['post'] = $post;
         $this->load->view($this->asset.'/blog/detail',$this->data);
+        $this->load->view($this->asset.'/block/footer',$this->data);
     }
 }

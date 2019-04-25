@@ -65,6 +65,7 @@ class Category_help extends MY_Controller {
                 redirect(backend_url($this->base_controller.'/create/'));
             }
         }
+        $this->data['langs'] = $this->Common_model->get_result($this->table_prefix.'languages');
         $this->load->view($this->backend_asset."/".$this->folder_view."/edit",$this->data);
     }
     
@@ -96,6 +97,7 @@ class Category_help extends MY_Controller {
             redirect(backend_url($this->base_controller.'/edit/'.$id));
         }
         $this->data['record'] = $record;
+        $this->data['langs'] = $this->Common_model->get_result($this->table_prefix.'languages');
         $this->load->view($this->backend_asset."/".$this->folder_view."/edit",$this->data);
     }
 

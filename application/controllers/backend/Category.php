@@ -75,6 +75,7 @@ class Category extends MY_Controller {
             }
         }
         $table_data = $this->Common_model->get_result($this->table);
+        $this->data['langs'] = $this->Common_model->get_result($this->table_prefix.'languages');
         $this->data['option_category'] = $this->get_html_category($table_data,0,'',false,-1);
         $this->load->view($this->backend_asset."/".$this->folder_view."/edit",$this->data);
     }
@@ -122,6 +123,7 @@ class Category extends MY_Controller {
             redirect(backend_url($this->base_controller.'/edit/'.$id));
         }
         $this->data['record'] = $record;
+        $this->data['langs'] = $this->Common_model->get_result($this->table_prefix.'languages');
         $table_data = $this->Common_model->get_result($this->table,array("ID !=" => $record["ID"]));
         $this->data['option_category'] = $this->get_html_category($table_data,0,'',false,@$record["Parent_ID"]);
         $this->load->view($this->backend_asset."/".$this->folder_view."/edit",$this->data);

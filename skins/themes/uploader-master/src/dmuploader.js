@@ -154,14 +154,15 @@
 
       // Check file extension
       if(this.settings.extFilter != null){
-        var extList = this.settings.extFilter.toLowerCase().split(';');
-
-        var ext = file.name.toLowerCase().split('.').pop();
-
-        if($.inArray(ext, extList) < 0){
-          this.settings.onFileExtError.call(this.element, file);
-
-          continue;
+        var extFilterstring = this.settings.extFilter.join(";")
+        console.log(extFilterstring);
+        if(extFilterstring != "*"){
+          var extList = extFilterstring.toLowerCase().split(';');
+          var ext = file.name.toLowerCase().split('.').pop();
+          if($.inArray(ext, extList) < 0){
+            this.settings.onFileExtError.call(this.element, file);
+            continue;
+          }
         }
       }
             

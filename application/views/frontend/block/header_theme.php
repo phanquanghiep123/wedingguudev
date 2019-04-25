@@ -59,13 +59,15 @@
                                          <img class="img-circle" width="40" height="40" src="<?php echo @$user['avatar']; ?>">
                                     </a>
                                     <ul class="dropdown-menu">
-                                       <li><a href="<?php echo base_url('/profile'); ?>"><i class="fa fa-user-circle" aria-hidden="true"></i> Thông tin cá nhân</a></li>
-                                       <li><a href="<?php echo base_url('/profile/wall'); ?>"><i class="fa fa-tripadvisor" aria-hidden="true"></i> Trang tường</a></li>
-                                       <li><a href="<?php echo base_url('/themes/my/'); ?>"><i class="fa fa-themeisle" aria-hidden="true"></i> Giao diện của bạn</a></li>
-                                       <li><a href="<?php echo base_url('/profile/change_password'); ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Đổi mật khẩu</a></li>
-                                       <li><a href="<?php echo base_url('/profile/payment_history'); ?>"><i class="fa fa-credit-card" aria-hidden="true"></i> Lịch sử thanh toán</a></li>
-                                       <li><a href="<?php echo base_url('/invite/'); ?>"><i class="fa fa-user-plus" aria-hidden="true"></i> Mời bạn bè</a></li>
-                                       <li><a href="<?php echo base_url('/profile/logout/'); ?>"><i class="fa fa-sign-out" aria-hidden="true"></i> Đăng xuất</a></li>
+                                        <li><a href="<?php echo base_url('/profile'); ?>"><i class="fa fa-user-circle" aria-hidden="true"></i> Thông tin cá nhân</a></li>
+                                        <li><a href="<?php echo base_url('/profile/wall'); ?>"><i class="fa fa-tripadvisor" aria-hidden="true"></i> Trang tường</a></li>
+                                        <li><a href="<?php echo base_url('/themes/my/'); ?>"><i class="fa fa-themeisle" aria-hidden="true"></i> Giao diện của bạn</a></li>
+                                        <li><a href="<?php echo base_url('/profile/change_password'); ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Đổi mật khẩu</a></li>
+                                        <li><a href="<?php echo base_url('/profile/payment_history'); ?>"><i class="fa fa-credit-card" aria-hidden="true"></i> Lịch sử thanh toán</a></li>
+                                        <?php if(@$user['is_dealer'] == 1):?>
+                                            <li><a href="<?php echo base_url('/invite/'); ?>"><i class="fa fa-user-plus" aria-hidden="true"></i> Mời bạn bè</a></li>
+                                        <?php endif; ?>
+                                        <li><a href="<?php echo base_url('/profile/logout/'); ?>"><i class="fa fa-sign-out" aria-hidden="true"></i> Đăng xuất</a></li>
                                     </ul>
                               </div>
                         <?php else: ?>

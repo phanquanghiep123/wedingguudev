@@ -21,8 +21,16 @@
                             <input type="text"  class="form-control" value="<?php echo @$record['last_name']; ?>" disabled>
                         </div>
                         <div class="form-group">
+                            <label>Tên liên hệ</label>
+                            <input type="text"  class="form-control" value="<?php echo @$record['nameContact']; ?>" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>SĐT</label>
+                            <input type="text"  class="form-control" value="<?php echo @$record['phone']; ?>" disabled>
+                        </div>
+                        <div class="form-group">
                             <label>Gói dịch vụ</label>
-                            <input type="text"  class="form-control" value="<?php echo @$record['name']; ?>" disabled>
+                            <input type="text"  class="form-control" value="<?php echo @$record['label']; ?>" disabled>
                         </div>
                         <div class="form-group">
                             <label>Số tháng</label>

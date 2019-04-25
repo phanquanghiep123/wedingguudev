@@ -54,7 +54,12 @@ class Advertisement extends MY_Controller
                 $data_insert = array();
                 foreach ($data_post as $key => $value) {
                     if(in_array($key, $colums)){
-                        $data_insert[$key] = $value;
+                        if($key == 'is_home'){
+                            $data_insert[$key] = ($value == 1 ? 1 : 0);
+                        }
+                        else{
+                            $data_insert[$key] = $value;
+                        }
                     }
                 }
                 $data_insert['created_at'] = date('Y-m-d H:i:s');
@@ -91,7 +96,12 @@ class Advertisement extends MY_Controller
                 $data_update = array();
                 foreach ($data_post as $key => $value) {
                     if(in_array($key, $colums)){
-                        $data_update[$key] = $value;
+                        if($key == 'is_home'){
+                            $data_update[$key] = ($value == 1 ? 1 : 0);
+                        }
+                        else{
+                            $data_update[$key] = $value;
+                        }
                     }
                 }
                 $this->message($this->message_update_succes,'success');

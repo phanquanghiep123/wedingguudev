@@ -39,6 +39,7 @@ class Profile extends Frontend_Controller {
                     'gender' => $this->input->post('gender'),
                     'phone' => $this->input->post('phone'),
                     'wedding_date' => date('Y-m-d',strtotime($date)),
+                    'is_dealer' => $this->input->post('is_dealer') == 1 ? 1 : 0
                 );
             	$subdomain = strtolower($this->input->post('subdomain'));
             	if($subdomain != null){
@@ -73,6 +74,7 @@ class Profile extends Frontend_Controller {
         $this->data['user1'] = $user;
         $this->load->view($this->asset.'/block/header',$this->data);
 		$this->load->view($this->asset.'/profile/index',$this->data);
+        $this->load->view($this->asset.'/block/footer',$this->data);
 	}
 
     public function wall(){
@@ -98,8 +100,6 @@ class Profile extends Frontend_Controller {
         $this->_data["post"]["sound_URL"] = @$sound["path"];
         $this->load->view($this->_view ."/block/header",$this->data);
         $this->load->view($this->_view . "/wall",$this->data);
-        $this->load->view($this->_view ."/block/footer",$this->data);
-
     }
 
 	public function change_password(){
@@ -136,6 +136,7 @@ class Profile extends Frontend_Controller {
         }
         $this->load->view($this->asset.'/block/header',$this->data);
 		$this->load->view($this->asset.'/profile/password',$this->data);
+        $this->load->view($this->asset.'/block/footer',$this->data);
 	}
 
     public function payment_history(){
@@ -175,6 +176,7 @@ class Profile extends Frontend_Controller {
         $this->data["package"] = $this->Common_model->query_raw($sql);
         $this->load->view($this->asset.'/block/header',$this->data);
         $this->load->view($this->asset.'/profile/payment',$this->data);
+        $this->load->view($this->_view ."/block/footer",$this->data);
     }
 
     public function save_media() {

@@ -168,13 +168,13 @@
     var User_id = "<?php echo @$user_id;?>";
     var Privew = true;
   </script>
+  <script type="text/javascript" src="<?php echo skin_url("themes/angular/angular.min.js")?>"></script>
   <script type="text/javascript" src="<?php echo skin_url("themes/fancybox/dist/jquery.fancybox.js")?>"></script>
   <script type="text/javascript" src="<?php echo skin_url("themes/jquery.countdown/jquery.countdown.min.js")?>"></script>
   <script type="text/javascript" src="<?php echo skin_url("themes/bxslider/dist/jquery.bxslider.js");?>"></script>
   <script type="text/javascript" src="<?php echo skin_url("themes/datetimepicker/build/jquery.datetimepicker.full.min.js")?>"></script>
   <script type="text/javascript" src="<?php echo skin_url("themes/bootstrap-slider/bootstrap-slider.js");?>"></script>
   <script type="text/javascript" src="<?php echo skin_url("themes/jquery-ui/jquery-ui.min.js")?>"></script>
-  <script type="text/javascript" src="<?php echo skin_url("themes/angular/angular.min.js")?>"></script>
   <script type="text/javascript" src="<?php echo skin_url("themes/filemanager/filemanager.js")?>"></script>
   <script type="text/javascript" src="<?php echo skin_url("themes/colorpicker/js/evol-colorpicker.min.js")?>"></script>
   <script type="text/javascript" src="<?php echo skin_url("themes/tinymce/tinymce.min.js")?>"></script>

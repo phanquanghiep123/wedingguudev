@@ -70,14 +70,17 @@ class Filemanager extends CI_Controller {
       $list_folder = ["name" => "root" ,"id" => $folder_id,"iconOpen" => skin_url("themes/images/1_open.png"),"iconClose" => skin_url("themes/images/1_close.png"),"icon" => skin_url("themes/images/1_open.png"),"children" => $this->Medias_model->get_list_folder($folder_id,$this->_user_id),"open" => true];
       $this->_data["list_folder"] = $list_folder;
       $this->_data["sizeData"] = $this->Common_model->get_result($this->_fix."config",["support" => "file_size"]);
-      $config_file_allow_upload = $this->Common_model->get_record($this->_fix."config",["support" => "file_allow_upload"]);
-      $this->_data["allow_uploads"] = "*";
-      if($config_file_allow_upload){
-          $string_allow = $config_file_allow_upload["value"];
+      $config_file_allow_upload = $this->Common_model->get_record($this->_fix."media_type",["name" => $type_file]);
+      $this->_data["allow_uploads"] = json_encode(["*"]);
+      if($type_file != null){
+        if($config_file_allow_upload){
+          $string_allow = $config_file_allow_upload["extension"];
           $arg_allow    = explode("/",$string_allow );
           $set_allow_not_null = array_diff($arg_allow ,[""]);
-          $string_allo_new = implode(";", $set_allow_not_null);
-          $this->_data["allow_uploads"]  = $string_allo_new;
+          $this->_data["allow_uploads"]  = json_encode(array_values($set_allow_not_null));
+        }else{
+          $this->_data["allow_uploads"]  = json_encode(array_values([$type_file,$ext_filter]));
+        }
       }
       $this->load->view($this->_view . "/index",$this->_data);
   }
@@ -477,7 +480,7 @@ class Filemanager extends CI_Controller {
                               </video>';
                     }
                     $editstring = "";
-                    if($get_type["name"] == "text"){
+                    if($get_type["name"] == "text" || $get_type["name"] == "file"){
                       if(file_exists( FCPATH . $record["path"] )){
                         $file_content = file_get_contents(FCPATH . $record["path"]);  
                         $editstring = '<textarea name="content-file" id="content-file" placeholder="Enter text ..." style="width: 100%;">'.htmlspecialchars($file_content).'</textarea>';
@@ -563,7 +566,7 @@ class Filemanager extends CI_Controller {
                   $allow_save = false;
                   $data["message"] = "Folder has been exist";
                 }
-              }else if($get_type["name"] == "text"){
+              }else if($get_type["name"] == "text" || $get_type["name"] == "file"){
                 if(file_exists( FCPATH . $record["path"] )){
                   try{
                     $fname   = FCPATH . $record["path"];
@@ -678,7 +681,7 @@ class Filemanager extends CI_Controller {
           $r["path_folder"] = $config["upload_path"];
           $r["member_id"]   = $this->_user_id;
           $id = $this->Common_model->add($this->_fix.$this->_table,$r);
-          $this->Common_model->update($this->_fix.$this->_table,["path_folder" => $r["path_folder"] . $id. "/"],["id" => $id]);
+          $this->Common_model->update($this->_fix.$this->_table,["path_folder" => $root["path_folder"] . $id. "/"],["id" => $id]);
           $item = $this->Common_model->get_record($this->_fix.$this->_table,["id" => $id]);
           $item["ramkey"] = uniqid();
           $record[] = $item;
@@ -795,8 +798,10 @@ class Filemanager extends CI_Controller {
                   if($get_record["extension"] == "folder"){
                     $this->db->like("path_folder",$get_record["path_folder"]); 
                     $this->db->delete($this->_fix.$this->_table) ;
-                    if(file_exists( FCPATH . $get_record["path"] )) {
-                      $this->delete_folder(FCPATH . $get_record["path"]);
+                    if($get_record["path"]){
+                      if (strpos($get_record["path"], '/uploads/') !== false){
+                        $this->delete_folder(FCPATH . $get_record["path"]);
+                      } 
                     }
                   }else{
                     foreach ($config_file AS $key_1 => $value_1){
@@ -1082,6 +1087,9 @@ class Filemanager extends CI_Controller {
     if (strpos(@$config["upload_path"] , $folder_allow) !== false) {
         $config['allowed_types'] = '*';
     }
+    if($data_file["extension"] == "json"){
+      $config['allowed_types'] = '*';
+    }
     $config['file_ext_tolower'] = TRUE;
     $config["file_name"]      = $name;
     $config["upload_path"]    = FCPATH . @$config["upload_path"];
@@ -1218,10 +1226,7 @@ class Filemanager extends CI_Controller {
     $b = array("a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a" , "a", "a", "a", "a", "a", "a", "e", "e", "e", "e", "e", "e", "e", "e", "e", "e", "e", "i", "i", "i", "i", "i", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o " , "o", "o", "o", "o", "o", "u", "u", "u", "u", "u", "u", "u", "u", "u", "u", "u", "y", "y", "y", "y", "y", "d", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A " , "A", "A", "A", "A", "A", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "I", "I", "I", "I", "I", "O", "O", "O", "O", "O", "O", "O", "O", "O", "O", "O", "O " , "O", "O", "O", "O", "O", "U", "U", "U", "U", "U", "U", "U", "U", "U", "U", "U", "Y", "Y", "Y", "Y", "Y", "D", "-","o","u");
     return strtolower(preg_replace(array('/[^a-zA-Z0-9 -]/','/[ -]+/','/^-|-$/'),array('','-',''),str_replace($a,$b,$str)));
   }
-  public function __destruct(){
-    if(!$this->input->is_ajax_request())
-      $this->load->view($this->_view."/block/footer");
-  }
+ 
   public $_new_array  = [];
   private function copymedia($data = null ,$root = 0, $new_root = 0,$new_path = null,$config_file = null,$folder = null){
       $new_data = [];

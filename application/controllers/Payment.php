@@ -52,19 +52,36 @@ class Payment extends Frontend_Controller {
                 $this->session->set_flashdata('message',$this->message('Vui lòng nhập đầy đủ thông tin.'));
                 $this->session->set_flashdata('record',$this->input->post());
             } else {
+                $num_months = $record["months"] .' '.$record["type"] ;
             	$input = $this->input->post();
+                $inver = $this->Common_model->get_record($this->table_prefix.'invite',["member_id" => $this->user_id]);
+                $member_inver_id = $inver ? $inver["member_invite_id"] : 0;
+                $commissionmoney = $commission = 0;
+                if($member_inver_id != 0){
+                    $old = $this->Common_model->get_record("payment_history",["member_id" => $this->user_id ,"member_inver" => $member_inver_id,"status" => 1]);
+                    $web_setting = $this->Common_model->get_record($this->table_prefix.'web_setting');
+                    $web_setting = json_decode(@$web_setting['Body_Json'],true);
+                    $commission  = @$web_setting["commission1"] ? $web_setting["commission1"] : 0;
+                    if($old){
+                        $commission = @$web_setting["commission2"] ? $web_setting["commission2"] : 0;
+                    }
+                    $commissionmoney = ($record["price"] * $commission)/100;
+                }
             	$arr = array(
-            		'name'	=> $this->input->post('name'),
-            		'email'	=> $this->input->post('email'),
-            		'phone'	=> $this->input->post('phone'),
-            		'comment'	=> $this->input->post('comment'),
-            		'status' => 0,
-            		'member_id'	=> $this->user_id,
-            		'months'	=> $record['months'],
-            		'total_price' => $record['price'],
-            		'start_date'  => date("Y-m-d H:i:s"),
-            		'expired_at'  => date("Y-m-d H:i:s", strtotime("+".$record['months']." month")),
-            		'package_id'  => $record['id']
+            		'name'	           => $this->input->post('name'),
+            		'email'	           => $this->input->post('email'),
+            		'phone'	           => $this->input->post('phone'),
+            		'comment'	       => $this->input->post('comment'),
+            		'status'           => 0,
+            		'member_id'	       => $this->user_id,
+                    "member_inver"     => $member_inver_id,
+                    "commission"       => $commission,
+                    "commission_money" => $commissionmoney,
+            		'months'	       => $record['months'],
+            		'total_price'      => $record['price'],
+            		'start_date'       => date("Y-m-d H:i:s"),
+            		'expired_at'       => date("Y-m-d H:i:s", strtotime("+".$num_months)),
+            		'package_id'       => $record['id']
             	);
             	$order_id = $this->Common_model->add($this->table_history,$arr);
             	if($order_id > 0){
@@ -179,6 +196,7 @@ class Payment extends Frontend_Controller {
         $this->data['package'] = $record;
 		$this->data['payment_method'] = $this->Common_model->get_result($this->table,array('status' => 1));
 		$this->load->view('frontend/payment/payment',$this->data);
+        $this->load->view($this->asset.'/block/footer',$this->data);
 	}
 
 	public function baokim(){
@@ -247,6 +265,7 @@ class Payment extends Frontend_Controller {
         $this->session->unset_userdata('payment_method');
         $this->data['title'] = 'Thanh toán thành công.';
         $this->load->view('frontend/payment/success',$this->data);
+        $this->load->view($this->asset.'/block/footer',$this->data);
     }
 
     public function cancel(){
@@ -254,5 +273,6 @@ class Payment extends Frontend_Controller {
         $this->session->unset_userdata('payment_method');
         $this->data['title'] = 'Thanh toán thất bại.';
         $this->load->view('frontend/payment/cancel',$this->data);
+        $this->load->view($this->asset.'/block/footer',$this->data);
     }
 }

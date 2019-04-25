@@ -25,6 +25,7 @@ class Packages extends Frontend_Controller{
         }
         $this->data["packages"] = $packages;   
         $this->load->view($this->asset.'/packages/index',$this->data);
+        $this->load->view($this->asset.'/block/footer',$this->data);
 	}
 
     public function closewindown(){

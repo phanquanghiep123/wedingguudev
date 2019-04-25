@@ -45,7 +45,7 @@ class Users extends MY_Controller {
         $config['segment'] = 2;
         $this->load->library('pagination');
         $this->pagination->initialize(_get_paging($config));
-        $this->data["users"] = $this->Common_model->get_result($this->table,$where,$offset,$per_page);
+        $this->data["users"] = $this->Common_model->get_result($this->table,$where,$offset,$per_page,array('id' => 'DESC'),true);
         $this->load->view($this->backend_asset."/".$this->folder_view."/index",$this->data);
     }
 

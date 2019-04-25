@@ -1,28 +1,28 @@
 <div id="section-background">
     <ul class="nav nav-tabs">
-      <li ng-class="tabsectionbackground == 0 ? 'active' : ''"><a ng-click="tabsectionbackground = 0;" data-toggle="tab" href="#image">Ảnh nền</a></li>
-      <li ng-class="tabsectionbackground == 1 ? 'active' : ''"><a ng-click="tabsectionbackground = 1" data-toggle="tab" href="#color">Màu nền</a></li>
+      <li ng-class="tabsectionbackground == 0 ? 'active' : ''"><a ng-click="tabsectionbackground = 0;" data-toggle="tab" href="#image">{{_Lang.APP_THEME_L_THEME_BACKGROUND_IMAGE}}</a></li>
+      <li ng-class="tabsectionbackground == 1 ? 'active' : ''"><a ng-click="tabsectionbackground = 1" data-toggle="tab" href="#color">{{_Lang.APP_THEME_L_THEME_BACKGROUND_COLOR}}</a></li>
     </ul>
     <div class="tab-content">
       <div id="image" ng-class="tabsectionbackground == 0 ? 'active': ''" class="tab-pane fade in">
         <ul class="nav-list-items list_category">
           <li ng-class="(type.load == 1) ? 'loadding' : ''" ng-repeat="type in backgroundType" ng-click="getActionType(type)" class="item" id="{{type.id}}">{{type.name}}</li>
           <li class="item not-after">
-            <label for="background-repeat">Lặp lại</label>
+            <label for="background-repeat">{{_Lang.APP_THEME_L_THEME_REPEAT}} </label>
             <select ng-init="console.log(background_repeat)" ng-options="item as item.label for item in background_repeat track by item.value" id="background-repeat" class="form-control" ng-model="section.style['background-repeat']">
-              <option value="">-- chọn một mục --</option>
+              <option value="">-- {{_Lang.APP_THEME_L_THEME_SELECT_ONE}} --</option>
             </select>
           </li>
           <li class="item not-after">
-            <label for="background-size">Kích cỡ</label>
+            <label for="background-size">{{_Lang.APP_THEME_L_THEME_BACKGROUND_SIZE}} </label>
             <select ng-options="item as item.label for item in background_size track by item.value" class="form-control" id="background-size" ng-model="section.style['background-size']">
-              <option value="">-- chọn một mục --</option>
+              <option value="">-- {{_Lang.APP_THEME_L_THEME_SELECT_ONE}} --</option>
             </select>
           </li>
           <li class="item not-after">
-            <label for="background-position">Vị trí</label>
+            <label for="background-position">{_Lang.APP_THEME_L_THEME_BACKGROUND_POSITION}} </label>
             <select ng-options="item item.label for item in background_position track by item.value" class="form-control" id="background-position" ng-model="section.style['background-position']">
-              <option value="">-- chọn một mục --</option>
+              <option value="">-- {{_Lang.APP_THEME_L_THEME_SELECT_ONE}} --</option>
             </select>
           </li>
         </ul>  
@@ -32,11 +32,11 @@
       </div>
       <div class="setting-bg">
           <div ng-if="(section.style['background-image'] && section.style['background-image'] != 'inherit')">
-            <label>Ảnh nền hiện tại</label>
+            <label>{{_Lang.APP_THEME_L_THEME_CURRENT_BACKGROUND_IMAGE}} </label>
             <div style="width: 100% ;height: 180px;background-size: cover; background-image: {{theme.style['background-image']}}"></div>
           </div>
           <div ng-if="(section.style['background-color'] && section.style['background-color'] != 'inherit')">
-            <label>Màu nền hiện tại <div style="float: right;margin-left: 20px;width: 30px; height: 30px;background-color: {{theme.style['background-color']}}"></div> </label>
+            <label>{{_Lang.APP_THEME_L_THEME_CURRENT_BACKGROUND_COLOR}} <div style="float: right;margin-left: 20px;width: 30px; height: 30px;background-color: {{theme.style['background-color']}}"></div> </label>
           </div>
       </div> 
     </div>

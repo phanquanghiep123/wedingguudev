@@ -13,6 +13,9 @@ h4,.h4{font-size:1.25rem;}
 .modal-backdrop{background-color:rgba(0, 0, 0, 0.5) !important;}
 .scroll .logo-text span{color:#666;}
 .height-100{height:100px;}
+.menu-languages{margin-right: 15px;}
+.menu-languages li{margin-left: 10px;}
+.menu-languages li:first-child{margin-left: 0;}
 @media (min-width:1200px){
 	.container{width:1200px;}
 }
@@ -170,7 +173,7 @@ body .bx-wrapper .bx-controls-direction a{z-index:99;}
 @media(min-width:1200px){.footer-top-1 .widget{padding-right:25%;}
 	.footer-top-2 .widget .menu-links li{display:inline-block;width:49%;}
 }
-.site-content-top .hero-image{margin-top:-72px;background-image:url('../images/home-banner.jpg');}
+.site-content-top .hero-image{margin-top:-72px;background-image:url('../images/background-header.png');}
 .section{padding-top:7.5rem;padding-bottom:5rem;}
 .section-space-bottom{padding-bottom:2.5rem;}
 .section-intro{background:url(../images/home-bg-pattern.png);position:relative;text-align:center;}
@@ -178,6 +181,48 @@ body .bx-wrapper .bx-controls-direction a{z-index:99;}
 .section-intro .img-bg{display:none;}
 .section-intro h2, .section-intro .lead{margin-bottom:1rem;}
 .section-intro .lead{margin-bottom:2rem;}
+.section-sustomer-text .col-space-bottom{
+	position:relative;
+
+}
+.section-sustomer-text .col-space-bottom img{
+	width: 60%;
+	margin: 0 auto;
+	height: 200px;
+	object-fit: scale-down;
+	object-position: bottom;
+	margin-bottom: 30px;
+}
+.section-sustomer-text .col-space-bottom:after{
+	content: "";
+	background-image: url("../images/co-arrow.png");
+	position: absolute;
+	left: -289px;
+	top: 29%;
+	right: 0;
+	background-repeat: no-repeat;
+	/* width: 100%; */
+	height: 17%;
+	background-size: contain;
+	background-position: center;
+}
+.section-sustomer-text .col-space-bottom:first-child:after{
+	display: none;
+}
+.section-sustomer-text .col-space-bottom  h3{
+	font-size: 26px;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-family: 'Roboto';
+	color: #666666;
+	margin-bottom: 20px;
+	text-align: center;
+}
+.section-sustomer-text .col-space-bottom  p{
+	text-align: center;
+	font-family: 'Roboto';
+	color: #666666;
+}
 @media (min-width:992px){.section-intro{text-align:left;}
 	.section-intro .col-left{-ms-flex:0 0 37%;flex:0 0 37%;max-width:37%;}
 	.section-intro .col-right{-ms-flex:0 0 63%;flex:0 0 63%;max-width:63%;}
@@ -371,6 +416,19 @@ img{max-width:100%;}
 	.site-content-top .hero-image .btn-primary.btn-lg{font-size: 13px;}
 	.testimonial-holder .text-holder{padding: 40px 20px 30px;}
 	.section-testimonials .bx-wrapper .bx-controls-direction a{width: 30px;height: 30px;line-height: 30px;}
+	.section-sustomer-text .col-space-bottom:after {
+	    background-image: url(../images/co-arrow-up.png);
+	    display: none;
+	}
+	.section-sustomer-text .col-space-bottom{
+		margin-bottom: 100px;
+	}
+	.section-sustomer-text .col-space-bottom:first-child:after{
+		display: block;
+	}
+	.section-sustomer-text .col-space-bottom:last-child:after{
+		display: none;
+	}
 }
 
 

@@ -2,7 +2,7 @@
     <div class="container">
         <div class="section-body">
             <div class="section-top"> 
-                <h2 class="text-center">Vui lòng chọn một chủ đề mà bạn muốn để thay đổi giao diện</h2>
+                <h2 class="text-center">[{]THEME_STRING_001[}]</h2>
             </div>
             <div class="section-bottom"> 
                 <?php $colum1 = $colum2 = $colum3 = "";$i = 0; ?>
@@ -29,8 +29,8 @@
 						            </div>
 						            <div class="bottom-card">
 						                <div class="box-top text-center" style="padding: 10px 0;">
-						                    <a href="<?php echo base_url("appthemes/clone/".$value["slug"]); ?>" class="btn btn-primary" style="text-transform: inherit;">Sử dụng</a>
-						                    <a href="<?php echo base_url("appthemes/preview/".$value["slug"]); ?>" class="btn btn-primary" style="text-transform: inherit;">Xem trước</a>
+						                    <a href="<?php echo base_url("appthemes/clone/".$value["slug"]); ?>" class="btn btn-primary" style="text-transform: inherit;">[{]L_USER[}]</a>
+						                    <a href="<?php echo base_url("appthemes/preview/".$value["slug"]); ?>" class="btn btn-primary" style="text-transform: inherit;">[{]L_REVIEW[}]</a>
 						                </div>
 						            </div>
 						        </div>
@@ -63,14 +63,14 @@
 					            <div class="description" style="padding: 10px 15px 0;border-bottom: 1px solid #ccc;">
 					            	<div class="row">
 						                <div class="col-12">
-						                	<h4 class="text-center">Đang cập nhật...</h4>
+						                	<h4 class="text-center">[{]L_UPDATING[}]...</h4>
 						                </div>
 					                </div>
 					            </div>
 					            <div class="bottom-card">
 					                <div class="box-top text-center" style="padding: 10px 0;opacity: 0;">
-					                    <a href="#" class="btn btn-primary" style="text-transform: inherit;">Sử dụng</a>
-					                    <a href="#" class="btn btn-primary" style="text-transform: inherit;">Xem trước</a>
+					                    <a href="#" class="btn btn-primary" style="text-transform: inherit;">[{]L_USER[}]</a>
+					                    <a href="#" class="btn btn-primary" style="text-transform: inherit;">[{]L_REVIEW[}]</a>
 					                </div>
 					            </div>
 					        </div>
@@ -81,15 +81,7 @@
         </div>
     </div>
 </section>
-<!-- <div class="right-info-member">
-    <p class="image-title"><a href="'.base_url("themes/create/".$value["id"]).'">Tên: '.$value["name"].'</a></p>
-    <p class="image-create">Tạo bởi: Admin | Công ty: Weddingguu</p>
-    <p class="image-create">Ngày tạo: '.$created.'</p>
-    <ul class="list-inline text-center" id="action-theme" >
-        <li class="list-inline-item"><a href="'.base_url("themes/create/".$value["id"]).'" class="btn btn-delete btn-transparent">Sử dụng</a></li>
-        <li class="list-inline-item"><a href="'.base_url("themes/preview/".$value["id"]).'" class="btn-delete btn btn-success btn-transparent">Xem trước</a></li>
-    </ul>
-</div> -->
+
 <style type="text/css">
     .content-show-page{margin-top: 42px;}
     .item-card{padding-left: 5px;padding-right: 5px;}

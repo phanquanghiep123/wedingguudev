@@ -29,6 +29,7 @@
         <script type="text/javascript">
             <?php //echo @$setting['javascript']; ?>
             var base_url = '<?php echo base_url(); ?>';
+            var is_login = '<?php echo @$is_login;?>';
         </script>
          <?php echo(@$setting['javascript'])?>
         <style type="text/css">
@@ -57,28 +58,37 @@
                       	</button>
 	                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	                        <?php echo @$menu; ?>
+                          <?php 
+                            if(@$_Langs){
+                              echo '<ul class="navbar-nav menu-languages">';
+                              foreach ($_Langs as $key => $value) {
+                                echo '<li ><a onclick="return activeLang(\''.trim($value["slug"]).'\')" href="javascript:;"><img src ="'.base_url($value["path_icon"]).'"></a></li>';
+                              }
+                              echo '</ul>';
+                            }
+                          ?>
 	                        <?php if(isset($is_login) && $is_login): ?>
 	                            <div class="dropdown nav-profile">
 	                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="text-decoration: none;">
 	                                    <img class="img-circle" width="40" height="40" src="<?php echo @$user['avatar'] != null ? $user['avatar'] : skin_frontend('images/avatar-default.png'); ?>">
-	                                	<span class="nav-profile-text">Tài khoản <i class="fa fa-caret-down" aria-hidden="true"></i></span>
+	                                	<span class="nav-profile-text">[{]HEADER_SHORT_PROFILE[}] <i class="fa fa-caret-down" aria-hidden="true"></i></span>
 	                                </a>
 	                                <ul class="dropdown-menu">
-	                                    <li><a href="<?php echo base_url('/profile'); ?>"><i class="fa fa-user-circle" aria-hidden="true"></i> Thông tin cá nhân</a></li>
+	                                    <li><a href="<?php echo base_url('/profile'); ?>"><i class="fa fa-user-circle" aria-hidden="true"></i> [{]HEADER_PROFILE[}]</a></li>
 	                                    <?php if(@$user['sub_domain']):?>
-                                          <li><a href="//<?php echo @$user['sub_domain']; ?>.weddingguu.com/"><i class="fa fa-tripadvisor" aria-hidden="true"></i> Trang tường</a></li>
-                                      <?php endif;?>
-	                                    <li><a href="<?php echo base_url('/themes/my/'); ?>"><i class="fa fa-th" aria-hidden="true"></i> Giao diện của bạn</a></li>
-	                                    <li><a href="<?php echo base_url('/profile/change_password'); ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Đổi mật khẩu</a></li>
-	                                    <li><a href="<?php echo base_url('/profile/payment_history'); ?>"><i class="fa fa-credit-card" aria-hidden="true"></i> Lịch sử thanh toán</a></li>
-	                                    <li><a href="<?php echo base_url('/invite/'); ?>"><i class="fa fa-user-plus" aria-hidden="true"></i> Mời bạn bè</a></li>
-	                                    <li><a href="<?php echo base_url('/profile/logout/'); ?>"><i class="fa fa-sign-out" aria-hidden="true"></i> Đăng xuất</a></li>
+                                          	<li><a href="//<?php echo @$user['sub_domain']; ?>.weddingguu.com/"><i class="fa fa-tripadvisor" aria-hidden="true"></i> [{]HEADER_WALL_PAGE[}]</a></li>
+                                      	<?php endif;?>
+	                                    <li><a href="<?php echo base_url('/themes/my/'); ?>"><i class="fa fa-th" aria-hidden="true"></i> [{]HEADER_MY_THEMES[}]</a></li>
+	                                    <li><a href="<?php echo base_url('/profile/change_password'); ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> [{]HEADER_CHANGE_PASSWORD[}]</a></li>
+	                                    <li><a href="<?php echo base_url('/profile/payment_history'); ?>"><i class="fa fa-credit-card" aria-hidden="true"></i> [{]HEADER_HISTORY_PAYMENT[}]</a></li>
+	                                    <li><a href="<?php echo base_url('/invite/'); ?>"><i class="fa fa-user-plus" aria-hidden="true"></i> [{]HEADER_INVER_FRIEND[}]</a></li>
+	                                    <li><a href="<?php echo base_url('/profile/logout/'); ?>"><i class="fa fa-sign-out" aria-hidden="true"></i> [{]HEADER_LOGOUT[}]</a></li>
 	                                </ul>
 	                            </div>
 	                        <?php else: ?>
 	                          	<ul class="navbar-nav navbar-nav-user " id="myNavbar">
-	                              	<li class="btn-signup btn-account"><a href="#" class="nav-link">Đăng Ký</a></li>
-	                             	<li class="btn-login btn-account link-login"><a class="nav-link" href="#">Đăng nhập</a></li>
+	                              	<li class="btn-signup btn-account"><a href="#" class="nav-link">[{]HOME_SIGUP[}]</a></li>
+	                             	<li class="btn-login btn-account link-login"><a class="nav-link" href="#">[{]HOME_SIGIN[}]</a></li>
 	                          	</ul>
 	                        <?php endif; ?>
 	                    </div>
@@ -91,21 +101,21 @@
                                     <img class="img-circle" width="40" height="40" src="<?php echo @$user['avatar'] != null ? $user['avatar'] : skin_frontend('images/avatar-default.png'); ?>">
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="<?php echo base_url('/profile'); ?>"><i class="fa fa-user-circle" aria-hidden="true"></i> Thông tin cá nhân</a></li>
+                                    <li><a href="<?php echo base_url('/profile'); ?>"><i class="fa fa-user-circle" aria-hidden="true"></i> [{]HEADER_PROFILE[}]</a></li>
                                     <?php if( @$user['sub_domain'] || @$user['domain']):?>
-                                      <?php if(@$user['domain'] == null):?>
-                                        <?php if(@$user['sub_domain']):?>
-                                          <li><a href="//<?php echo @$user['sub_domain']; ?>"><i class="fa fa-tripadvisor" aria-hidden="true"></i> Trang tường</a></li>
-                                        <?php endif;?>
-                                      <?php else : ?>
-                                        <li><a href="//<?php echo @$user['domain']; ?>"><i class="fa fa-tripadvisor" aria-hidden="true"></i> Trang tường</a></li>
-                                      <?php endif;?>
+	                                    <?php if(@$user['domain'] == null):?>
+	                                        <?php if(@$user['sub_domain']):?>
+	                                          	<li><a href="//<?php echo @$user['sub_domain']; ?>"><i class="fa fa-tripadvisor" aria-hidden="true"></i> [{]HEADER_WALL_PAGE[}]</a></li>
+	                                        <?php endif;?>
+	                                    <?php else : ?>
+	                                        <li><a href="//<?php echo @$user['domain']; ?>"><i class="fa fa-tripadvisor" aria-hidden="true"></i> [{]HEADER_WALL_PAGE[}]</a></li>
+	                                    <?php endif;?>
                                     <?php endif;?>
-                                    <li><a href="<?php echo base_url('/themes/my/'); ?>"><i class="fa fa-th" aria-hidden="true"></i> Giao diện của bạn</a></li>
-                                    <li><a href="<?php echo base_url('/profile/change_password'); ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Đổi mật khẩu</a></li>
-                                    <li><a href="<?php echo base_url('/profile/payment_history'); ?>"><i class="fa fa-credit-card" aria-hidden="true"></i> Lịch sử thanh toán</a></li>
-                                    <li><a href="<?php echo base_url('/invite/'); ?>"><i class="fa fa-user-plus" aria-hidden="true"></i> Mời bạn bè</a></li>
-                                    <li><a href="<?php echo base_url('/profile/logout/'); ?>"><i class="fa fa-sign-out" aria-hidden="true"></i> Đăng xuất</a></li>
+                                    <li><a href="<?php echo base_url('/themes/my/'); ?>"><i class="fa fa-th" aria-hidden="true"></i> [{]HEADER_MY_THEMES[}]</a></li>
+                                    <li><a href="<?php echo base_url('/profile/change_password'); ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> [{]HEADER_CHANGE_PASSWORD[}]</a></li>
+                                    <li><a href="<?php echo base_url('/profile/payment_history'); ?>"><i class="fa fa-credit-card" aria-hidden="true"></i> [{]HEADER_HISTORY_PAYMENT[}]</a></li>
+                                    <li><a href="<?php echo base_url('/invite/'); ?>"><i class="fa fa-user-plus" aria-hidden="true"></i> [{]HEADER_INVER_FRIEND[}]</a></li>
+                                    <li><a href="<?php echo base_url('/profile/logout/'); ?>"><i class="fa fa-sign-out" aria-hidden="true"></i> [{]HEADER_LOGOUT[}]</a></li>
                                 </ul>
                             </div>
 	                    <?php endif; ?>
@@ -114,8 +124,8 @@
 	                        <?php echo @$menu; ?>
 	                        <?php if(!(isset($is_login) && $is_login)): ?>
 	                          	<ul class="navbar-nav navbar-nav-user " id="myNavbar">
-	                              	<li class="btn-signup btn-account"><a href="#" class="nav-link">Đăng Ký</a></li>
-	                             	<li class="btn-login btn-account link-login"><a class="nav-link" href="#">Đăng nhập</a></li>
+	                              	<li class="btn-signup btn-account"><a href="#" class="nav-link"> [{]HOME_SIGUP[}]</a></li>
+	                             	<li class="btn-login btn-account link-login"><a class="nav-link" href="#"> [{]HOME_SIGIN[}]</a></li>
 	                          	</ul>
 	                        <?php endif; ?>
 	                    </div>

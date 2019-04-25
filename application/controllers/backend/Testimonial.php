@@ -6,19 +6,25 @@ class testimonial extends MY_Controller {
     private $folder_view = "testimonial"; 
     private $base_controller;
     private $table = '';
+    private $table_category = '';
+    private $table_post_category = '';
+
     public function __construct() {
         parent::__construct();
-        $this->table = $this->table_prefix.'page';
-        $this->base_controller = $this->folder_view;
-        $this->data["base_controller"] = $this->base_controller;
+        $this->table = $this->table_prefix.'testimonial';
+        $this->table_category           = $this->table_prefix.'testimonial';
+        $this->base_controller          = $this->folder_view;
+        $this->data["base_controller"]  = $this->base_controller;
     }
+
+
     public function index(){
         $where["1"] = "1";
         if($this->input->get("keyword") != null){
-            $where["Title Like"] = "%".$this->input->get("keyword")."%";
-        }	
+            $where["name Like"] = "%".$this->input->get("keyword")."%";
+        }   
         if($this->input->get("status") != null){
-            $where["Status"] = $this->input->get("status");
+            $where["status"] = $this->input->get("status");
         }
         $request = "?1=1";
         if($this->input->get()){
@@ -38,15 +44,14 @@ class testimonial extends MY_Controller {
         $config['segment'] = 2;
         $this->load->library('pagination');
         $this->pagination->initialize(_get_paging($config));
-        $this->data["pages"] = $this->Common_model->get_result($this->table,$where,$offset,$per_page);
+        $this->data["pages"] = $this->Common_model->get_result($this->table,$where,$offset,$per_page,array('id' => 'DESC'),true);
         $this->load->view($this->backend_asset."/".$this->folder_view."/index",$this->data);
     }
     
     public function create() {
         if ($this->input->post()) {
-            $this->form_validation->set_rules('Key_Identify', 'Key', 'required');
-            $this->form_validation->set_rules('Title', 'Tiêu đề', 'required');
-            $this->form_validation->set_rules('Content', 'Nội dung', 'required');
+            $this->form_validation->set_rules('name', 'Tiêu đề', 'required');
+            $this->form_validation->set_rules('content', 'Nội dung', 'required');
             if ($this->form_validation->run() == TRUE) {
                 $colums = $this->db->list_fields($this->table);
                 $data_post = $this->input->post();
@@ -56,9 +61,13 @@ class testimonial extends MY_Controller {
                         $data_insert[$key] = $value;
                     }
                 }
+                $data_insert['updated_at'] = date('Y-m-d H:i:s');
+                $data_insert['created_at'] = date('Y-m-d H:i:s');
                 $id = $this->Common_model->add($this->table,$data_insert);  
-                $this->message($this->message_add_succes,'success');
-                redirect(backend_url($this->base_controller.'/edit/'.$id));
+                if($id > 0){
+                	$this->message($this->message_add_succes,'success');
+                	redirect(backend_url($this->base_controller.'/edit/'.$id));
+                }
             }else{
                 $this->session->set_flashdata('record',$this->input->post());
                 $this->message(validation_errors());
@@ -73,17 +82,16 @@ class testimonial extends MY_Controller {
     }
     
     public function edit($id = null){
-    	if($id == null){
-    		redirect(backend_url($this->base_controller));
+        if($id == null){
+            redirect(backend_url($this->base_controller));
         }
-    	$record = $this->Common_model->get_record($this->table,array("ID" => $id));
-    	if($record == null){
-    		redirect(backend_url($this->base_controller));
+        $record = $this->Common_model->get_record($this->table,array("id" => $id));
+        if($record == null){
+            redirect(backend_url($this->base_controller));
         }
         if($this->input->post()){
-            $this->form_validation->set_rules('Key_Identify', 'Key', 'required');
-            $this->form_validation->set_rules('Title', 'Tiêu đề', 'required');
-            $this->form_validation->set_rules('Content', 'Nội dung', 'required');
+            $this->form_validation->set_rules('name', 'Tiêu đề', 'required');
+            $this->form_validation->set_rules('content', 'Nội dung', 'required');
             if ($this->form_validation->run() == TRUE){
                 $colums = $this->db->list_fields($this->table);
                 $data_post = $this->input->post();
@@ -93,8 +101,10 @@ class testimonial extends MY_Controller {
                         $data_update[$key] = $value;
                     }
                 }
-                $this->message($this->message_update_succes,'success');
-                $this->Common_model->update($this->table,$data_update,array("ID" =>$record["ID"]));  
+                $data_update['updated_at'] = date('Y-m-d H:i:s');
+                if($this->Common_model->update($this->table,$data_update,array("id" =>$record["id"]))){
+                    $this->message($this->message_update_succes,'success');
+                }
             }else{
                 $this->message(validation_errors());
             }
@@ -104,12 +114,12 @@ class testimonial extends MY_Controller {
         $this->load->library('ckfinder');
         $path = '../../skins/js/ckfinder';
         $this->_editor($path, '300px');
-    	$this->data['record'] = $record;
-    	$this->load->view($this->backend_asset."/".$this->folder_view."/edit",$this->data);
+        $this->data['record'] = $record;
+        $this->load->view($this->backend_asset."/".$this->folder_view."/edit",$this->data);
     }
 
     public function delete($id = null){
-        $this->Common_model->delete($this->table,array("ID" => $id));
+        $this->Common_model->delete($this->table,array("id" => $id));
         $this->message($this->message_delete_succes,'success');
         redirect(backend_url($this->base_controller));
     }

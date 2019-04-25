@@ -429,6 +429,8 @@ App.directive('slider', ['$compile', function ($compile) {
           pager: false,
           controls: true,
           auto: false,
+          touchEnabled : false,
+          oneToOneTouch: false,
           infiniteLoop: false,
           autoStart: false,
           slideMargin: 15,

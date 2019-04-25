@@ -13,6 +13,8 @@ class Invite extends Frontend_Controller {
     private $table_setting = '';
     private $table_invite = '';
     private $table_email_template = '';
+    private $table_payment_history = '';
+    private $table_package = '';
 
     private $google_client_id = '';
     private $google_client_secret = '';
@@ -24,24 +26,26 @@ class Invite extends Frontend_Controller {
 	public function __construct(){
         parent::__construct();
         $this->check_login();
+        //if($this->data['user']['is_dealer'] != 1){
+            //redirect('/profile/');
+        //}
         $this->table = $this->table_prefix.'member';
         $this->table_invite = $this->table_prefix.'invite';
         $this->table_setting = $this->table_prefix.'web_setting';
-        $this->table_email_template = $this->table_prefix.'email_template';
+        $this->table_email_template  = $this->table_prefix.'email_template';
+        $this->table_payment_history = $this->table_prefix.'payment_history';
+        $this->table_package         = $this->table_prefix.'package';
+        $this->table_member_page         = $this->table_prefix.'member_package';
         
         $setting = @$this->Common_model->get_record($this->table_setting);
         $setting = json_decode(@$setting['Body_Json'],true);
-        
         $this->yahoo_client_id = @$setting['yahoo_client_id'];
         $this->yahoo_client_secret = @$setting['yahoo_client_secret'];
-
         $this->google_client_id = @$setting['google_client_id'];
         $this->google_client_secret = @$setting['google_secret'];
         $this->google_callback = base_url('/invite/contact_google');
-
         $this->out_key = @$setting['out_key'];
         $this->out_secret = @$setting['out_secret'];
-
         $this->facebook_app_id = @$setting['facebook_app_id'];
     }
 
@@ -71,7 +75,6 @@ class Invite extends Frontend_Controller {
                 $contacts = json_decode($xmlresponse,true);
                 if (!empty($contacts['feed']['entry'])) {
                     foreach($contacts['feed']['entry'] as $contact) {
-                        //retrieve Name and email address  
                         if (filter_var(@$contact['gd$email'][0]['address'], FILTER_VALIDATE_EMAIL)) {
                             $result_email[] = array (
                                 'name'=> $contact['title']['$t'],
@@ -125,9 +128,45 @@ class Invite extends Frontend_Controller {
             $this->session->unset_userdata('user_email');
             $this->session->unset_userdata('refresh_token');
         }
+        
+		$per_page = $this->per_page;
+        $offset = ($this->input->get("offset") != "") ? $this->input->get("offset") : 0 ;    
+        $sql = "SELECT tbl1.*,tbl2.first_name,tbl2.last_name,tbl2.email,tbl4.name AS package_name , sum(tbl1.plus_day_to_member) as plus_day ,tbl5.sum_money,tbl5.numberpay
+                FROM {$this->table_invite} AS tbl1 
+                INNER JOIN {$this->table} AS tbl2 ON tbl1.member_id = tbl2.id
+                LEFT JOIN {$this->table_payment_history} AS tbl3 ON tbl3.member_id = tbl2.id AND tbl3.status = '1'
+                LEFT JOIN {$this->table_package} AS tbl4 ON tbl4.id = tbl3.package_id 
+                LEFT JOIN (SELECT count(tbll1.id) as numberpay, tbll1.member_id ,sum(tbll1.commission_money) as sum_money FROM {$this->table_payment_history} as tbll1  WHERE tbll1.status = 1 GROUP BY tbll1.member_id  )AS tbl5 ON tbl5.member_id = tbl2.id
+                WHERE tbl1.member_invite_id = '{$this->user_id}'
+                GROUP BY tbl1.member_id
+                ORDER BY tbl1.id DESC
+                LIMIT $offset,$per_page";
+
+        $sql_count = "SELECT count(tbl1.id) AS count
+                FROM {$this->table_invite} AS tbl1 
+                INNER JOIN {$this->table} AS tbl2 ON tbl1.member_id = tbl2.id
+                WHERE tbl1.member_invite_id = '{$this->user_id}' ";
+        $count = $this->Common_model->query_raw_row($sql_count); 
+        $config['base_url'] = base_url('/invite/');
+        $config['total_rows'] = @$count['count'] != null ? $count['count'] : 0;
+        $config['per_page'] = $per_page;
+        $config['page_query_string'] = TRUE;
+        $config['segment'] = 2;
+        $this->load->library('pagination');
+        $this->pagination->initialize(_get_paging($config));
+        $this->data["results"] = $this->Common_model->query_raw($sql);
+        $sql =" 
+        SELECT count(tbl1.id) as numberMember,sum(tbl2.sum_money) as sum_money , tbl2.numberpay
+        FROM {$this->table_invite} as tbl1
+        LEFT JOIN (SELECT member_id, count(id) AS numberpay, sum(commission_money) as sum_money FROM {$this->table_payment_history} WHERE status = 1 GROUP BY member_id)
+        as tbl2 on tbl1.member_id = tbl2.member_id
+        WHERE  tbl1.member_invite_id = {$this->user_id}";
+        $query = $this->db->query($sql);
+        $this->data["dataPlus"] = $query->row_array();
         $this->data['facebook_app_id'] = $this->facebook_app_id;
         $this->data['record'] = $this->Common_model->get_record($this->table,array('id' => $this->user_id));
-		$this->load->view('frontend/invite/index',$this->data);
+        $this->load->view('frontend/invite/index',$this->data);
+        $this->load->view($this->asset.'/block/footer',$this->data);
 	}
 
     public function send_invite(){
@@ -257,5 +296,21 @@ class Invite extends Frontend_Controller {
         $contents = curl_exec($curl);
         curl_close($curl);
         return $contents;
+    }
+    public function detail ($id){
+        $invite   = $this->Common_model->get_record($this->table_invite, ["id" => $id]);
+        $member   = $this->Common_model->get_record($this->table, ['id' => $invite["member_id"]]);
+        $payments = $this->Common_model->get_result($this->table_payment_history,['id' => $member["id"] ,"status" => 1]);
+        $this->db->select("*");
+        $this->db->from($this->table_payment_history . " as tbl1");
+        $this->db->join($this->table_package . " as tbl2" ,"tbl1.package_id = tbl2.id");
+        $this->db->where("tbl1.member_id", $member["id"]);
+        $this->data["payments"] = $this->db->get()->result_array();
+        $sql = "SELECT count(tbll1.id) as numberpay, tbll1.member_id ,sum(tbll1.commission_money) as sum_money FROM {$this->table_payment_history} as tbll1  WHERE tbll1.member_id = {$member["id"]} AND tbll1.status = 1 GROUP BY tbll1.member_id  ";
+        $query = $this->db->query($sql);
+        $this->data["dataPlus"] = $query->row_array();
+        $this->data["member"]   = $member;
+        $this->load->view('frontend/invite/detail',$this->data);
+        $this->load->view($this->asset.'/block/footer',$this->data);
     }
 }

@@ -12,7 +12,21 @@ if ( ! function_exists('get_packages')){
                         <h2 class="title"><?php echo $item['name']; ?><br><span class="price"><?php echo number_format($item['price'],0,",","."); ?></span><span class="unit">VND</span></h2>
                     </div>
                     <div class="card-body">
-                        <?php echo $item['description']; ?>
+                        <ul>
+                        <?php 
+                            if(@$item["options"]){
+                                foreach ($item["options"] as $key_1 => $value) {
+                                    echo '<li>';
+                                    if($value["is_connect"]){
+                                        echo '<i class="fa fa-check is_connect" aria-hidden="true"></i>' .  $value["name"];
+                                    }else{
+                                        echo '<i class="fa fa-close not_is_connect" aria-hidden="true"></i>' .  $value["name"];
+                                    }
+                                    echo '</li>';
+                                }
+                            }                            
+                        ?>  
+                        </ul>
                     </div>
                     <div class="card-footer text-center">
                         <?php if($item['price'] != 0): ?>
@@ -116,5 +130,10 @@ if ( ! function_exists('get_theme_user')){
         </ul>
     <?php
         return ob_get_clean();
+    }
+}
+if ( ! function_exists('get_advertisement')){
+    function get_advertisement($advertisement){
+        return '<p class="text-center advertisement"><a href="'.@$advertisement['url'].'" title="'.@$advertisement['name'].'"><img src="'.base_url(@$advertisement['image']).'" class="w-100"></a></p>';
     }
 }

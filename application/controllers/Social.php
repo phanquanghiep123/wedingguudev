@@ -47,13 +47,9 @@ class Social extends Frontend_Controller
         }
 
         if (isset($session)){
-            $request = new FacebookRequest($session, 'GET', '/me?fields=name,email,picture.type(large),gender' );
+            $request = new FacebookRequest($session, 'GET', '/me?fields=name,email,picture.type(large),gender');
             $response = $request->execute();
             $graphObject = $response->getGraphObject();
-            /*echo '<pre>';
-            print_r($graphObject);
-            echo '</pre>';
-            die();*/
             $fbid = $graphObject->getProperty('id');
             $fullname = $graphObject->getProperty('name');
             $email = $graphObject->getProperty('email');
@@ -66,7 +62,9 @@ class Social extends Frontend_Controller
                 if(!(isset($record) && $record != null)){
                     $picture_url = '';
                     $pk = $this->Common_model->get_record("package",["is_default" => 1]);
-                    $num_months = $pk["months"];
+                    $web_setting = $this->Common_model->get_record($this->table_prefix.'web_setting');
+                    $Body_Json = json_decode(@$record['Body_Json'],true);
+                    $num_months = @$Body_Json["plusmember"] ? @$Body_Json["plusmember"] .' '.'days' : '0 days';
                     $arr   = array(
                         'package_id' => $pk["id"],
                         'last_name' => $fullname,
@@ -75,7 +73,7 @@ class Social extends Frontend_Controller
                         'pwd' => md5($email . ':' . time()),
                         'status' => 1,
                         'phone' => '',
-                        'expired_date' => date('Y-m-d',strtotime('+'.$num_months.' months'))
+                        'expired_date' => date('Y-m-d',strtotime('+'.$num_months))
                     );
                     $id = $this->Common_model->add($this->table, $arr);
                     if($id > 0){
@@ -84,7 +82,7 @@ class Social extends Frontend_Controller
                             "package_id" => $pk["id"] ,
                             'created_at' => date('Y-m-d H:i:s'),
                             'start_date' => date('Y-m-d H:i:s'),
-                            'expired_at' => date('Y-m-d',strtotime('+'.$num_months.' days'))
+                            'expired_at' => date('Y-m-d',strtotime('+'.$num_months))
                         ]);
                         if(isset($_COOKIE['user_invite_id']) && $_COOKIE['user_invite_id'] != null){
                             $user_invite_id = @$_COOKIE['user_invite_id'];
@@ -176,10 +174,6 @@ class Social extends Frontend_Controller
             $user = $item;
         }
         if(@$user != null){
-            echo '<pre>';
-            print_r($user);
-            echo '</pre>';
-            die();
             $email = strtolower($user['email']);
             $first_name = $user['first_name'];
             $last_name = $user['last_name'];
@@ -191,7 +185,10 @@ class Social extends Frontend_Controller
                 $record = $this->Common_model->get_record($this->table, array('email' => $email));
                 if(!(isset($record) && $record != null)){
                     $pk = $this->Common_model->get_record("package",["is_default" => 1]);
-                    $num_months = $pk["months"];
+
+                    $web_setting = $this->Common_model->get_record($this->table_prefix.'web_setting');
+                    $Body_Json = json_decode(@$record['Body_Json'],true);
+                    $num_months = @$Body_Json["plusmember"] ? @$Body_Json["plusmember"] .' '.'days' : '0 days';
                     $arr   = array(
                         'package_id' => $pk["id"],
                         'first_name' => $first_name,
@@ -201,7 +198,7 @@ class Social extends Frontend_Controller
                         'pwd' => md5($email . ':' . time()),
                         'status' => 1,
                         'phone' => '',
-                        'expired_date' => date('Y-m-d',strtotime('+'.$num_months.' months'))
+                        'expired_date' => date('Y-m-d',strtotime('+'.$num_months))
                     );
                     $id = $this->Common_model->add($this->table, $arr);
                     if($id > 0){
@@ -226,7 +223,7 @@ class Social extends Frontend_Controller
                             "package_id" => $pk["id"] ,
                             'created_at' => date('Y-m-d H:i:s'),
                             'start_date' => date('Y-m-d H:i:s'),
-                            'expired_at' => date('Y-m-d',strtotime('+'.$num_months.' days'))
+                            'expired_at' => date('Y-m-d',strtotime('+'.$num_months))
                         ]);
                     }
                     $this->session->set_userdata('is_login', TRUE);
@@ -288,7 +285,9 @@ class Social extends Frontend_Controller
                 $record = $this->Common_model->get_record($this->table, array('email' => $email));
                 if(!(isset($record) && $record != null)){
                     $pk = $this->Common_model->get_record("package",["is_default" => 1]);
-                    $num_months = $pk["months"];
+                    $web_setting = $this->Common_model->get_record($this->table_prefix.'web_setting');
+                    $Body_Json = json_decode(@$record['Body_Json'],true);
+                    $num_months = @$Body_Json["plusmember"] ? @$Body_Json["plusmember"] .' '.'days' : '0 days';
                     $arr   = array(
                         'package_id' => $pk["id"],
                         'first_name' => $first_name,
@@ -298,7 +297,7 @@ class Social extends Frontend_Controller
                         'pwd' => md5($email . ':' . time()),
                         'status' => 1,
                         'phone' => '',
-                        'expired_date' => date('Y-m-d',strtotime('+'.$num_months.' months'))
+                        'expired_date' => date('Y-m-d',strtotime('+'.$num_months))
                     );
                     $id = $this->Common_model->add($this->table, $arr);
                     if($id > 0){
@@ -323,7 +322,7 @@ class Social extends Frontend_Controller
                             "package_id" => $pk["id"] ,
                             'created_at' => date('Y-m-d H:i:s'),
                             'start_date' => date('Y-m-d H:i:s'),
-                            'expired_at' => date('Y-m-d',strtotime('+'.$num_months.' days'))
+                            'expired_at' => date('Y-m-d',strtotime('+'.$num_months))
                         ]);
                     }
                     $this->session->set_userdata('is_login', TRUE);

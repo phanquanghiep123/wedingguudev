@@ -16,12 +16,13 @@ class page extends Frontend_Controller {
 
 	public function index($slug = null)
 	{
-		$this->data['page'] = $this->Common_model->get_record($this->table,array('Key_Identify' => $slug));
+		$this->data['page'] = $this->Common_model->get_record($this->table,array('Key_Identify' => $slug,"Lang" => $this->langId));
 		if(!(isset($this->data['page']) && $this->data['page'] != null)){
 			redirect('/');
 			die;
 		}
 		$this->load->view($this->asset.'/page/index',$this->data);
+		$this->load->view($this->asset.'/block/footer',$this->data);
 	}
 
 	public function faq($category_id = null)
@@ -31,18 +32,21 @@ class page extends Frontend_Controller {
 		if(@$category_id != null){
 			$where['category_id'] = $category_id;
 		}
-		$this->data['title'] = 'Hỏi đáp';
+		$where['lang'] = $this->langId;
+		$this->data['title'] = '[{]FAQ_STRING_001[}]';
 		$this->data['faqs'] = $this->Common_model->get_result($this->table_faq,$where);
-		$this->data['category'] = $this->Common_model->get_result($this->table_faq_category,array('status' => 1));
+		$this->data['category'] = $this->Common_model->get_result($this->table_faq_category,array('status' => 1 ,'lang' => $this->langId));
 		$this->load->view($this->asset.'/page/faq',$this->data);
+		$this->load->view($this->asset.'/block/footer',$this->data);
 	}
 
 
 	public function testimonials()
 	{
-		$this->data['title_page'] = 'Đánh giá';
-		$this->data["testimonials"] = $this->Common_model->get_result($this->table_prefix."testimonial",["status" => 1]);
+		$this->data['title_page'] = '[{]TESTIMONIAL_STRING_001[}]';
+		$this->data["testimonials"] = $this->Common_model->get_result($this->table_prefix."testimonial",["status" => 1 ,'lang' => $this->langId]);
 		$this->load->view($this->asset.'/page/testimonials',$this->data);
+		$this->load->view($this->asset.'/block/footer',$this->data);
 	}
 
 	public function contact(){

@@ -82,6 +82,7 @@ App.controller("PageController", ($scope, $http, $compile) => {
 	$scope.taggetTab = 0;
 	$scope.item = {};
 	$scope.scaleScreen = 1;
+	$scope._Lang = {};
 	var min = 1990;
 	var today = new Date();
 	$scope._month_ = today.getMonth() + 1;
@@ -120,92 +121,7 @@ App.controller("PageController", ($scope, $http, $compile) => {
 		}
 	});
 	$scope.AllFontFamily = newargFonts;
-	$scope.background_repeat = [{
-			value: "repeat",
-			label: "Lặp lại",
-		},
-		{
-			value: "repeat-x",
-			label: "Lặp lại trục ngang"
-		},
-		{
-			value: "repeat-y",
-			label: "Lặp lại trục dọc"
-		},
-		{
-			value: "no-repeat",
-			label: "Không lặp lại"
-		}
-	];
-	$scope.background_size = [{
-			value: "auto",
-			label: "Tự động",
-		},
-		{
-			value: "cover",
-			label: "Bao phủ",
-		},
-		{
-			value: "contain",
-			label: "Chứa đựng",
-		},
-	];
-	$scope.backgroundType = [{
-		name: "Sử dụng ảnh mẫu",
-		"id": "1"
-	}];
-	$scope.background_position = [
-		{
-			value: "left top",
-			label: "Bên trái phía trên",
-		},
-		{
-			value: "left center",
-			label: "Bên trái canh giữa",
-		},
-		{
-			value: "left bottom",
-			label: "Bên trái phía dưới",
-		},
-		{
-			value: "right top",
-			label: "Bên phải phía trên",
-		},
-		{
-			value: "right center",
-			label: "Bên phải canh giữa",
-		},
-		{
-			value: "right bottom",
-			label: "Bên phải phía dưới",
-		},
-		{
-			value: "center center",
-			label: "Trung tâm",
-		},
-		{
-			value: "top center",
-			label: "Canh giữa phía trên",
-		},
-		{
-			value: "bottom center",
-			label: "Canh giữa phía dưới",
-		}
-	];
-	$scope.background_attachment = [
-		{
-			value: "auto",
-			label: "Tự động",
-		},
-		{
-			value: "scroll",
-			label: "Cuộn theo",
-		},
-		{
-			value: "fixed",
-			label: "Cố định",
-		}
-	];
+	$scope.background_repeat =  $scope.background_size = $scope.background_position = $scope.background_attachment = [];
 	$scope.is_changeSectionStyle = false;
 	//sidebar.
 	$scope.actionschange = [
@@ -222,118 +138,8 @@ App.controller("PageController", ($scope, $http, $compile) => {
 			active: 0
 		}
 	];
-	var ArgScreen  =
-	[
-		{
-			size  : 1920,
-			height : 940,
-			label: " < 1921px (pc)",
-			active : 0 
-		},
-		{
-			size : 1366,
-			height : 768,
-			label: " < 1367px (laptop)",
-			active : 0 
-		},
-		{
-			size : 1024,
-			height : 768,
-			label: " < 1025px (tablet ngang)",
-			active : 0 
-		},
-		{
-			size : 768,
-			height : 1024,
-			label: " < 769px (tablet dọc)",
-			active : 0 
-		},
-		
-		{
-			size : 412,
-			height : 734,
-			label: " < 413px (mobile dọc)",
-			active : 0 
-		},
-		{
-			size : 375,
-			height : 734,
-			label: " < 376px (mobile dọc)",
-			active : 0 
-		},
-		{
-			size : 320,
-			height : 568,
-			label: " < 321px (mobile dọc)",
-			active : 0 
-		},
-		{
-			size : 734,
-			height : 375,
-			label: " < 734px (mobile ngang)",
-			active : 0 
-		},
-		{
-			size : 568,
-			height : 320,
-			label: " < 568px (mobile ngang)",
-			active : 0 
-		}
-		
-	];
-
-	$scope.screens = [
-		{
-			size : $scope.ScreenWidth, 
-			height : $scope.ScreenHeight,
-			label: " hiện tại " + $scope.ScreenWidth + 'px',
-			active : 1 
-		}
-	];
-	$.each(ArgScreen,function(key,val){
-		if(val.size != $scope.ScreenWidth){
-			$scope.screens.push(val);
-		}
-	});
-    $scope.currentScreen = $scope.screens[0];
-	$scope.menus = [
-	    { 
-			name : "Màn hình",
-			id : "page-screen",
-			controller: "SidebarScreen",
-			icon: "fa fa fa-tablet"
-		},
-		{
-			name: "Nền trang",
-			id: "page-background",
-			controller: "SidebarBackground",
-			icon: "fa fa-picture-o"
-		},
-		{
-			name: "Nhạc nền",
-			id: "page-sound",
-			controller: "SidebarSound",
-			icon: "fa fa-music"
-		},
-		{
-			name: "Hiệu ứng",
-			id: "page-effect",
-			controller: "SidebarEffect",
-			icon: 'fa fa-snowflake-o'
-		},
-		{
-			name: "Sắp xếp",
-			id: "sort-section",
-			controller: "SortSection",
-			icon: "fa fa-refresh"
-		},
-		{
-			name: "Thông tin giao diện",
-			id: "page-info",
-			controller: "SidebarParts",
-			icon: "fa fa-info-circle"
-		}
-	];
+    $scope.menus = [];
+    $scope.screens = [];
 	$scope.notEmit   = false; 
 	$scope.font_size = "";
 	for (var i = 10; i < 100; i++) {
@@ -424,8 +230,10 @@ App.controller("PageController", ($scope, $http, $compile) => {
 		}
 	});
 	$scope.$watch('currentScreen', function (newValue, oldValue) {
-		if(newValue.size != oldValue.size)
-		$scope.changeScreen();
+		try{
+			if(newValue.size != oldValue.size)
+			$scope.changeScreen();
+		}catch(e){}
 		return false;
 	}, true);
 	String.prototype.replaceAll = function (search, replacement) {
@@ -576,11 +384,221 @@ App.controller("PageController", ($scope, $http, $compile) => {
 		});
 		$scope.loadding($("body"));
 		$http({
+			method: "GET",
+			responseType: "json",
+			url: AppAccessCotroller + "appthemes/get_lang"
+		}).then(function (response) {
+			$scope._Lang = response.data;
+			$scope.menus = [
+			    { 
+					name : $scope._Lang.APP_THEME_L_MENU_THEME2,
+					id : "page-screen",
+					controller: "SidebarScreen",
+					icon: "fa fa fa-tablet"
+				},
+				{
+					name: $scope._Lang.APP_THEME_L_MENU_THEME3,
+					id: "page-background",
+					controller: "SidebarBackground",
+					icon: "fa fa-picture-o"
+				},
+				{
+					name: $scope._Lang.APP_THEME_L_MENU_THEME4,
+					id: "page-sound",
+					controller: "SidebarSound",
+					icon: "fa fa-music"
+				},
+				{
+					name: $scope._Lang.APP_THEME_L_MENU_THEME5,
+					id: "page-effect",
+					controller: "SidebarEffect",
+					icon: 'fa fa-snowflake-o'
+				},
+				{
+					name: $scope._Lang.APP_THEME_L_MENU_THEME6,
+					id: "sort-section",
+					controller: "SortSection",
+					icon: "fa fa-refresh"
+				},
+				{
+					name: $scope._Lang.APP_THEME_L_MENU_THEME7,
+					id: "page-info",
+					controller: "SidebarParts",
+					icon: "fa fa-info-circle"
+				}
+			];
+			$scope.background_repeat = [
+				{
+					value: "repeat",
+					label: $scope._Lang.APP_THEME_L_REPEAT001
+				},
+				{
+					value: "repeat-x",
+					label: $scope._Lang.APP_THEME_L_REPEAT002
+				},
+				{
+					value: "repeat-y",
+					label: $scope._Lang.APP_THEME_L_REPEAT003
+				},
+				{
+					value: "no-repeat",
+					label: $scope._Lang.APP_THEME_L_REPEAT004
+				}
+			];
+			$scope.background_size = [
+				{
+					value: "auto",
+					label: $scope._Lang.APP_THEME_L_SIZE001,
+				},
+				{
+					value: "cover",
+					label: $scope._Lang.APP_THEME_L_SIZE002,
+				},
+				{
+					value: "contain",
+					label: $scope._Lang.APP_THEME_L_SIZE003 ,
+				},
+			];
+			
+			$scope.background_position = [
+				{
+					value: "left top",
+					label: $scope._Lang.APP_THEME_L_POSITION001 ,
+				},
+				{
+					value: "left center",
+					label: $scope._Lang.APP_THEME_L_POSITION002,
+				},
+				{
+					value: "left bottom",
+					label: $scope._Lang.APP_THEME_L_POSITION003,
+				},
+				{
+					value: "right top",
+					label: $scope._Lang.APP_THEME_L_POSITION004,
+				},
+				{
+					value: "right center",
+					label: $scope._Lang.APP_THEME_L_POSITION005,
+				},
+				{
+					value: "right bottom",
+					label: $scope._Lang.APP_THEME_L_POSITION006,
+				},
+				{
+					value: "center center",
+					label: $scope._Lang.APP_THEME_L_POSITION007,
+				},
+				{
+					value: "top center",
+					label: $scope._Lang.APP_THEME_L_POSITION008,
+				},
+				{
+					value: "bottom center",
+					label: $scope._Lang.APP_THEME_L_POSITION009,
+				}
+			];
+			$scope.background_attachment = [
+				{
+					value: "auto",
+					label: $scope._Lang.APP_THEME_L_ATTACHMENT001
+				},
+				{
+					value: "scroll",
+					label: $scope._Lang.APP_THEME_L_ATTACHMENT002
+				},
+				{
+					value: "fixed",
+					label: $scope._Lang.APP_THEME_L_ATTACHMENT003
+				}
+			];
+			var ArgScreen  = [
+				{
+					size  : 1920,
+					height : 940,
+					label: " < 1921px ("+$scope._Lang.APP_THEME_L_PC+")",
+					active : 0 
+				},
+				{
+					size : 1366,
+					height : 768,
+					label: " < 1367px ("+$scope._Lang.APP_THEME_L_LAPTOP+")",
+					active : 0 
+				},
+				{
+					size : 1024,
+					height : 768,
+					label: " < 1025px (tablet "+$scope._Lang.APP_THEME_L_HORIZONTAL+")",
+					active : 0 
+				},
+				{
+					size : 768,
+					height : 1024,
+					label: " < 769px (tablet "+$scope._Lang.APP_THEME_L_VERTICAL+")",
+					active : 0 
+				},
+				
+				{
+					size : 412,
+					height : 734,
+					label: " < 413px (mobile "+$scope._Lang.APP_THEME_L_VERTICAL+")",
+					active : 0 
+				},
+				{
+					size : 375,
+					height : 734,
+					label: " < 376px (mobile "+$scope._Lang.APP_THEME_L_VERTICAL+")",
+					active : 0 
+				},
+				{
+					size : 320,
+					height : 568,
+					label: " < 321px (mobile "+$scope._Lang.APP_THEME_L_VERTICAL+")",
+					active : 0 
+				},
+				{
+					size : 734,
+					height : 375,
+					label: " < 734px (mobile "+$scope._Lang.APP_THEME_L_HORIZONTAL+")",
+					active : 0 
+				},
+				{
+					size : 568,
+					height : 320,
+					label: " < 568px (mobile "+$scope._Lang.APP_THEME_L_HORIZONTAL+")",
+					active : 0 
+				}
+			];
+			$scope.screens = [
+				{
+					size : $scope.ScreenWidth, 
+					height : $scope.ScreenHeight,
+					label: " "+$scope._Lang.APP_THEME_L_CURRENT+" " + $scope.ScreenWidth + 'px',
+					active : 1 
+				}
+			];
+			$.each(ArgScreen,function(key,val){
+				if(val.size != $scope.ScreenWidth){
+					$scope.screens.push(val);
+				}
+			});
+    		$scope.currentScreen = $scope.screens[0];
+    		$scope.backgroundType = [{
+				name: $scope._Lang.APP_THEME_L_THEME_USE_EXAMPLE_IMAGE,
+				"id": "1"
+			}];
+			setTimeout(() => {
+				$scope.$apply();
+			},200);
+		}, function (error) {
+			location.reload();
+		});
+		$http({
 			method: "POST",
 			responseType: "json",
 			data: {
 				id : $scope.theme.id,
-				allowScreen : $scope.currentScreen.size,
+				allowScreen : $scope.ScreenWidth,
 				is_create : IsCreate
 			},
 			url: AppAccessCotroller + "appthemes/get_section/" + $scope.theme.id
@@ -612,7 +630,6 @@ App.controller("PageController", ($scope, $http, $compile) => {
 					window.location.href = response.data.redirect;
 				}
 			}
-
 		}, function(error) {
 			location.reload();
 		});
@@ -630,7 +647,6 @@ App.controller("PageController", ($scope, $http, $compile) => {
 			//location.reload();
 		});
 		//!get sounds 
-		 
 		$(document).on({
 			mouseenter: function () {
 				$(this).append("<div class=\"hover-box\"></div>");

@@ -951,14 +951,6 @@ function userAgentDetect() {
         link: link,
         restrict: 'A'           
     };
-    App.directive('watermaker',function(){
-		return {
-			restrict: 'E',
-		    template: `<div class="watermaker-container">
-		    	<h1 class="text-center">Sản phẩm được tạo nên bởi <a href="`+ AppAccess +`"> weddingguu</a></h1>
-		    </div>`
-		}
-	});
     function link(scope, element, attrs){
        angular.element($window).bind('resize', function(){
             var w = $window.innerWidth;

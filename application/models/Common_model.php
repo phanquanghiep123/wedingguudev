@@ -66,7 +66,9 @@ class Common_model extends CI_Model {
         }
         return $this->db->get()->row_array();
     }
-     function get_like($table, $key, $string, $order = null) {
+
+
+    function get_like($table, $key, $string, $order = null) {
         $this->db->select('*');
         $this->db->from($table);
         $this->db->like($key,$string);
@@ -79,6 +81,8 @@ class Common_model extends CI_Model {
         }
         return $this->db->get()->result_array();
     }
+
+
     function get_result($table, $where = null, $offset = null, $limit = null, $order = null,$is_order = false) {
         $this->db->select('*');
         $this->db->from($table);
@@ -121,6 +125,9 @@ class Common_model extends CI_Model {
        // $this->db->group_by(array("member_id", "ip"));
         return $this->db->get()->num_rows();
     }
+
+
+
     function get_result_in($table, $column, $in = array(),$where = null) {
         $this->db->select('*');
         $this->db->from($table);
@@ -131,6 +138,8 @@ class Common_model extends CI_Model {
         return $this->db->get()->result_array();
     }
 
+
+
     function insert_batch_data($table, $data) {
         $this->db->trans_start();
         $this->db->insert_batch($table, $data);
@@ -138,6 +147,8 @@ class Common_model extends CI_Model {
         $this->db->trans_complete();
         return $insert_id;
     }
+
+
 
     function count_table($table, $filter = array()) {
         $this->db->select('*');
@@ -158,6 +169,8 @@ class Common_model extends CI_Model {
         return $this->db->get()->row_array();
     }
 
+
+
     function get_search_category() {
         $all_category = $this->get_result("categories", array(
             "type" => "system"
@@ -165,12 +178,16 @@ class Common_model extends CI_Model {
         return $this->recursive_category($all_category, 0);
     }
 
+
+
     function slug($table, $colum, $like) {
         $this->db->select($colum);
         $this->db->from($table);
         $this->db->like($colum, $like);
         return $this->db->get()->result_array();
     }
+
+
 
     public function get_web_setting($key_identify='',$fields='c.*') {
         $sql = "SELECT {$fields} FROM `ewd_web_setting` as p INNER JOIN web_setting c ON c.group_id = p.id AND p.group_id = 0 AND p.selected_item = c.id";
@@ -181,6 +198,8 @@ class Common_model extends CI_Model {
         $query = $this->db->query($sql);
         return $query->result_array();
     }
+
+
 
     public function get_use_rol($table_modules,$table_rules,$rol_id){
         $this->db->select("r.*,sm.Icon,sm.ID,sm.Module_Name,sm.Module_Url,sm.Module_Class,sm.Module_Key,sm.Parent_ID");
@@ -193,6 +212,8 @@ class Common_model extends CI_Model {
         $query = $this->db->get();
         return $query->result_array();
     }
+
+
     
     public function get_recode_for_select($table,$select = null, $where = null, $offset = null, $limit = null, $order = null,$is_order = false) {
         $this->db->select($select == null ? '*' : $select);
@@ -217,6 +238,9 @@ class Common_model extends CI_Model {
         }
         return $this->db->get()->row_array();
     }
+
+
+
     public function get_result_for_select($table,$select = null, $where = null, $offset = null, $limit = null, $order = null,$is_order = false) {
         $this->db->select($select == null ? '*' : $select);
         $this->db->from($table);
@@ -238,6 +262,15 @@ class Common_model extends CI_Model {
                 $this->db->order_by($key, $value);
             }
         }
+        return $this->db->get()->result_array();
+    }
+
+
+    
+    public function get_langs(){
+        $this->db->select("tbl1.*,tbl2.path as path_icon");
+        $this->db->from("languages as tbl1");
+        $this->db->join("theme_medias as tbl2" ,"tbl2.id = tbl1.icon");
         return $this->db->get()->result_array();
     }
 }

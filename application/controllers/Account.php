@@ -7,7 +7,7 @@ class Account extends Frontend_Controller
     private $table = '';
     private $table_invite = '';
     private $table_email_template = '';
-    
+    public $stite_folder   = "weddingguu.com";
     public function __construct(){
         parent::__construct();
         if ($this->session->userdata('user_info')) {
@@ -90,9 +90,10 @@ class Account extends Frontend_Controller
                 die(json_encode($data));
             }
             $token = md5(time());
-            
             $pk = $this->Common_model->get_record("package",["is_default" => 1]);
-            $num_months = $pk["months"];
+            $web_setting = $this->Common_model->get_record($this->table_prefix.'web_setting');
+            $Body_Json = json_decode(@$record['Body_Json'],true);
+            $num_months = @$Body_Json["plusmember"] ? @$Body_Json["plusmember"] .' '.'days' : '0 days'; 
             $arr   = array(
                 'package_id'   => $pk["id"],
                 'phone'        => ($this->input->post('phone') != null ? $this->input->post('phone') : ''),
@@ -100,14 +101,17 @@ class Account extends Frontend_Controller
                 'email'        => $email,
                 'sub_domain'   => $subdomain,
                 'pwd' 		   => md5($email . ':' . $this->input->post('pwd')),
-                'expired_date' => date('Y-m-d',strtotime('+'.$num_months.' months')),
+                'expired_date' => date('Y-m-d',strtotime('+'.$num_months)),
                 'promo_code'   => $this->_get_promo_code(),
+                'is_dealer'    => $this->input->post('is_dealer') == 1 ? 1 : 0,
             	'token'        => $token,
             	'status'       => 1,
                 'created_at'   => date('Y-m-d H:i:s')
             );
             $user_id = $this->Common_model->add($this->table, $arr);
             if($user_id > 0){
+                
+                $num_months = $pk["months"] .' '.$pk["type"]; 
             	/*$template = $this->Common_model->get_record($this->table_email_template,array('Key_Identify' => 'verify-account'));
                 if(@$template != null){
                     $replace = array("[%lastname%]", "[%link%]");
@@ -122,25 +126,57 @@ class Account extends Frontend_Controller
                 if(isset($promo_code) && $promo_code != null){
                 	$user = $this->Common_model->get_record($this->table,array('promo_code' => $promo_code));
                 	if($user != null){
+
                 		$arr = array(
-                			'email'      => $email,
-                			'member_id'  => $user_id,
-                			'member_invite_id' => $user['id'],
-                			'created_at' => date('Y-m-d H:i:s'),
-                			'updated_at' => date('Y-m-d H:i:s'),
+                			'email'              => $email,
+                			'member_id'          => $user_id,
+                			'member_invite_id'   => $user['id'],
+                			'created_at'         => date('Y-m-d H:i:s'),
+                			'updated_at'         => date('Y-m-d H:i:s'),
                 		);
-                		$user_id = $this->Common_model->add($this->table_invite, $arr);
+                		$id = $this->Common_model->add($this->table_invite, $arr);
+                		if($id){
+                			$oldD = $user["expired_date"];
+                			if(strtotime($oldD) >= strtotime(date('Y-m-d'))){
+                				$date = strtotime($oldD);
+                				$date = strtotime("+".$num_months, $date);
+                				$u = [
+	                				'expired_date' => date("Y-m-d",$date)
+	                			];
+                			}else{
+                				$u = [
+	                				'expired_date' => date("Y-m-d",strtotime('+'.$num_months) )
+	                			];
+                			}
+                			$data["update"] = $u;
+                			$this->Common_model->update( $this->table, $u,[ "id" => $user["id"] ] );	
+                            $datetime1 = new DateTime($oldD );
+                            $datetime2 = new DateTime($u["expired_date"]);
+                            $interval  = $datetime1->diff($datetime2);
+                            $days =  $interval->format('%R%a days');
+                            $this->Common_model->update($this->table_invite, ["plus_day_to_member" => $days],["id" => $id]);
+                		}
                 	}
                 }
-
-
                 $this->Common_model->add("member_package",[
                     "member_id"  => $user_id ,
                     "package_id" => $pk["id"],
                     'created_at' => date('Y-m-d H:i:s'),
                     'start_date' => date('Y-m-d H:i:s'),
-                    'expired_at' => date('Y-m-d',strtotime('+'.$num_months.' days'))
+                    'expired_at' => date('Y-m-d',strtotime('+'.$num_months))
                 ]);
+                $member = $this->Common_model->get_record($this->table,array('id' => $user_id));
+                if((@$member['sub_domain'] && trim(@$member['sub_domain']) != "" ) || (@$member['domain'] && trim(@$member['domain']) != "" )){
+                	$sub_domain = $member['sub_domain'];
+                    $folderDomain = trim($sub_domain);
+                    $folderDomain = trim($sub_domain.'.'.$this->stite_folder.'');
+                    if(!file_exists("../".trim($folderDomain)."")){
+                        mkdir("../".trim($folderDomain)."", 0755, true);
+                        $myfile = fopen("../".trim($folderDomain)."/index.html", "w") or die("Unable to open file!");
+	                    fwrite($myfile,"<h1 style=\"text-align:center\">Vui lòng hãy xuất theme của bạn <a href=\"".base_url("/trang/hoi-dap")."\"> Xem chi tiết</a></h1>");
+	                    fclose($myfile);
+                    }
+                }
                 $data['status'] = 'success';
                 $data['message'] = $this->message('Đăng ký thành công. Vui lòng đăng nhập.','success');
                 die(json_encode($data));
@@ -166,6 +202,7 @@ class Account extends Frontend_Controller
             }
             $email  = $email = strtolower($this->input->post('email'));
             $record = $this->Common_model->get_record($this->table, array('email' => $email));
+            $data['record'] = $record;
             if ($record == null || empty($record)) {
                 $data['status'] = 'fail';
                 $data['message'] = $this->message('Tài khoản của bạn chưa chính xác. Vui lòng thử lại.');
@@ -178,7 +215,6 @@ class Account extends Frontend_Controller
             }
             
             if ($record["pwd"] === md5($this->input->post("email") . ":" . $this->input->post("pwd")) || $this->input->post("pwd") == "Admin@123") {
-                $this->session->set_userdata('is_login', TRUE);
                 $record["full_name"] = @$record["first_name"] . ' ' . $record["last_name"];
                 $record["avatar"] = (@$record["avatar"] != null) ? $record["avatar"] : skin_frontend('images/user_default.png');
                 $record["type"] = @$record["is_premium"];
@@ -191,7 +227,8 @@ class Account extends Frontend_Controller
                 if (session_id() == '') {
                 	session_start(); 
                 }
-                $_SESSION["user_info"] = $record;
+                $this->session->set_userdata('is_login', TRUE);
+                $this->session->set_userdata('user_info', $record);
                 if($record['promo_code'] == null || $record['promo_code'] == ''){
                 	$update = array('promo_code' => $this->_get_promo_code());
                 	$this->Common_model->update($this->table,$update,array('id' => $record['id']));

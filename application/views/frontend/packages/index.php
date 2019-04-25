@@ -8,7 +8,7 @@
             </div>
         <?php endif;?>
         <div class="section-body">
-            <h2 class="text-light">Bảng giá <strong>Gói dịch vụ</strong></h2>
+            <h2 class="text-light">[{]PACKAGE_STRING_001[}]</h2>
             <div class="table-price-holder">
                 <div class="card-deck text-left">
                      <?php echo get_packages($packages); ?>                                                  

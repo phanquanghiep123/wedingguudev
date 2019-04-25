@@ -27,7 +27,8 @@
 						        <li><a href="#home" data-toggle="tab"><i class="fa fa-home" aria-hidden="true"></i> Home Page</a></li>
 						        <li><a href="#social" data-toggle="tab"><i class="fa fa-paper-plane" aria-hidden="true"></i> Social</a></li>
 						        <li><a href="#api" data-toggle="tab"><i class="fa fa-cloud" aria-hidden="true"></i> API</a></li>
-								<li><a href="#payment" data-toggle="tab"><i class="fa fa-cloud" aria-hidden="true"></i>Payment API</a></li>
+								<li><a href="#payment" data-toggle="tab"><i class="fa fa-cloud" aria-hidden="true"></i> Payment API</a></li>
+								<li><a href="#phh" data-toggle="tab"><i class="fa fa-gavel" aria-hidden="true"></i> Phí hoa hồng</a></li>
 						        <li><a href="#c" data-toggle="tab"><i class="fa fa-cog" aria-hidden="true"></i> Js & Css</a></li>
 					        </ul>
 					        <div class="tab-content">
@@ -189,6 +190,26 @@
 					                        <div class="form-group">
 					                        	<label>Outlook Secret</label>
 					                        	<input type="text" name="out_secret" class="form-control" value="<?php echo @$record['out_secret']; ?>">
+					                        </div>
+					                        <div style="height:20px;"></div>
+							        	</div>
+							        </div> 
+						        </div>
+						        <div class="tab-pane" id="phh">
+							        <div class="panel panel-default">
+							        	<div class="panel-heading"><i class="fa fa-gavel" aria-hidden="true"></i> Mức phí chia hoa hồng</div>
+							        	<div class="panel-body">
+							        		<div class="form-group">
+					                        	<label>Lần đầu (%)</label>
+					                        	<input type="number" name="commission1" class="form-control" value="<?php echo @$record['commission1']; ?>">
+					                        </div>
+					                        <div class="form-group">
+					                        	<label>Các lần khác (%)</label>
+					                        	<input type="number" name="commission2" class="form-control" value="<?php echo @$record['commission2']; ?>">
+					                        </div>
+					                        <div class="form-group">
+					                        	<label>Số ngày cộng thêm</label>
+					                        	<input type="number" name="plusmember" class="form-control" value="<?php echo @$record['plusmember']; ?>">
 					                        </div>
 					                        <div style="height:20px;"></div>
 							        	</div>

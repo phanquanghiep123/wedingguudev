@@ -20,9 +20,10 @@ class Themes extends Frontend_Controller{
         $this->db->select("tbl1.* , tbl2.thumb AS hero_image");
         $this->db->from($this->table ." AS tbl1");
         $this->db->join($this->table_prefix."theme_medias AS tbl2","tbl2.id = tbl1.thumb","left");
-        $this->db->where(["tbl1.is_system" => 1 ,"tbl1.public" => 1 ,"tbl1.status" => 1,'version' => 3]);
+        $this->db->where(["tbl1.is_system" => 1 ,"tbl1.public" => 1 ,"tbl1.status" => 1,'version' => 3,"lang" => $this->langId]);
         $this->data["result"] = $this->db->get()->result_array();
         $this->load->view("$this->asset/$this->_view/index",$this->data);
+        $this->load->view("frontend/block/footer",$this->data);
     }
     public function my(){
         $this->check_login();
@@ -32,6 +33,7 @@ class Themes extends Frontend_Controller{
         $this->data["sub_domain"]  = @$member["sub_domain"];
         $this->data["mytheme"] =  $this->Themes_model->getmytheme($this->user_id);
         $this->load->view("$this->asset/$this->_view/my",$this->data);
+        $this->load->view("frontend/block/footer",$this->data);
     }
     public function delete() {  
         $this->check_login();
@@ -241,6 +243,7 @@ class Themes extends Frontend_Controller{
             }
         }
     }
+    
 }
 
  

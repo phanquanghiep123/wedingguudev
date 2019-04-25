@@ -7,8 +7,8 @@
   </div>
   <div class="form-group"> 
     <div class="box-choose-type-file">
-      <a uploads data-max="1" data-action="theme_thumb" id="toggle-upload-file" data-type="image" class="btn btn-primary"><i class="fa fa-upload" aria-hidden="true"></i> Chọn ảnh</a>
-      <a openfilemanager href="javascript:;" data-action="theme_thumb" class="btn btn-success"data-type="image" data-max="1" id="openFilemanager"><i class="fa fa-folder-open" aria-hidden="true"></i> Mở thư viện</a> 
+      <a uploads data-max="1" data-action="theme_thumb" id="toggle-upload-file" data-type="image" class="btn btn-primary"><i class="fa fa-upload" aria-hidden="true"></i> {{_Lang.APP_THEME_L_SELECT_PHOTO}}</a>
+      <a openfilemanager href="javascript:;" data-action="theme_thumb" class="btn btn-success"data-type="image" data-max="1" id="openFilemanager"><i class="fa fa-folder-open" aria-hidden="true"></i> {{_Lang.APP_THEME_L_THEME_OPEN_LIBRARY_IMAGE}}</a> 
     </div>
     <div ng-if="theme.thumb_url" id="box-show-background-image">
       <div class="img">
@@ -18,9 +18,9 @@
   </div>
   <div class="form-group"> 
     <select ng-model="theme.public" name="public" class="form-control">
-      <option value="0">-- Chọn chế độ--</option>
-      <option value="1">Công khai</option>
-      <option value="2">Chỉ riêng bạn</option>
+      <option value="0">-- {{_Lang.APP_THEME_L_THEME_SELECT_ONE}} --</option>
+      <option value="1">{{_Lang.APP_THEME_L_THEME_SELECT_PUBLIC}}</option>
+      <option value="2">{{_Lang.APP_THEME_L_THEME_SELECT_PRIVATE}}</option>
     </select>
   </div>
   <div class="form-group" ng-if="theme.is_active != 1"><a ng-click="Deletetheme()" class="full-width btn btn-danger" href="javascript:;"><i class="fa fa-trash" aria-hidden="true"></i> Xóa theme </a></div>

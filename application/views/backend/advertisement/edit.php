@@ -45,6 +45,10 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <input type="checkbox" name="is_home" value="1" <?php echo @$record['is_home'] == 1 ? 'checked' : ''; ?>>
+                            <label>Trang chủ</label>
+                        </div>
+                        <div class="form-group">
                             <label>Thứ tự</label>
                             <input type="number" name="sort_number" class="form-control required" value="<?php echo @$record['sort_number'] != null; ?>">
                         </div>

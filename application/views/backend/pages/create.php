@@ -79,6 +79,16 @@
                         <input type="button" value="Browse Server" onclick="BrowseServer( 'xImagePath' );" />
                         <input type="button" value="Remove File" onclick="ClearFile( 'xImagePath' );" />
                     </div>
+                    <div class="form-group">
+                        <label>Ngôn ngữ</label>
+                        <select class="form-control required" name="Lang">
+                            <?php
+                                foreach (@$langs as $key => $value) {
+                                    echo '<option value="'.$value["id"].'" '.(@$record['Lang'] == $value["id"] ? 'selected' : '').'>'.$value["name"].'</option>';
+                                }
+                            ?>
+                        </select>
+                    </div>
                     <div class="row">
                         <div class="col-lg-12">
                         <?php $data = array('name' => 'Submit','id' => 'Submit','value' =>'Save','class' => 'btn btn-primary');

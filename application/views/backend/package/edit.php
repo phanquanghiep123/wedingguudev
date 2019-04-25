@@ -27,6 +27,10 @@
                             <input type="text" name="name" class="form-control required" value="<?php echo @$record['name']; ?>">
                         </div>
                         <div class="form-group">
+                            <label>Nhãn</label>
+                            <input type="text" name="label" class="form-control required" value="<?php echo @$record['label']; ?>">
+                        </div>
+                        <div class="form-group">
                             <label>Mô tả</label>
                             <?php echo $this->ckeditor->editor('description',@$record['description']);?>
                         </div>
@@ -39,7 +43,7 @@
                                         foreach ($options as $key => $value) {
                                             $ckeck = $value["is_connect"] ? 'checked' : '';
                                             echo '<li class="ui-state-default">
-                                                    <span class="ui-icon ui-icon-arrowthick-2-n-s"></span><label><input type="checkbox" name="options['.$value["id"].']" value="1" '.$ckeck.'>'.$value["name"].'<label>
+                                                    <span class="ui-icon ui-icon-arrowthick-2-n-s"></span><label><input type="checkbox" name="options['.$value["id"].']" value="1" '.$ckeck.'>'.$value["label"].'<label>
                                                 </li>';
                                         }
                                     ?>

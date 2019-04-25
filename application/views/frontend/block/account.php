@@ -271,6 +271,8 @@
                 "dataType":"json",
                 "data":data,
                 success:function(data){
+                    console.log(data);
+                    return false;
                     if(data["status"] == "success"){
                         form.find(".message").html(data['message']);
                         form.find(".message").removeClass('hidden');

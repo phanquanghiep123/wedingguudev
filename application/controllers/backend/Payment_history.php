@@ -35,7 +35,7 @@ class Payment_history extends MY_Controller {
         }
         $per_page = $this->per_page;
         $offset = ($this->input->get("offset") != "") ? $this->input->get("offset") : 0 ;    
-        $sql = "SELECT mp.*,p.name,m.first_name,m.last_name
+        $sql = "SELECT mp.*,p.label,m.first_name,m.last_name,mp.name as nameContact, mp.phone
                 FROM {$this->table} AS mp 
                 INNER JOIN {$this->table_member} AS m ON mp.member_id = m.id 
                 INNER JOIN {$this->table_package} AS p ON mp.package_id = p.id 
@@ -62,7 +62,7 @@ class Payment_history extends MY_Controller {
     	if($id == null){
     		redirect(backend_url($this->base_controller));
         }
-    	$sql = "SELECT mp.*,p.name,m.first_name,m.last_name
+    	$sql = "SELECT mp.*,p.label,m.first_name,m.last_name,mp.name as nameContact, mp.phone
                 FROM {$this->table} AS mp 
                 INNER JOIN {$this->table_member} AS m ON mp.member_id = m.id 
                 INNER JOIN {$this->table_package} AS p ON mp.package_id = p.id 
@@ -87,16 +87,20 @@ class Payment_history extends MY_Controller {
                 $this->Common_model->update($this->table,$data_update,array("id" =>$record["id"]));
                 if($data_update["status"] == 1){
                     $pk = $this->Common_model->get_record("package",["id" => $record["package_id"]]);
+                    $num_months = $pk["months"] .' '.$pk["type"] ;
                     if($pk){
                         $this->Common_model->add("member_package",[
-                            "member_id"    => $record["member_id"],
-                            "package_id"   => $record["package_id"],
-                            'created_at'   => date('Y-m-d H:i:s'),
-                            'start_date'   => date('Y-m-d H:i:s'),
-                            "total_price"  => $pk["price"],
-                            "months"       => $pk["months"],
-                            "status"       => 1,
-                            'expired_at' => date('Y-m-d',strtotime('+'.$pk['months'].' months')),
+                            "member_id"        => $record["member_id"],
+                            "member_inver"     => $record["member_inver"],
+                            "commission"       => $record["commission"],
+                            "commission_money" => $record["commission_money"],
+                            "package_id"       => $record["package_id"],
+                            'created_at'       => date('Y-m-d H:i:s'),
+                            'start_date'       => date('Y-m-d H:i:s'),
+                            "total_price"      => $pk["price"],
+                            "months"           => $pk["months"],
+                            "status"           => 1,
+                            'expired_at'       => date('Y-m-d',strtotime('+'.$num_months)),
                         ]);
                         $this->Common_model->update('member',[
                             "package_id"   => $record["package_id"],

@@ -73,6 +73,7 @@ class help extends MY_Controller {
         $this->load->library('ckfinder');
         $path = '../../skins/js/ckfinder';
         $this->_editor($path, '300px');
+        $this->data['langs'] = $this->Common_model->get_result($this->table_prefix.'languages');
         $this->load->view($this->backend_asset."/".$this->folder_view."/edit",$this->data);
     }
     
@@ -110,6 +111,7 @@ class help extends MY_Controller {
         $path = '../../skins/js/ckfinder';
         $this->_editor($path, '300px');
         $this->data['record'] = $record;
+        $this->data['langs'] = $this->Common_model->get_result($this->table_prefix.'languages');
         $this->load->view($this->backend_asset."/".$this->folder_view."/edit",$this->data);
     }
 

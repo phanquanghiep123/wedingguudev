@@ -53,6 +53,17 @@
                                 <?php echo @$option_category; ?>
                             </select>
                         </div>
+                        
+                         <div class="form-group">
+                            <label>Ngôn ngữ</label>
+                            <select class="form-control required" name="Lang">
+                                <?php
+                                    foreach (@$langs as $key => $value) {
+                                        echo '<option value="'.$value["id"].'" '.(@$record['Lang'] == $value["id"] ? 'selected' : '').'>'.$value["name"].'</option>';
+                                    }
+                                ?>
+                            </select>
+                        </div>
                         <div class="form-group">
                             <label>Trạng thái</label>
                             <select class="form-control required" name="Status">

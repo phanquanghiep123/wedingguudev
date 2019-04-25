@@ -5,7 +5,12 @@
                 <form class="form-horizontal form-profile" method="post" action="">
                     <input type="hidden" name="<?php echo @$this->security->get_csrf_token_name(); ?>" value="<?php echo @$this->security->get_csrf_hash(); ?>" />
                     <div class="panel panel-default">
-                        <div class="panel-heading">Thông tin cá nhân</div>
+                        <div class="panel-heading">
+    						<div class="row">
+    							<div class="col-sm-6">Thông tin cá nhân</div>
+    							<div class="col-sm-6 text-right">Ngày hết hạn: <?php echo date('d/m/Y', strtotime(@$user["expired_date"])); ?></div>
+    						</div>
+    					</div>
                         <div class="panel-body">
                             <?php 
                                 if($this->session->flashdata('message')){
@@ -56,6 +61,13 @@
                                         </select>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div class="form-group">
+                            	<div class="checkbox" style="padding-left: 0;">
+			        				<input id="remenber" type="checkbox" name="is_dealer" value="1" <?php echo @$user['is_dealer'] == 1 ? 'checked' : ''; ?>>
+	                        		<label for="remenber">Đăng ký Cộng tác viên</label>
+		        				</div>
                             </div>
 
                             <div class="form-group row">

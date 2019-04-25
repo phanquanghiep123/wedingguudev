@@ -9,5 +9,6 @@ class my404 extends Frontend_Controller {
 
 	public function index($slug = null){
 		$this->load->view($this->asset.'/404/index',$this->data);
+		$this->load->view($this->asset.'/block/footer',$this->data);
 	}
 }

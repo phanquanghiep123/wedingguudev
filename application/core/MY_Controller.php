@@ -167,8 +167,8 @@ class MY_Controller extends CI_Controller{
             $this->session->set_flashdata('message','<div class="alert alert-danger">'.$message.'</div>');
         }
     }
-    public function get_config_paging($array_init) 
-    {
+
+    public function get_config_paging($array_init) {
         $config                = array();
         $config["base_url"]    = $array_init["base_url"];
         $config["total_rows"]  = $array_init["total_rows"];

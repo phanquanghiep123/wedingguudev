@@ -27,7 +27,7 @@
                                             <span class="view"><i class="fa fa-eye" aria-hidden="true"></i> <?php echo @$item['View']; ?> </span>
                                         </p>
                                         <div class="description" style="margin-bottom:10px;"><?php echo substr(strip_tags(@$item['Summary']),0,400); ?></div>
-                                        <p class="remove-margin"><a href="<?php echo base_url(); ?>bai-viet/<?php echo $item['Slug']; ?>">Chi tiết <i class="fa fa-angle-double-right" aria-hidden="true"></i></a></p>
+                                        <p class="remove-margin"><a href="<?php echo base_url(); ?>bai-viet/<?php echo $item['Slug']; ?>">[{]COMMON_L_DETAIL[}] <i class="fa fa-angle-double-right" aria-hidden="true"></i></a></p>
                                     </div>
                                 </div>
                             </article>
@@ -45,13 +45,13 @@
                     <form class="form-group" action="<?php echo base_url('/bai-viet/'); ?>" method="get">
                         <input type="hidden" name="<?php echo @$this->security->get_csrf_token_name(); ?>" value="<?php echo @$this->security->get_csrf_hash(); ?>" />
                         <div class="input-group">
-                            <input class="form-control" value="<?php echo $this->input->get('keyword'); ?>" placeholder="Từ khóa tìm kiếm..." name="keyword"> 
+                            <input class="form-control" value="<?php echo $this->input->get('keyword'); ?>" placeholder="[{]BLOG_STRING_003[}]..." name="keyword"> 
                             <span class="input-group-btn"> 
                                 <button class="btn btn-default btn-primary btn-search" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                             </span>
                         </div>
                     </form>
-                    <h3>Chuyên mục bài viết</h3>
+                    <h3>[{]BLOG_STRING_001[}]</h3>
                     <ul>
                         <?php if(isset($category) && $category != null): ?>
                             <?php foreach ($category as $key => $item): ?>
@@ -59,7 +59,7 @@
                             <?php endforeach; ?>
                         <?php endif;?>
                     </ul>
-                    <h3>Bài viết mới nhất</h3>
+                    <h3>[{]BLOG_STRING_002[}]</h3>
                     <ul class="remove-margin">
                         <?php if(isset($last_post) && $last_post != null): ?>
                             <?php foreach ($last_post as $key => $item): ?>

@@ -27,6 +27,10 @@
                             <input type="text" name="name" class="form-control required" value="<?php echo @$record['name']; ?>">
                         </div>
                         <div class="form-group">
+                            <label>Label</label>
+                            <input type="text" name="label" class="form-control required" value="<?php echo @$record['label']; ?>">
+                        </div>
+                        <div class="form-group">
                             <label>Lựa chọn nhóm</label>
                             <input type="text" name="group" class="form-control required" value="<?php echo @$record['group']; ?>">
                         </div>

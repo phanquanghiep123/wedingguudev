@@ -1,38 +1,38 @@
 <div id="page-effect">
   <ul class="nav-list-sections list_category">
     <li class="sections">
-      <i class="fa fa-power-off" aria-hidden="true"></i>Bật hiệu ứng:
+      <i class="fa fa-power-off" aria-hidden="true"></i>{{_Lang.APP_THEME_L_THEME_OPEN_EFFECT}} :
       <div class="TriSea-technologies-Switch pull-right">
         <input id="TriSeaPrimaryeffect" ng-click="Changeffect()" ng-checked="theme.effect == 1"  name="effect" type="checkbox"/>
         <label for="TriSeaPrimaryeffect" class="label-primary"></label>
       </div>
     </li>
-    <li ng-if="theme.effect == 1" class="sections" uploads="" data-max="1" data-type="image" data-action="effect"><i class="fa fa-upload" aria-hidden="true"></i>Tải ảnh lên</li>
-    <li ng-if="theme.effect == 1" class="sections" openfilemanager="" href="javascript:;" class="ui-button-text" data-action="effect" data-type="image" data-max="1" id="openFilemanager"><i class="fa fa-folder-open" aria-hidden="true"></i>Mở thư viện file</li>
-    <li ng-if="theme.effect == 1" class="sections" ng-click="OpenExampleEffect()" ng-if="theme.effect == 1"><i class="fa fa-clone" aria-hidden="true"></i>Sử dụng ảnh mẫu</li>
+    <li ng-if="theme.effect == 1" class="sections" uploads="" data-max="1" data-type="image" data-action="effect"><i class="fa fa-upload" aria-hidden="true"></i>{{_Lang.APP_THEME_L_THEME_UPLOAD_IMAGE}}</li>
+    <li ng-if="theme.effect == 1" class="sections" openfilemanager="" href="javascript:;" class="ui-button-text" data-action="effect" data-type="image" data-max="1" id="openFilemanager"><i class="fa fa-folder-open" aria-hidden="true"></i>{{_Lang.APP_THEME_L_THEME_OPEN_LIBRARY_IMAGE}}</li>
+    <li ng-if="theme.effect == 1" class="sections" ng-click="OpenExampleEffect()" ng-if="theme.effect == 1"><i class="fa fa-clone" aria-hidden="true"></i>{{_Lang.APP_THEME_L_THEME_USE_EXAMPLE_IMAGE}}</li>
     <li ng-if="theme.effect == 1" class="item not-after">
-      Ảnh nhỏ nhất
+      {{_Lang.APP_THEME_L_THEME_MIN_WIDTH_IMAGE}}
       <select ng-options="item as item for item in [5,10,15,20,25,30,35,40] track by item" class="form-control" ng-model="theme.effect_file.minsize"></select>
     </li>
     <li class="sections" ng-if="theme.effect == 1" class="item not-after">
-      Ảnh lớn nhất
+      {{_Lang.APP_THEME_L_THEME_MAX_WIDTH_IMAGE}}
       <select ng-options="item as item for item in [20,25,30,35,40,45,50,55,60,65,70,75,80] track by item" class="form-control" ng-model="theme.effect_file.maxsize"></select>
     </li>
     <li class="sections" ng-if="theme.effect == 1" class="item not-after">
-      <label for="background-repeat">Tốc độ rơi</label>
+      <label for="background-repeat">{{_Lang.APP_THEME_L_THEME_SPEED_FALLS}}</label>
       <select class="form-control" ng-model="theme.effect_file.onnew">
-        <option value="500">0.5 giây</option>
-        <option value="600">0.6 giây</option>
-        <option value="700">0.7 giây</option>
-        <option value="800">0.8 giây</option>
-        <option value="900">0.9 giây</option>
-        <option value="1000">1 giây</option>
+        <option value="500">0.5 {{_Lang.APP_THEME_L_THEME_SPEED_SECONDS}}</option>
+        <option value="600">0.6 {{_Lang.APP_THEME_L_THEME_SPEED_SECONDS}}</option>
+        <option value="700">0.7 {{_Lang.APP_THEME_L_THEME_SPEED_SECONDS}}</option>
+        <option value="800">0.8 {{_Lang.APP_THEME_L_THEME_SPEED_SECONDS}}</option>
+        <option value="900">0.9 {{_Lang.APP_THEME_L_THEME_SPEED_SECONDS}}</option>
+        <option value="1000">1 {{_Lang.APP_THEME_L_THEME_SPEED_SECONDS}}</option>
       </select>
     </li>
   </ul>
   <div ng-if="theme.effect == 1 && theme.effect_file.thumb" class="setting-bg">
     <div class="item-cuttent-bg">
-      Ảnh hiệu ứng tại
+      {{_Lang.APP_THEME_L_THEME_CURRENT_IMAGE}}
       <div style="width: 100%;background-repeat: no-repeat;height: 100px;background-size: contain;background-position: center;background-image: url({{theme.effect_file.thumb}})">
         <div class="action-bg">
           <span ng-class="(theme.effect_play == 1) ? 'fa fa-pause-circle':'fa fa-play-circle'" ng-click="theme.effect_play = !theme.effect_play" id="start_stop" class="removebgnoew"></span>

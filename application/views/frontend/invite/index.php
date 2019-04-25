@@ -50,7 +50,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <p style="line-height: 35px;">Chia sẽ liên kết:</p>
+                                        <p style="line-height: 35px;">Chia sẻ liên kết:</p>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="input-group">
@@ -71,6 +71,54 @@
                                         </a>
                                     </div>
                                 </div>
+                                <hr>
+                                <div class="results">
+                                  <div class="row">
+                                    <div class="col-md-5"><h4>Danh sách người dùng đăng ký</h4></div>
+                                    <div class="col-md-7 text-right">
+                                      <span>Tổng thành viên: <?php echo $dataPlus["numberMember"]?></span>,
+                                      <span>Tổng phí hoa hồng: <?php echo $dataPlus["sum_money"]?>VND</span>
+                                    </div>
+                                  </div>
+                                    
+
+                                    <div style="height: 5px;"></div>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped jambo_table bulk_action">
+                                            <thead>
+                                                <tr class="headings">
+                                                  <th>#</th>
+                                                  <th>Họ và tên</th>
+                                                  <th>Email</th>
+                                                  <th>Số ngày cộng thêm</th>
+                                                  <th>Phí hoa hồng</th>
+                                                  <th>Lần thanh toán</th>
+                                                  <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php if(isset($results) && $results != null): ?>
+                                                    <?php foreach ($results as $key => $item): ?>
+                                                        <tr>
+                                                            <td><?php echo ($key+1); ?></td>
+                                                            <td><?php echo $item['last_name']; ?></td>
+                                                            <td><?php echo $item['email']; ?></td>
+                                                            <td><?php echo $item['plus_day']; ?></td>
+                                                            <td><?php echo ($item['sum_money'] ? $item['sum_money'] : 0) ." VND"; ?></td>
+                                                            <td><?php echo ($item['numberpay'] ? $item['numberpay'] : 0); ?></td>
+                                                            <td><a href="<?php echo base_url("invite/detail/".$item["id"])?>">Chi tiết</a></td>
+                                                        </tr>
+                                                    <?php endforeach; ?> 
+                                                <?php endif; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <?php echo $this->pagination->create_links();?>
+                                        </div>
+                                    </div>
+                                </div> 
                             </div>
                         </div>
                         <div class="col-sm-1"></div>
@@ -81,80 +129,80 @@
     </div>
 </div>
 <?php if(isset($result) && count($result) > 0): ?>
-<!--Modal-->
-<div id="invite-modal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog" style="max-width:100%;width:650px;">
-      <!-- Modal content-->
-      <div class="modal-content">
-          <div class="modal-body" style="padding:0;">
-              <div class="panel-header">
-                <a href="#" class="panel-close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></a>
-                Chọn bạn bè muốn gửi
-            </div>
-            <div class="panel-header contact-search-wrapper">
-                <i class="fa fa-search contact-search-icon" aria-hidden="true"></i>
-                <input class="contact-search" id="contact-search" type="text" placeholder="Tìm kiếm...">
-            </div>
-            <div class="alert alert-success" style="display:none;">
-                Gửi thành công.
-            </div>
-            <div class="alert alert-danger" style="display:none;">
-                Lỗi không thể gửi được.
-            </div>
-            <div class="panel-body-scroll panel-body-fixed panel-body">
-               <div class="panel-body panel-body-list">
-                  <ul class="row list-layout">
-                       <li id="no-contact-found-message" class="contact-row hide">
-                          Sorry, we cannot find contact from this account. Please use a different account.
-                       </li>
-                       <?php foreach ($result as $key => $item): ?>
-                         <li class="col-sm-12">
-                              <div class="row">
-                                  <div class="col-sm-6">
-                                      <label class="checkbox text-left">
-                                         <input class="contact-checkbox" type="checkbox" value="<?php echo @$item['email'] ?>" id="email-invite-<?php echo $key; ?>">
-                                         <label for="email-invite-<?php echo $key; ?>"><?php echo @$item['name'] != null ? @$item['name'] : @$item['email'];  ?></label>
-                                      </label>
-                                  </div>
-                                  <div class="contact-email contact-detail text-right col-sm-6">
-                                    <label><?php echo @$item['email'] ?></label>
-                                  </div>
-                              </div>
-                         </li>
-                     <?php endforeach; ?>
-                     <li id="empty-message" class="contact-row hide">
-                          Không tồn tại địa chỉ email.
-                     </li>
-                  </ul>
-               </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-              <div class="row">
-             <div class="col-sm-5 col-md-3">
-                <div style="height:10px;"></div>
-                <label class="checkbox text-left">
-                    <input class="check-all-checkbox" id="invite-all" type="checkbox">
-                    <label for="invite-all">Tất cả</label>
-                </label>
-             </div>
-             <div class="col-sm-7 col-md-9 text-right">
-                <div class="modal-status-section modal-sent hide icon-lima">
-                   <h5>Chia sẻ.</h5>
+    <!--Modal-->
+    <div id="invite-modal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog" style="max-width:100%;width:650px;">
+          <!-- Modal content-->
+          <div class="modal-content">
+              <div class="modal-body" style="padding:0;">
+                  <div class="panel-header">
+                    <a href="#" class="panel-close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></a>
+                    Chọn bạn bè muốn gửi
                 </div>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Hủy bỏ</button>
-                <button class="btn btn-primary send-invites" disabled style="border-color: #ff5a5f;background-color: #ff5a5f;">Chia sẻ đến 0 bạn bè</button>
-             </div>
+                <div class="panel-header contact-search-wrapper">
+                    <i class="fa fa-search contact-search-icon" aria-hidden="true"></i>
+                    <input class="contact-search" id="contact-search" type="text" placeholder="Tìm kiếm...">
+                </div>
+                <div class="alert alert-success" style="display:none;">
+                    Gửi thành công.
+                </div>
+                <div class="alert alert-danger" style="display:none;">
+                    Lỗi không thể gửi được.
+                </div>
+                <div class="panel-body-scroll panel-body-fixed panel-body">
+                   <div class="panel-body panel-body-list">
+                      <ul class="row list-layout">
+                           <li id="no-contact-found-message" class="contact-row hide">
+                              Sorry, we cannot find contact from this account. Please use a different account.
+                           </li>
+                           <?php foreach ($result as $key => $item): ?>
+                             <li class="col-sm-12">
+                                  <div class="row">
+                                      <div class="col-sm-6">
+                                          <label class="checkbox text-left">
+                                             <input class="contact-checkbox" type="checkbox" value="<?php echo @$item['email'] ?>" id="email-invite-<?php echo $key; ?>">
+                                             <label for="email-invite-<?php echo $key; ?>"><?php echo @$item['name'] != null ? @$item['name'] : @$item['email'];  ?></label>
+                                          </label>
+                                      </div>
+                                      <div class="contact-email contact-detail text-right col-sm-6">
+                                        <label><?php echo @$item['email'] ?></label>
+                                      </div>
+                                  </div>
+                             </li>
+                         <?php endforeach; ?>
+                         <li id="empty-message" class="contact-row hide">
+                              Không tồn tại địa chỉ email.
+                         </li>
+                      </ul>
+                   </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                  <div class="row">
+                 <div class="col-sm-5 col-md-3">
+                    <div style="height:10px;"></div>
+                    <label class="checkbox text-left">
+                        <input class="check-all-checkbox" id="invite-all" type="checkbox">
+                        <label for="invite-all">Tất cả</label>
+                    </label>
+                 </div>
+                 <div class="col-sm-7 col-md-9 text-right">
+                    <div class="modal-status-section modal-sent hide icon-lima">
+                       <h5>Chia sẻ.</h5>
+                    </div>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Hủy bỏ</button>
+                    <button class="btn btn-primary send-invites" disabled style="border-color: #ff5a5f;background-color: #ff5a5f;">Chia sẻ đến 0 bạn bè</button>
+                 </div>
+              </div>
+              </div>
           </div>
-          </div>
-      </div>
+        </div>
     </div>
-</div>
-<script type="text/javascript">
-  $(document).ready(function(){
-      $("#invite-modal").modal('show');
-  });
-</script>
+    <script type="text/javascript">
+          $(document).ready(function(){
+              $("#invite-modal").modal('show');
+          });
+    </script>
 <?php endif; ?>
 <script type="text/javascript">
     $(document).ready(function(){        
@@ -204,10 +252,11 @@
                 dataType: 'json',
                 data: { 'email' : email},
                 success: function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if(data['status'] == 'success'){
                         $("#refer .alert-success").show();
                         $("#refer input[name='email']").val('');
+                        $("#refer .bootstrap-tagsinput .tag").remove();
                     }
                     else if(data['status'] == 'fail'){
                         $("#refer .alert-danger").html(data['message']).show();
@@ -327,5 +376,65 @@
                 window.open('http://www.facebook.com/dialog/feed?app_id='+app_id+'&redirect_uri='+redirct+'&description=' + summary + '&name=' + title + '&link=' + url + '&picture='+image, 'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
             return false;
         });
+
+        $('.btn-copy').click(function(){
+            if(copyToClipboard(document.getElementById("input-copy"))){
+                alert('Copy thành công.');
+            }
+            return false;
+        });
+
+        function copyToClipboard(elem) {
+            var targetId = "_hiddenCopyText_";
+            var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
+            var origSelectionStart, origSelectionEnd;
+            if (isInput) {
+                // can just use the original source element for the selection and copy
+                target = elem;
+                origSelectionStart = elem.selectionStart;
+                origSelectionEnd = elem.selectionEnd;
+            } else {
+                // must use a temporary form element for the selection and copy
+                target = document.getElementById(targetId);
+                if (!target) {
+                    var target = document.createElement("textarea");
+                    target.style.position = "absolute";
+                    target.style.left = "-9999px";
+                    target.style.top = "0";
+                    target.id = targetId;
+                    document.body.appendChild(target);
+                }
+                target.textContent = elem.textContent;
+            }
+            // select the content
+            var currentFocus = document.activeElement;
+            target.focus();
+            target.setSelectionRange(0, target.value.length);
+
+            // copy the selection
+            var succeed;
+            try {
+                  succeed = document.execCommand("copy");
+            } catch(e) {
+                succeed = false;
+            }
+            // restore original focus
+            if (currentFocus && typeof currentFocus.focus === "function") {
+                currentFocus.focus();
+            }
+
+            if (isInput) {
+                // restore prior selection
+                elem.setSelectionRange(origSelectionStart, origSelectionEnd);
+            } else {
+                // clear temporary content
+                target.textContent = "";
+            }
+            return succeed;
+        }
     });
 </script>
+<style type="text/css">
+    table.jambo_table thead{background: rgba(52, 73, 94, .94);color: #ECF0F1;}
+    .bootstrap-tagsinput .tag{background-color: #fe5e57;padding: 3px 5px;}
+</style>

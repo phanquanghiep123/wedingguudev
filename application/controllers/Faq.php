@@ -56,5 +56,6 @@ class Faq extends Frontend_Controller {
 		$this->data['title'] = 'Hỏi đáp';
 		$this->data["category"] = $this->Common_model->get_result($this->table_category_blog,array('Status' => 1));
 		$this->load->view($this->asset.'/faq/index',$this->data);
+        $this->load->view($this->asset.'/block/footer',$this->data);
 	}
 }

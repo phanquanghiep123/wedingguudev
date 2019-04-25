@@ -62,3 +62,4 @@ $route['danh-gia'] = 'page/testimonials';
 $route['bai-viet'] = 'blog/index/';
 $route['bai-viet/(:any)'] = 'blog/detail/$1';
 $route['chuyen-muc/(:any)'] = 'blog/category/$1';
+$route['cong-tac-vien'] = 'home/collaborators';

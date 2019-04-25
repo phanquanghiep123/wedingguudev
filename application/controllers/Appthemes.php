@@ -51,11 +51,13 @@ class Appthemes extends CI_Controller {
             $data['sounds'][]= $value;
           } 
         }
-        echo (json_encode($data));
+        $code = ['code' => $data ];
+        $this->load->view('frontend/appthemes/code',$code);
     }
     public function get_fonts(){
         $f = $this->Common_model->get_result('font');
-        die(json_encode($f));
+        $code = ['code' => $f ];
+        $this->load->view('frontend/appthemes/code',$code);
     }
     public function reloadwidth($id){
         header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
@@ -365,8 +367,8 @@ class Appthemes extends CI_Controller {
         //unset($value);            
         $data['sections'] = $section;
         $data['status'] = 'success';
-        echo (json_encode( $data ));  
-        return true; 
+        $code = ['code' => $data ];
+        $this->load->view('frontend/appthemes/code',$code);  
     }
     public function get_allow_screen($id = 0){
         header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
@@ -638,7 +640,8 @@ class Appthemes extends CI_Controller {
         }
         $data = ["sections" => $section];
         $data["status"]  = "success"; 
-        echo (json_encode( $data ));
+        $code = ['code' => $data ];
+        $this->load->view('frontend/appthemes/code',$code);
     }
     public function get_section($id = 0){
         header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
@@ -970,8 +973,8 @@ class Appthemes extends CI_Controller {
         $data["sectionsv"] = $this->Common_model->get_result($this->_fix."sections",["status" => 1]);
         $data["status"]  = "success"; 
         $data["oldallow_width"]  = $oldallow_width;
-        echo (json_encode( $data ));
-        return true;
+        $code = ['code' => $data ];
+        $this->load->view('frontend/appthemes/code',$code);
 
     }
     public function get_data($id = 0){
@@ -1329,8 +1332,8 @@ class Appthemes extends CI_Controller {
         $data["sectionsv"] = $this->Common_model->get_result($this->_fix."sections",["status" => 1]);
         $data["status"]  = "success"; 
         $data["oldallow_width"]  = $oldallow_width;
-        echo (json_encode( $data ));
-        return true;
+        $code = ['code' => $data ];
+        $this->load->view('frontend/appthemes/code',$code);
 
     }
     public function create($slug){
@@ -2561,5 +2564,14 @@ class Appthemes extends CI_Controller {
             redirect(base_url('/appthemes/edit/'.$clone_theme['slug']));
         }
         return true; 
+    }
+    public function get_lang(){
+        header('Content-Type: application/json');
+        require_once FCPATH.'application/hooks/Hook_Languages.php';
+        $slug = $this->input->post("slug");
+        $l    = new Hook_Languages(1);
+        $l->get_cookie();
+        $l->get_language(); 
+        die($l->LangContent);
     }
 }

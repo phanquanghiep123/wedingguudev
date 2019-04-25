@@ -1,18 +1,18 @@
 <div id="page-section-info">
 	<ul class="nav-list-items list_category">
-		<li ng-click="ChangeSackgroundSection()" class="item" id="section-background"><i class="fa fa-picture-o"></i> Nền thành phần</li>
+		<li ng-click="ChangeSackgroundSection()" class="item" id="section-background"><i class="fa fa-picture-o"></i>{{_Lang.APP_THEME_L_THEME_BACKGROUND_SECTION}}</li>
         <li>
-            <i class="fa fa-arrows-h" aria-hidden="true"></i> Chiều rộng đầy đủ
+            <i class="fa fa-arrows-h" aria-hidden="true"></i>{{_Lang.APP_THEME_L_FULL_WIDTH_SECTION}} 
             <div class="TriSea-technologies-Switch pull-right">
 	            <input id="TriSeaPrimaryis_full" ng-click="changeWidthSection()" ng-checked="section.is_full == 1" name="is_full" type="checkbox"/>
 	            <label for="TriSeaPrimaryis_full" class="label-primary"></label>
 	        </div>  
         </li>
         <li ng-click="SettingSectionEffect()">
-            <i class="fa fa-snowflake-o"></i> Hiệu ứng pháo hoa
+            <i class="fa fa-snowflake-o"></i>{{_Lang.APP_THEME_L_THEME_EFFECT_FIREWORD_SECTION}}
         </li>
         <li>
-            <i class="fa fa-eye-slash" aria-hidden="true"></i> Hiện tiêu đề
+            <i class="fa fa-eye-slash" aria-hidden="true"></i>{{_Lang.APP_THEME_L_THEME_SHOW_TITLE_SECTION}}
 	        <div class="TriSea-technologies-Switch pull-right">
 	            <input id="TriSeaPrimaryshow_title" ng-click="changeShowHiddenSection()"  ng-checked="section.show_title == 1" name="show_title" type="checkbox"/>
 	            <label for="TriSeaPrimaryshow_title" class="label-primary"></label>
@@ -20,13 +20,13 @@
         </li>
         
         <li ng-if="section.show_title == 1" ng-click="SettingTitle()" class="item">
-            <i class="fa fa-font" aria-hidden="true"></i> Cài đặt tiêu đề
+            <i class="fa fa-font" aria-hidden="true"></i> {{_Lang.APP_THEME_L_THEME_SETTING_TITLE_SECTION}} 
         </li>
         <li ng-if="section.default_block != 0" class="form-group">
         	<div ng-if="section.default_block != 0" class="full-width ncolum_block margin-top-10">
-		        <p>Số bài viết trên hàng</p>
+		        <p>{{_Lang.APP_THEME_L_THEME_SETTING_NUMBER_POST_ON_ROW_SECTION}}</p>
 				<select ng-model ="section.ncolum_block" class="form-control">
-					<option value="0">--chọn một mục--</option>
+					<option value="0">-- {{_Lang.APP_THEME_L_THEME_SELECT_ONE}} --</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
@@ -35,9 +35,9 @@
 				</select>
 			</div>
 			<div ng-if="section.default_block != 0" class="full-width ncolum_show_block margin-top-10">
-		        <p>Số bài viết hiển thị</p>
+		        <p>{{_Lang.APP_THEME_L_THEME_SETTING_PERPAGE_SECTION}}</p>
 				<select ng-model="section.ncolum_show_block" class="form-control">
-		            <option value="0">--select a item--</option>
+		            <option value="0">-- {{_Lang.APP_THEME_L_THEME_SELECT_ONE}} --</option>
 		            <option value="1">1</option>
 		            <option value="2">2</option>
 		            <option value="3">3</option>

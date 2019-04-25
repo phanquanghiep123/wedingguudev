@@ -12,35 +12,29 @@
 		        <form class="form" method="post" action="<?php echo base_url('/account/signup'); ?>">
 		        	<input type="hidden" name="<?php echo @$this->security->get_csrf_token_name(); ?>" value="<?php echo @$this->security->get_csrf_hash(); ?>" />
 		        	<div class="message" style="display:none;"></div>
-		        	<!--<div class="form-group">
-		        		<input class="form-control inputText" type="text" name="first_name" maxlength="50" required>
-		        		<div class="pladehoder">Họ đệm</div>
-		        	</div>
-		        	<div class="form-group">
-		        		<input class="form-control inputText" type="text" name="last_name" maxlength="50" required>
-		        		<div class="pladehoder">Họ và tên</div>
-		        	</div>-->
 		        	<div class="form-group">
 		        		<input class="form-control inputText" type="email" name="email" required>
 		        		<div class="pladehoder">Địa chỉ Email</div>
 		        	</div>
-		        	<!--
-		        	<div class="form-group">
-		        		<input class="form-control inputText" type="text" maxlength="12" name="phone" required>
-		        		<div class="pladehoder">Số điện thoại</div>
-		        	</div>-->
 		        	<div class="form-group remove-margin">
 		        		<input class="form-control inputText" type="password" maxlength="50" name="pwd" required>
 		        		<div class="pladehoder">Mật khẩu</div>
 		        	</div>
 		        	<div class="form-group">
-		        		<label style="font-size: 12px;">TÊN WEBSITE CƯỚI</label>
+		        		<label style="font-size: 12px;">TÊN WEBSITE CƯỚI (chỉ cho phép chữ số và chữ cái)</label>
 		        		<div class="input-group input-domain">
                             <input type="text" class="form-control" name="subdomain" placeholder="abc123" aria-describedby="basic-addon2" required>
                             <span class="input-group-addon" id="basic-addon2">.weddingguu.com</span>
                         </div>
 		        	</div>
-
+	
+					<div class="checkbox checkbox-signup">
+                    	<div class="checkbox" style="padding-left: 0;">
+	        				<input id="is_dealer" type="checkbox" name="is_dealer" value="1">
+                    		<label for="is_dealer">Đăng ký cộng tác viên, <a target="_blank" href="<?php echo base_url('trang/cong-tac-vien'); ?>">xem chi tiết chính sách hoa hồng</a></label>
+        				</div>
+                    </div>
+    
 		        	<div class="checkbox checkbox-signup">
                         <input id="checkbox" type="checkbox" required>
                         <label for="checkbox">

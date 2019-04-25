@@ -39,10 +39,13 @@
                             <?php echo $this->ckeditor->editor('Content',@$record['Content']);?>
                         </div>
                         <div class="form-group">
-                            <label>Trạng thái</label>
-                            <select class="form-control required" name="Status">
-                                <option value="1" <?php echo @$record['Status'] == 1 ? 'selected' : ''; ?>>Hoạt động</option>
-                                <option value="0" <?php echo @$record['Status']!= null && @$record['Status'] == 0 ? 'selected' : ''; ?>>Ngưng hoạt động</option>
+                            <label>Ngôn ngữ</label>
+                            <select class="form-control required" name="Lang">
+                                <?php
+                                    foreach (@$langs as $key => $value) {
+                                        echo '<option value="'.$value["id"].'" '.(@$record['Lang'] == $value["id"] ? 'selected' : '').'>'.$value["name"].'</option>';
+                                    }
+                                ?>
                             </select>
                         </div>
                         <div class="form-group">
@@ -58,6 +61,14 @@
                                 <input name="Media" value="<?php echo @$record['Media']; ?>" type="hidden" size="60" class="form-control xImagePath">
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label>Trạng thái</label>
+                            <select class="form-control required" name="Status">
+                                <option value="1" <?php echo @$record['Status'] == 1 ? 'selected' : ''; ?>>Hoạt động</option>
+                                <option value="0" <?php echo @$record['Status']!= null && @$record['Status'] == 0 ? 'selected' : ''; ?>>Ngưng hoạt động</option>
+                            </select>
+                        </div>
+                        
                         <?php $this->load->view(@$backend_asset.'/includes/form-submit',array('base_controller' => @$base_controller)); ?>
     				</form>
     			</div>

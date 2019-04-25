@@ -27,17 +27,17 @@
       </div>
       <div class="col-md-12">
         <div id="action-allmediall" style="margin-bottom: 30px;">
-          <a href="javascript:;" data-id="0" href="javascript:;" id="backFolder" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"> Trở lại</i></a>
-          <a href="javascript:;" onclick="return $('#input-upload-file').trigger('click');" class="none btn btn-primary iframe-show"><i class="fa fa-upload" aria-hidden="true"> Tải tệp lên</i></a>
-          <a href="javascript:;" data-toggle="modal" data-target="#modal-add-folder" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"> Thêm thư mục</i></a>
-          <a href="javascript:;" id="delete-list-media" class="btn btn-warning"><i class="fa fa-trash-o" aria-hidden="true"> Xóa Lựa Chọn</i></a>         
+          <a href="javascript:;" data-id="0" href="javascript:;" id="backFolder" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"> [{]FILE_MANAGER_BACK[}]</i></a>
+          <a href="javascript:;" onclick="return $('#input-upload-file').trigger('click');" class="none btn btn-primary iframe-show"><i class="fa fa-upload" aria-hidden="true"> [{]FILE_MANAGER_UPLOAD_FILE[}]</i></a>
+          <a href="javascript:;" data-toggle="modal" data-target="#modal-add-folder" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"> [{]FILE_MANAGER_ADD_FOLDER[}]</i></a>
+          <a href="javascript:;" id="delete-list-media" class="btn btn-warning"><i class="fa fa-trash-o" aria-hidden="true"> [{]FILE_MANAGER_DELETE_SELECT[}]</i></a>         
           <?php if (@$user["is_system"] == 1) :?>
-            <a href="javascript:;" data-type="1" class="list-action-media btn btn-info"><i class="fa fa-copy" aria-hidden="true"> Sao Chép Lựa Chọn</i></a>
-            <a href="javascript:;" data-type="2" class="list-action-media btn btn-info"><i class="fa fa-cut" aria-hidden="true"> Chuyển Tệp Lựa Chọn</i></a>
-            <a href="javascript:;" data-type="3" class="list-action-media btn btn-info disabled"><i class="fa fa-paste" aria-hidden="true"> Dán</i></a>
+            <a href="javascript:;" data-type="1" class="list-action-media btn btn-info"><i class="fa fa-copy" aria-hidden="true"> [{]FILE_MANAGER_COPY_SELECT[}]</i></a>
+            <a href="javascript:;" data-type="2" class="list-action-media btn btn-info"><i class="fa fa-cut" aria-hidden="true"> [{]FILE_MANAGER_MOVE_SELECT[}]</i></a>
+            <a href="javascript:;" data-type="3" class="list-action-media btn btn-info disabled"><i class="fa fa-paste" aria-hidden="true"> [{]FILE_MANAGER_PASTE[}]</i></a>
           <?php endif;?>
-          <a href="javascript:;" id="selecte-all" class="btn btn-info"><i class="fa fa-check-square" aria-hidden="true"> Chọn tất cả tệp</i></a>
-          <a href="javascript:;" id="choose-select" class="none btn btn-info iframe-show"><i class="fa fa-plus-square" aria-hidden="true"> Áp dụng lựa chọn</i></a>
+          <a href="javascript:;" id="selecte-all" class="btn btn-info"><i class="fa fa-check-square" aria-hidden="true"> [{]FILE_MANAGER_SELECT_ALL[}]</i></a>
+          <a href="javascript:;" id="choose-select" class="none btn btn-info iframe-show"><i class="fa fa-plus-square" aria-hidden="true"> [{]FILE_MANAGER_SELECT_APPLY[}]</i></a>
         </div>
       </div>
      <!-- / Right column -->
@@ -47,17 +47,17 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Add new folder</h4>
+            <h4 class="modal-title">[{]FILE_MANAGER_ADD_FOLDER[}]</h4>
           </div>
           <div class="modal-body">
             <div class="input-group input-group-sm">
-              <label class="input-group-addon" for="media-name">Folder name</label>
+              <label class="input-group-addon" for="media-name">[{]FILE_MANAGER_ADD_FOLDER_NAME[}]</label>
               <input class="form-control" id="folder-name" type="text" required="required" maxlength="255" placeholder="Enter folder name">
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" id="add-folder-now">Add</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">[{]FILE_MANAGER_CLOSE[}]</button>
+            <button type="button" class="btn btn-primary" id="add-folder-now">[{]FILE_MANAGER_ADD[}]</button>
           </div>
         </div>
       </div>
@@ -68,7 +68,7 @@
     <?php if (@$user["is_system"] == 1) :?>
     <div class="col-md-12">
       <ul class="breadcrumb" id="path_folder">
-        <li class="active"><img src="<?php echo skin_url("themes/skins/images/1_open.png")?>"><span> root</span></li>
+        <li class="active"><img src="<?php echo skin_url("themes/skins/images/1_open.png")?>"><span>[{]FILE_MANAGER_ROOT[}]</span></li>
       </ul>
     </div>
     <?php endif;?>
@@ -136,8 +136,8 @@
           <div class="modal-body">
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">[{]FILE_MANAGER_CLOSE[}]</button>
+            <button type="submit" class="btn btn-primary">[{]FILE_MANAGER_SAVE[}]</button>
           </div>
         </div>
         </form>
@@ -151,8 +151,8 @@
           <div class="modal-body">
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">[{]FILE_MANAGER_CLOSE[}]</button>
+            <button type="submit" class="btn btn-primary">[{]FILE_MANAGER_SAVE[}]</button>
           </div>
         </div>
         </form>
@@ -160,17 +160,18 @@
   </div>
   <div id="modal-edit-media-not-img" class="edit-from modal fade" role="dialog">
     <form id="save-edit" method="post" enctype="multipart/form-data">  
-      <div class="modal-dialog ">
+      <div class="modal-dialog modal-lg">
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Edit media</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">[{]FILE_MANAGER_EDIT_MEDIA[}]</h4>
           </div>
           <div class="modal-body">
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">[{]FILE_MANAGER_CLOSE[}]</button>
+            <button type="submit" class="btn btn-primary">[{]FILE_MANAGER_SAVE[}]</button>
           </div>
         </div>
       </div>
@@ -300,12 +301,12 @@
               set_action_copy_cut();
               set_select_all();
             }else{
-              alert("Error ! Please try again your action");
+              alert("[{]FILE_MANAGER_MESS_TRY[}]");
             }
             remove_loadding();
           },
           error : function(e){
-            alert("Error ! Please try again your action");
+            alert("[{]FILE_MANAGER_MESS_TRY[}]");
             remove_loadding();
           }
         });
@@ -318,7 +319,7 @@
         ajaxGetNodes(treeNode, "refresh");
         return true;
       } else {
-        alert("Downloading data, Please wait to expand node...");
+        alert("[{]FILE_MANAGER_MESS_DOWNLOAD_DATA[}]");
         return false;
       }
       zTree.selectNode(currentnode);
@@ -395,19 +396,20 @@
             }   
             remove_loadding();
           },error : function(e){
-            alert("Error ! Please try again your action");
+            alert("[{]FILE_MANAGER_MESS_TRY[}]");
             remove_loadding();
           }
         });
       }else{
-        alert("Please enter folder name");
+        alert("[{]FILE_MANAGER_MESS_CHOSSE_FOLDER[}]");
       }
     });
   });
+  var allow_uploads = <?php echo $allow_uploads;?>;
   var upload =  $('#drag-and-drop-zone').dmUploader({
     url: "<?php echo base_url ("filemanager/upload");?>",
     dataType: 'json',
-    extFilter : '<?php echo $allow_uploads;?>',
+    extFilter : allow_uploads,
     OnsentData : function(){
       if(upload_status == 0){
         upload_status++;
@@ -415,6 +417,7 @@
       }
       var fd = new FormData();
       fd.append("folder", folder);
+      fd.append("allow_uploads", allow_uploads);
       return fd;
     },
     onInit: function(){
@@ -492,11 +495,11 @@
       //$.danidemo.addLog('#demo-debug', 'success', 'Upload of file #' + id + ' completed');
      // $.danidemo.addLog('#demo-debug', 'info', 'Server Response for file #' + id + ': ' + JSON.stringify(data));
      try{
-        $.danidemo.updateFileStatus(id, 'success', 'Upload Complete');
+        $.danidemo.updateFileStatus(id, 'success', '[{]FILE_MANAGER_MESS_UPLOAD_SUCCESS[}]');
       }catch(e){
 
       }
-      $.danidemo.updateFileStatus(id, 'success', 'Upload Complete');
+      $.danidemo.updateFileStatus(id, 'success', '[{]FILE_MANAGER_MESS_UPLOAD_SUCCESS[}]');
       $.danidemo.updateFileProgress(id, '100%');
       $('#demo-file' + id).find('div.progress-bar').addClass("progress-bar-success");
       setTimeout(function(){ $('#demo-file' + id).animate({opacity : 0},2000,function(){
@@ -507,7 +510,7 @@
     onUploadError: function(id, message){
       try{
         $.danidemo.updateFileStatus(id, 'error', message);
-        alert('Failed to Upload file #' + id + ': ' + message);
+        alert('[{]FILE_MANAGER_MESS_TRY[}]');
       }catch(e){
 
       }
@@ -516,8 +519,8 @@
     onFileTypeError: function(file){
       //alert('File' + file.name + ' cannot be added: must be an image');
     },
-    onFileExtError: function(file){
-      alert('File extension of ' + file.name + ' is not allowed');
+    onFileExtError: (file) => {
+      alert('[{]FILE_MANAGER_MESS_EXTENTION_NOT_ALLOW|' + file.name + '|'+allow_uploads.join(",")+'[}]');
     },
     onFileSizeError: function(file){
       //$.danidemo.addLog('#demo-debug', 'error', 'File \'' + file.name + '\' cannot be added: size excess limit');
@@ -585,7 +588,7 @@
           remove_loadding();
         },
         error : function(e){
-          alert("Error ! Please try again your action");
+          alert("[{]FILE_MANAGER_MESS_TRY[}]");
           remove_loadding();
         }
       });
@@ -613,9 +616,9 @@
       ids.push( $(this).parent(".action").attr("data-id") );
     });
     if(ids.length == 0){
-      alert("Please select at least a item!");
+      alert("[{]FILE_MANAGER_MESS_SELECT_LEAST_ITEM[}]");
     }else{
-      var c = confirm("Do you really want to delete the things you selected?");
+      var c = confirm("[{]FILE_MANAGER_MESS_CONFIRM_DELETE[}]");
       if(c){
         addloadding();
         $.ajax({
@@ -625,7 +628,7 @@
           data : {data : ids},
           success : function(r){
             if(r.status != "success"){
-              alert("Error ! Please try again your action");
+              alert("[{]FILE_MANAGER_MESS_TRY[}]");
             }else{
               
               $.each(ids,function(k,v){
@@ -642,7 +645,7 @@
             set_select_all();
             remove_loadding();
           },error:function(e){
-            alert("Error ! Please try again your action");
+            alert("[{]FILE_MANAGER_MESS_TRY[}]");
             remove_loadding();
           }
         });
@@ -684,7 +687,7 @@
           $("body #contaner-media").prepend(item); 
           remove_loadding();
         },error:function(e){
-          alert("Error ! Please try again your action");
+          alert("[{]FILE_MANAGER_MESS_TRY[}]");
           remove_loadding();
         }
       });
@@ -727,7 +730,7 @@
     if(id.length == 0){
       alert("Please select at least a item!");
     }else{
-      var c = confirm("Do you really want to delete the things you selected?");
+      var c = confirm("[{]FILE_MANAGER_MESS_CONFIRM_DELETE[}]");
       if(c){
         addloadding();
         $.ajax({
@@ -737,7 +740,7 @@
           data : {data : id},
           success : function(r){
             if(r.status != "success"){
-              alert("Error ! Please try again your action");
+              alert("[{]FILE_MANAGER_MESS_TRY[}]");
             }else{
                 $.each(id,function(k,v){
                   <?php if (@$user["is_system"] == 1) :?>
@@ -750,7 +753,7 @@
             }
             remove_loadding();
           },error:function(e){
-            alert("Error ! Please try again your action");
+            alert("[{]FILE_MANAGER_MESS_TRY[}]");
             remove_loadding();
           }
         });
@@ -802,7 +805,7 @@
     $("#action-allmediall #selecte-all").removeClass("all_check");
     $("#action-allmediall #selecte-all").find("i").removeClass("fa-square-o");
     $("#action-allmediall #selecte-all").find("i").addClass("fa-check-square");
-    $("#action-allmediall #selecte-all").find("i").text(" Chọn tất cả");
+    $("#action-allmediall #selecte-all").find("i").text(" [{]FILE_MANAGER_SELECT_ALL1[}]");
   }
   $("#modal-edit-media-not-img").on('hidden.bs.modal', function() {
     $(this).find(".modal-body").html("");
@@ -901,11 +904,11 @@
       } 
     });
     if(data_add_id.length < 1) {
-      alert("Please select at least 1 media file");
+      alert("[{]FILE_MANAGER_SELECT_LEAST_FILE[}]");
       return false;
     }
     if(data_add_id.length > max_length){
-      alert("Please select up to "+max_length+" media file");
+      alert("[{]FILE_MANAGER_SELECT_MAX_FILE|"+max_length+"[}]");
       return false;
     }
     addloadding();
@@ -922,17 +925,17 @@
       success : function(r){
         if(r.status == "success"){
           if(Object.keys(r.response).length < 1){
-            alert("Please select a media file of the correct format");
+            alert("[{]FILE_MANAGER_SELECT_CORRECT_FORMAT[}]");
           }else{
             is_iframe.actionchange(_selector,r.response);
           }
           
         }else{
-          alert("Error ! Please try again your action");
+          alert("[{]FILE_MANAGER_MESS_TRY[}]");
         }
         remove_loadding();
       },error:function(e){
-        alert("Error ! Please try again your action");
+        alert("[{]FILE_MANAGER_MESS_TRY[}]");
         remove_loadding();
       }
     });
@@ -944,11 +947,11 @@
       var max_length  = _filemanager_setting.options.query.max_file;
       var data_add_id = [$(this).attr("data-id")];
       if(data_add_id.length < 1) {
-        alert("Please select at least 1 media file");
+        alert("[{]FILE_MANAGER_SELECT_LEAST_FILE[}]");
         return false;
       }
       if(data_add_id.length > max_length){
-        alert("Please select up to "+max_length+" media file");
+        alert("[{]FILE_MANAGER_SELECT_MAX_FILE|"+max_length+"[}]");
         return false;
       }
       addloadding();
@@ -965,7 +968,7 @@
         success : function(r){
           if(r.status == "success"){
             if(Object.keys(r.response).length < 1){
-              alert("Please select a media file of the correct format");
+              alert("[{]FILE_MANAGER_SELECT_CORRECT_FORMAT[}]");
             }else{
               if(max_length == 1){
                 is_iframe.actionchange(_selector,r.response[0]);
@@ -974,11 +977,11 @@
               } 
             } 
           }else{
-            alert("Error ! Please try again your action");
+            alert("[{]FILE_MANAGER_MESS_TRY[}]");
           }
           remove_loadding();
         },error:function(e){
-          alert("Error ! Please try again your action");
+          alert("[{]FILE_MANAGER_MESS_TRY[}]");
           remove_loadding();
         }
       });

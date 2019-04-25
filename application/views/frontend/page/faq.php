@@ -23,9 +23,9 @@
             </div>
             <div class="col-md-3">
                 <?php if(isset($category) && $category != null): ?>
-                    <p class="lead">Chuyên mục</p>
+                    <p class="lead">[{]CATEGORIES[}]</p>
                     <div class="list-group">
-                        <a href="<?php echo base_url('/trang/hoi-dap'); ?>" class="list-group-item">Tất cả chuyên mục</a>
+                        <a href="<?php echo base_url('/trang/hoi-dap'); ?>" class="list-group-item">[{]ALL_CATEGORIES[}]</a>
                         <?php foreach ($category as $key => $item): ?>
                             <a href="<?php echo base_url('/trang/hoi-dap/'.@$item['id']); ?>" class="list-group-item <?php echo @$_GET['category_id'] == @$item['id'] ? 'active' : ''; ?>"><?php echo @$item['name']; ?></a>
                         <?php endforeach; ?>

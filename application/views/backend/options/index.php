@@ -27,6 +27,7 @@
 								<tr class="headings">
 									<th>#</th>
 									<th>Tiêu đề</th>
+									<th>Nhãn</th>
 									<th>Giá</th>
 									<th>Trạng thái</th>
 									<th></th>
@@ -38,6 +39,7 @@
 							    		<tr>
 											<td><?php echo ($key+1);?> </td>
 											<td><?php echo $item["name"]; ?></td>
+											<td><?php echo $item["label"]; ?></td>
 											<td><?php echo $item["price"]; ?></td>
 											<td><?php echo @$item["status"] == 1 ? 'Hoạt động' : 'Ngưng hoạt động'; ?></td>
 											<td>

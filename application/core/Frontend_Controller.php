@@ -1,4 +1,5 @@
 <?php 
+require_once FCPATH.'application/hooks/Hook_Languages.php';
 class Frontend_Controller extends CI_Controller{
     public $data      = null;
     public $user_id = 0;
@@ -8,9 +9,10 @@ class Frontend_Controller extends CI_Controller{
     public $table_prefix = TABLE_FIX;
     public $js_ajax = false;
     public $load_c;
-
+    public $langId = 1;
     public function __construct() {
         parent::__construct();
+        $this->data["_Langs"] = $this->Common_model->get_langs();
         if($this->input->cookie('email', false) && $this->input->cookie('password', false)){
             $email = $this->input->cookie('email', false);
             $pwd = $this->input->cookie('password', false);
@@ -48,20 +50,22 @@ class Frontend_Controller extends CI_Controller{
                 setcookie('user_invite_id', $user_invite_id, time() + (86400 * 30), "/");
             }
         }
+        $this->get_meta();
         $this->js_ajax = $this->input->is_ajax_request();
+        $l = new Hook_Languages(1);
+        $lang = $this->Common_model->get_record("languages",['slug' => $l->get_cookie()]);
+        $this->langId = $lang["id"];
         $this->load_c = $this->load;
         $this->data['asset'] = $this->asset;
-        $this->load->helper(array('url','form'));
     }
 
     public function __destruct(){
         if (!$this->input->is_ajax_request() && @$this->data["hiddenFooter"] != TRUE) {
-            echo $this->load->view($this->asset.'/block/footer',$this->data,true);
+            //$this->load->view($this->asset.'/block/footer',$this->data,true);
         }
     }
 
-    public function get_config_paging($array_init) 
-    {
+    public function get_config_paging($array_init) {
         $config                = array();
         $config["base_url"]    = $array_init["base_url"];
         $config["total_rows"]  = $array_init["total_rows"];
@@ -91,6 +95,22 @@ class Frontend_Controller extends CI_Controller{
         }
         return $config;
     }
+
+    private function get_meta(){
+        $class  = $this->router->fetch_class();
+        $action = $this->router->fetch_method();
+        if($class == 'account' && $action == 'register'){
+            $promo_code = $this->uri->segment(3);
+            if(@$promo_code != null){
+                $this->data['meta'] = '<meta property="og:title" content="Weddingguu.com - Tạo Website Cưới Cho Cặp Đôi Miễn Phí" />
+                <meta property="og:description" content="WeddingGuu đã tạo ra một nền tảng đơn giản nhưng mạnh mẽ để các cặp đôi sắp cưới có thể tự xây dựng trang web đám cưới của chính mình và giới thiệu đến người thân, bạn bè khắp muôn nơi mà không cần biết kiến thức về kỹ thuật lập trình." />
+                <meta property="og:url" content="'.base_url('account/register/'.$promo_code).'" />
+                <meta property="og:site_name" content="Weddingguu" />
+                <meta property="og:image" content="'.skin_url('images/share-facebook.png').'" />';
+            }
+        }
+    }
+    
     public function check_login(){
         if (!$this->session->userdata('user_info')) {
             $link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";

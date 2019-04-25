@@ -965,4 +965,17 @@ class theme extends MY_Controller {
         if($section_order_settings)
             $this->Common_model->insert_batch_data($this->_fix. "section_order_setting",$section_order_settings);
     }
+    public function updateblockname (){
+        
+        $b = $this->Common_model->get_result("ewd_theme_blocks");
+        foreach ($b as $key => $value) {
+            $name = '[{]APP_THEME_BLOCK_NAME00'.($key + 1).'[}]';
+            $u = [
+                "name" => $name,
+                "label" => $value["name"]
+            ];
+            $this->Common_model->update( "theme_blocks",$u ,["id" => $value["id"] ]);
+            echo '"APP_THEME_BLOCK_NAME00'.($key + 1).'" : "'.$value["name"].'"';
+        }
+    }
 }

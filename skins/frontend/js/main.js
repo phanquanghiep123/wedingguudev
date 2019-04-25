@@ -1,3 +1,22 @@
+function activeLang(slug){
+    $.ajax({
+        type:"post",
+        dataType : "json",
+        url : base_url + "home/setlang",
+        data : {slug : slug},
+        success : function(data){
+            if(data.status == 1) location.reload();
+        }
+    });
+    return true;
+}
+function CustomerClick(){
+   if(is_login != '1'){
+        $("#modal-signup").modal();
+   }else{
+        document.location.href= "/profile";
+   }
+}
 $(window).scroll(function() {
     var sticky = $('.header'),
         scroll = $(window).scrollTop();

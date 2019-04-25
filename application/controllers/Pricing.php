@@ -13,6 +13,7 @@ class pricing extends Frontend_Controller {
 		$this->data['title'] = 'Danh sách gói dịch vụ';
 		$this->data["data"] = $this->Common_model->get_result($this->table,["status" => 1]);
 		$this->load->view($this->asset.'/pricing/index',$this->data);
+		$this->load->view($this->asset.'/block/footer',$this->data);
 	}
 	
 }

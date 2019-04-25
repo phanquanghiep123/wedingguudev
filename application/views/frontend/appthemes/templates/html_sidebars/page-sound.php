@@ -1,20 +1,20 @@
 <div id="page-sound">
     <ul class="nav nav-tabs">
-      <li ng-class="tabsound == 0 ? 'active' : ''"><a data-toggle="tab" href="#chosse">Chọn nhạc nền</a></li>
-      <li ng-if="theme.sound_play == 1" ng-class="tabsound == 1 ? 'active' : ''"><a data-toggle="tab" href="#brown">Nhạc nền mẫu </a></li>
+      <li ng-class="tabsound == 0 ? 'active' : ''"><a data-toggle="tab" href="#chosse">{{_Lang.APP_THEME_L_MENU_THEME4}}</a></li>
+      <li ng-if="theme.sound_play == 1" ng-class="tabsound == 1 ? 'active' : ''"><a data-toggle="tab" href="#brown">{{_Lang.APP_THEME_L_THEME_SOUND_EXAMPLE}}</a></li>
     </ul>
     <div class="tab-content">
       <div ng-class="tabsound == 0 ? 'active' : ''" id="chosse" class="tab-pane fade in">
         <ul class="nav-list-items list_category">
           <li class="sections">
-            <i class="fa fa-power-off" aria-hidden="true"></i>Bật nhạc nền
+            <i class="fa fa-power-off" aria-hidden="true"></i>{{_Lang.APP_THEME_L_THEME_OPEN_SOUND}}
             <div class="TriSea-technologies-Switch pull-right">
               <input id="TriSeaPrimarysound_play" ng-checked="theme.sound_play == 1" ng-click="ChangeRunSound()" name="sound_play" type="checkbox"/>
               <label for="TriSeaPrimarysound_play" class="label-primary"></label>
             </div>
           </li>
-          <li ng-if="theme.sound_play == 1" uploads data-max="1" data-type="audio" data-action="sound"><i class="fa fa-upload"></i>Tải nhạc lên</li>
-          <li ng-if="theme.sound_play == 1" openfilemanager href="javascript:;" class="ui-button-text" data-action="sound" data-type="audio" data-max="1" id="openFilemanager"><i class="fa fa-folder-open" aria-hidden="true"></i>Mở thư viện file</li>
+          <li ng-if="theme.sound_play == 1" uploads data-max="1" data-type="audio" data-action="sound"><i class="fa fa-upload"></i>{{_Lang.APP_THEME_L_THEME_UPLOAD_SOUND}}</li>
+          <li ng-if="theme.sound_play == 1" openfilemanager href="javascript:;" class="ui-button-text" data-action="sound" data-type="audio" data-max="1" id="openFilemanager"><i class="fa fa-folder-open" aria-hidden="true"></i>{{_Lang.APP_THEME_L_THEME_OPEN_LIBRARY_IMAGE}}</li>
         </ul>
       </div>
       <div ng-if="theme.sound_play == 1" ng-class="tabsound == 1 ? 'active' : ''" id="brown" class="tab-pane fade in">
@@ -24,7 +24,7 @@
       </div>
     </div>
     <div ng-if="(theme.sound_play == 1 && theme.sound && theme.sound != false && theme.sound != 'false')" class="setting-bg">
-      <p>Nhạc nền hiện tại</p> 
+      <p>{{_Lang.APP_THEME_L_THEME_CURRENT_SOUND}}i</p> 
       <div class="sound-current sounds">
         <p>
           <span class="sound_name" ng-title="theme.sound.name">{{theme.sound.name}}</span>

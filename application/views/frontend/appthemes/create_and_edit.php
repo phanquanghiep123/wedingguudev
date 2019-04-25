@@ -27,24 +27,24 @@
       </div>
       <div id="nav-menu" class="content-fix">
         <ul class="nav nav-tabs setting-box">
-          <li ng-class="(taggetTab == 0) ? 'active' : ''"><a ng-click="taggetTab=0;" data-toggle="tab" href="#theme-setting">Cài đặt</a></li>
-          <li ng-class="(taggetTab == 1) ? 'active' : ''"><a ng-click="taggetTab=1;" data-toggle="tab" href="#sections-setting">Thành phần</a></li>
+          <li ng-class="(taggetTab == 0) ? 'active' : ''"><a ng-click="taggetTab=0;" data-toggle="tab" href="#theme-setting">{{_Lang.APP_THEME_L_THEME_SETTING}}</a></li>
+          <li ng-class="(taggetTab == 1) ? 'active' : ''"><a ng-click="taggetTab=1;" data-toggle="tab" href="#sections-setting">{{_Lang.APP_THEME_L_THEME_SECSSION}}</a></li>
         </ul>
         <div class="tab-content">
           <div ng-class="(taggetTab == 0) ? 'active' : ''" id="theme-setting" class="tab-pane fade in">
             <div id="scrollbars">
               <ul class="nav-list-sections list_category">
-                <li class="section"><i class="fa fa-eye" aria-hidden="true"></i> Xem nhanh
+                <li class="section"><i class="fa fa-eye" aria-hidden="true"></i>{{_Lang.APP_THEME_L_MENU_THEME1}}
                   <div class="TriSea-technologies-Switch pull-right">
                     <input id="TriSeaPrimary" ng-true-value="1" ng-false-value="0" ng-model="mode" name="TriSea1" type="checkbox"/>
                     <label for="TriSeaPrimary" class="label-primary"></label>
                   </div>
                 </li>
                 <li ng-class="(menu.load == 1) ? 'loadding' : ''" ng-repeat="menu in menus" ng-click="getContentmenu()" class="section" id="{{menu.id}}"><i class="{{menu.icon}}"></i> {{(menu.name + ((menu.id == 'page-screen') ? ' ' + currentScreen.size+"px" : ""))}}</li>
-                <li class="section" ng-click="PublicToDomain($event)"><i class="fa fa-heart" aria-hidden="true"></i> Xuất bản </li>
+                <li class="section" ng-if="_Lang" ng-click="PublicToDomain($event)"><i class="fa fa-heart" aria-hidden="true"></i>{{_Lang.APP_THEME_L_MENU_THEME8}}</li>
                 <li class="save-box">
-                  <div ng-click="Public()" class="save-box-left"><i class="fa fa-floppy-o" aria-hidden="true"></i>Lưu</div>
-                  <div ng-click="Review()" class="disable save-box-right"><i class="fa fa-telegram" aria-hidden="true"></i>Xem</div>
+                  <div ng-click="Public()" ng-if="_Lang" class="save-box-left"><i class="fa fa-floppy-o" aria-hidden="true"></i>{{_Lang.APP_THEME_L_MENU_THEME9}}</div>
+                  <div ng-click="Review()" ng-if="_Lang" class="disable save-box-right"><i class="fa fa-telegram" aria-hidden="true"></i>{{_Lang.APP_THEME_L_MENU_THEME10}}</div>
                 </li>
               </ul>
             </div>
@@ -54,7 +54,7 @@
               <ul sectionsmenu data-support="section" class="nav-list-sections list_category">
                 <li ng-click="ToSection(section)" ng-repeat="section in sections" class="section" ramkey="{{section.ramkey}}"><span>{{section.name}}</span><div class="action"><a ng-click="$event.stopPropagation();" href="javascript:;" id="move-action"><i class="fa fa-arrows" aria-hidden="true"></i></a><a ng-click="$event.stopPropagation(); SectionDelete(section);" href="javascript:;" id="delete-section"><i class="fa fa-trash" aria-hidden="true"></i></a></div></li>
               </ul>
-              <div class="save-box"><div ng-click="AddItem('theme')" class="disable save-box-right full-width" href="javascript:;">+ Thêm</div></div>
+              <div class="save-box"><div ng-click="AddItem('theme')" class="disable save-box-right full-width" href="javascript:;">+ {{_Lang.APP_THEME_L_ADD}}</div></div>
             </div>
           </div>
         </div>
@@ -82,8 +82,8 @@
           </div>
           <div id="scrollbars" class="actions-body">
             <ul class="nav nav-tabs setting-box">
-              <li ng-class="(taggetTab == 0) ? 'active' : ''"><a ng-click="taggetTab=0;" data-toggle="tab" href="#section-setting">Cài đặt</a></li>
-              <li ng-class="(taggetTab == 1) ? 'active' : ''"><a ng-click="taggetTab=1;" data-toggle="tab" href="#section-blocks">Thành phần</a></li>
+              <li ng-class="(taggetTab == 0) ? 'active' : ''"><a ng-click="taggetTab=0;" data-toggle="tab" href="#section-setting">{{_Lang.APP_THEME_L_THEME_SETTING}}</a></li>
+              <li ng-class="(taggetTab == 1) ? 'active' : ''"><a ng-click="taggetTab=1;" data-toggle="tab" href="#section-blocks">{{_Lang.APP_THEME_L_THEME_SECSSION}}</a></li>
             </ul>
             <div class="tab-content" id="scrollbars">
               <div ng-class="(taggetTab == 0) ? 'active' : ''" id="section-setting" class="tab-pane fade in" compile="section.html_setting"></div>
@@ -92,8 +92,8 @@
                   <li ng-if="block.actions.length > 0 || block.id == section.default_block" ng-click="ToBlock()" ng-repeat="block in section.blocks" ramkey="{{block.ramkey}}"><span>{{block.name}}</span><div class="action"><a href="javascript:;" id="delete-section"><i class="fa fa-pencil" aria-hidden="true"></i></a></div></li>
                 </ul>
                 <div class="save-box" ng-if="section.default_block != 0">
-                  <div ng-click="MoveBlockDefault(section)" href="javascript:;" class="save-box-left">Sắp xếp</div>
-                  <div ng-click="AddNewBlock()" href="javascript:;" class="disable save-box-right">+ Thêm</div>
+                  <div ng-click="MoveBlockDefault(section)" href="javascript:;" class="save-box-left">{{_Lang.APP_THEME_L_THEME_ORDER}}</div>
+                  <div ng-click="AddNewBlock()" href="javascript:;" class="disable save-box-right">+ {{_Lang.APP_THEME_L_THEME_ADD}}</div>
                 </div>
               </div>
             </div>
@@ -102,7 +102,7 @@
         <div id="sidebar-order-block" class="content-actions">
           <div class="actions-top">
             <div class="bg-white">
-              <h3 class="action_name">Sắp xếp</h3><a class="close-actions" ng-click="CloseOrderBlock()" href="javascript:;"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a></div>
+              <h3 class="action_name">{{_Lang.APP_THEME_L_THEME_ORDER}}</h3><a class="close-actions" ng-click="CloseOrderBlock()" href="javascript:;"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a></div>
           </div>
           <div id="scrollbars" class="actions-body">
             <ul blocksmenu class="nav-list-sections list_category">
@@ -128,34 +128,34 @@
           <div id="scrollbars" class="actions-body">
             <div id="section-style">
               <ul class="nav nav-tabs">
-                <li ng-class="tabsectionstyle != 1 ? 'active' : ''"><a ng-click="tabsectionstyle = 0;" data-toggle="tab" href="#image">Ảnh nền</a></li>
-                <li ng-class="tabsectionstyle == 1 ? 'active' : ''"><a ng-click="tabsectionstyle = 1" data-toggle="tab" href="#color">Màu nền</a></li>
+                <li ng-class="tabsectionstyle != 1 ? 'active' : ''"><a ng-click="tabsectionstyle = 0;" data-toggle="tab" href="#image">{{_Lang.APP_THEME_L_THEME_BACKGROUND_IMAGE}}</a></li>
+                <li ng-class="tabsectionstyle == 1 ? 'active' : ''"><a ng-click="tabsectionstyle = 1" data-toggle="tab" href="#color">{{_Lang.APP_THEME_L_THEME_BACKGROUND_COLOR}}</a></li>
               </ul>
               <div class="tab-content">
                 <div id="scrollbars">
                   <div id="image" ng-class="tabsectionstyle != 1 ? 'active': ''" class="tab-pane fade in">
                     <ul class="nav-list-items list_category">
-                      <li uploads="" data-max="1" data-type="image" data-action="background-image"><i class="fa fa-upload" aria-hidden="true"></i>Tải ảnh lên</li> 
-                      <li openfilemanager="" href="javascript:;" class="ui-button-text" data-action="background-image" data-type="image" data-max="1" id="openFilemanager"><i class="fa fa-folder-open" aria-hidden="true"></i>Mở thư viện file</li>         
+                      <li uploads="" data-max="1" data-type="image" data-action="background-image"><i class="fa fa-upload" aria-hidden="true"></i>{{_Lang.APP_THEME_L_THEME_UPLOAD_IMAGE}}</li> 
+                      <li openfilemanager="" href="javascript:;" class="ui-button-text" data-action="background-image" data-type="image" data-max="1" id="openFilemanager"><i class="fa fa-folder-open" aria-hidden="true"></i>{{_Lang.APP_THEME_L_THEME_OPEN_LIBRARY_IMAGE}}</li>         
                       <li ng-class="(type.load == 1) ? 'loadding' : ''" ng-repeat="type in backgroundType" ng-click="getActionType(type)" class="item" id="{{type.id}}"><i class="fa fa-clone" aria-hidden="true"></i>{{type.name}}</li>
                       <li class="item not-after">
-                        <p>Lặp lại</p>
+                        <p>{{_Lang.APP_THEME_L_THEME_REPEAT}}</p>
                         <select id="style-repeat" class="form-control" ng-model="section.style['background-repeat']">
-                          <option value="">-- chọn một mục --</option>
+                          <option value="">-- {{_Lang.APP_THEME_L_THEME_SELECT_ONE}} --</option>
                           <option ng-repeat ="item in background_repeat" value="{{item.value}}">{{item.label}}</option>
                         </select>
                       </li>
                       <li class="item not-after">
-                        <p>Kích cỡ</p>
+                        <p>{{_Lang.APP_THEME_L_THEME_BACKGROUND_SIZE}}</p>
                         <select class="form-control" id="style-size" ng-model="section.style['background-size']">
-                          <option value="">-- chọn một mục --</option>
+                          <option value="">-- {{_Lang.APP_THEME_L_THEME_SELECT_ONE}} --</option>
                           <option ng-repeat ="item in background_size" value="{{item.value}}">{{item.label}}</option>
                         </select>
                       </li>
                       <li class="item not-after">
-                        <p>Vị trí</p>
+                        <p>{{_Lang.APP_THEME_L_THEME_BACKGROUND_POSITION}}</p>
                         <select  class="form-control" id="style-position" ng-model="section.style['background-position']">
-                          <option value="">-- chọn một mục --</option>
+                          <option value="">-- {{_Lang.APP_THEME_L_THEME_SELECT_ONE}} --</option>
                           <option ng-repeat ="item in background_position" value="{{item.value}}">{{item.label}}</option>
                         </select>
                       </li>
@@ -166,11 +166,11 @@
                   </div>
                   <div ng-if="(section.style['background-image'] && section.style['background-image'] != 'inherit') || (section.style['background-color'] && section.style['background-color'] != 'inherit')" class="setting-bg">
                       <div class="item-cuttent-bg" ng-if="(section.style['background-image'] && section.style['background-image'] != 'inherit')">
-                        <p>Ảnh nền hiện tại</p>
+                        <p>{{_Lang.APP_THEME_L_THEME_CURRENT_BACKGROUND_IMAGE}}</p>
                         <div style="width: 100% ;height: 180px;background-size: cover; background-image: {{section.style['background-image']}}"><div class="action-bg"><span class="removebgnoew fa fa-remove" ng-click="RemoveBg(0)"></span></div></div>
                       </div>
                       <div class="item-cuttent-bg" ng-if="(section.style['background-color'] && section.style['background-color'] != 'inherit')">
-                        <p>Màu nền hiện tại <div style="float: right;margin-left: 20px;width: 30px; height: 30px;background-color: {{section.style['background-color']}}"></div> <div class="action-bg"><span class="removebgnoew fa fa-remove" ng-click="RemoveBg(1)"></span></div></p>
+                        <p>{{_Lang.APP_THEME_L_THEME_CURRENT_BACKGROUND_COLOR}}<div style="float: right;margin-left: 20px;width: 30px; height: 30px;background-color: {{section.style['background-color']}}"></div> <div class="action-bg"><span class="removebgnoew fa fa-remove" ng-click="RemoveBg(1)"></span></div></p>
                       </div>
                   </div> 
                 </div>
@@ -181,7 +181,7 @@
         <div id="sidebar-change-setting-title-section" class="content-actions">
           <div class="actions-top">
             <div class="bg-white">
-              <h3 class="action_name">Cài đặt tiêu đề</h3><a class="close-actions" ng-click="ClosechangeSectionSetting()" href="javascript:;"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
+              <h3 class="action_name">{{_Lang.APP_THEME_L_THEME_SETTING_TITLE}}</h3><a class="close-actions" ng-click="ClosechangeSectionSetting()" href="javascript:;"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
             </div>
           </div>
           <div id="scrollbars" class="actions-body">
@@ -194,20 +194,20 @@
                         <input type="text" ng-model="section['name']" class="form-control"  ng-value="section['name']">
                       </li>
                       <li class="item not-after">
-                        <p>Màu chữ </p>
+                        <p>{{_Lang.APP_THEME_L_THEME_COLOR_TEXT}}</p>
                         <input colorpicker type="text" ng-model="section['title_color']" ng-value="section['title_color']">
                       </li>
                        <li class="item not-after">
-                        <p>Kích thước chữ</p>
+                        <p>{{_Lang.APP_THEME_L_THEME_FONT_SIZE}}</p>
                         <select class="form-control" ng-model="section['title_size']" ng-value="section['title_size']">
-                          <option value="">--chọn một mục--</option>
+                          <option value="">-- {{_Lang.APP_THEME_L_THEME_SELECT_ONE}} --</option>
                           <option ng-repeat ="item in [10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100] track by $index" value="{{item + 'px'}}">{{item + 'px'}}</option>
                         </select>
                       </li>
                       <li class="item not-after">
-                        <p>Phông chữ</p>
+                        <p>{{_Lang.APP_THEME_L_THEME_FONT_FAMILY}}</p>
                         <select class="form-control" ng-model="section['title_family']" ng-value="section['title_family']">
-                          <option value="">--chọn một mục--</option>
+                          <option value="">-- {{_Lang.APP_THEME_L_THEME_SELECT_ONE}} --</option>
                           <option ng-repeat ="item in AllFontFamily track by $index" value="{{item[1]}}">{{item[0]}}</option>
                         </select>
                       </li>
@@ -221,7 +221,7 @@
          <div id="sidebar-change-setting-effect-section" class="content-actions">
           <div class="actions-top">
             <div class="bg-white">
-              <h3 class="action_name">Cài đặt hiệu ứng</h3><a class="close-actions" ng-click="ClosechangeSectionSetting()" href="javascript:;"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
+              <h3 class="action_name">{{_Lang.APP_THEME_L_THEME_SETTING_EFFECT}}</h3><a class="close-actions" ng-click="ClosechangeSectionSetting()" href="javascript:;"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
             </div>
           </div>
           <div id="scrollbars" class="actions-body">
@@ -231,25 +231,25 @@
                   <div>
                     <ul class="nav-list-items list_category">
                         <li>
-                          <i class="fa fa-adjust" aria-hidden="true"></i>Bật hiệu ứng
+                          <i class="fa fa-adjust" aria-hidden="true"></i>{{_Lang.APP_THEME_L_THEME_OPEN_EFFECT}}
                           <div class="TriSea-technologies-Switch pull-right">
                             <input id="TriSeaPrimaryshow_is_effect" ng-click="changeEffectSection()" ng-checked="section.is_effect == 1 || section.is_effect == true" name="is_effect" type="checkbox"/>
                             <label for="TriSeaPrimaryshow_is_effect" class="label-primary"></label>
                           </div>
                         </li>
                         <li ng-if="section.is_effect != 0">
-                          <i class="fa fa-calendar-check-o" aria-hidden="true"></i>Luôn chạy
+                          <i class="fa fa-calendar-check-o" aria-hidden="true"></i>{{_Lang.APP_THEME_L_THEME_ALWAYS_OPEN}}
                           <div class="TriSea-technologies-Switch pull-right">
                             <input id="TriSeaPrimaryshow_everyday_effect" ng-click="changeEffectDaySection()"  ng-checked="section.everyday_effect == 1" name="everyday_effect" type="checkbox"/>
                             <label for="TriSeaPrimaryshow_everyday_effect" class="label-primary"></label>
                           </div>
                         </li>
                         <li class="item not-after" ng-if="section.everyday_effect != 1 && section.is_effect != 0">
-                          <p><i class="fa fa-calendar" aria-hidden="true"></i> Từ ngày :</p>
+                          <p><i class="fa fa-calendar" aria-hidden="true"></i>{{_Lang.APP_THEME_L_THEME_FROM_DAY}} :</p>
                           <input day type="text" ng-model="section.from_day_effect" name="from_day" class="form-control">
                         </li>
                         <li ng-if="section.is_effect != 0">
-                          <i class="fa fa-play" aria-hidden="true"></i>Xem ngay
+                          <i class="fa fa-play" aria-hidden="true"></i>{{_Lang.APP_THEME_L_THEME_VIEW_FLASH}}
                           <div class="TriSea-technologies-Switch pull-right">
                               <input id="TriSeaPrimaryshow_run_effect" ng-model="section.run_effect" ng-true-value="1" ng-false-value="0" ng-checked="section.run_effect == 1 || section.run_effect == true" name="run_effect" type="checkbox"/>
                               <label for="TriSeaPrimaryshow_run_effect" class="label-primary"></label>
@@ -267,7 +267,7 @@
     <div id="bar-preview">
       <ul class="inline-block left right">
           <li>
-           <select class="form-control" ng-model="currentScreen" ng-options="item as ('Màn hình ' + item.label) for item in screens track by item.size"></select>
+           <select class="form-control" ng-model="currentScreen" ng-options="item as ( _Lang.APP_THEME_L_THEME_SCREEN + item.label) for item in screens track by item.size"></select>
          </li>
           <li>
             <a ng-click="Public()"><i class="fa fa-floppy-o" aria-hidden="true"></i></a>
@@ -345,10 +345,10 @@
           <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
-              <div class="modal-body"><h3>Bạn muốn làm điều này!</h3></div>
+              <div class="modal-body"><h3>{{_Lang.APP_THEME_L_THEME_CONFIRM}}</h3></div>
               <div class="modal-footer text-right">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
-                  <button ng-click="DeleteItem()" class="btn btn-warning relative">Xóa</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">{{_Lang.APP_THEME_L_NO}}</button>
+                  <button ng-click="DeleteItem()" class="btn btn-warning relative">{{_Lang.APP_THEME_L_YES}}</button>
               </div>
             </div>
           </div>
@@ -384,7 +384,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
               <div class="modal-header">
-                <h1 class="modal-title text-center">Xuất tên miền</h1>
+                <h1 class="modal-title text-center">{{_Lang.APP_THEME_L_PUBLIC_DOMAIN}}</h1>
               </div>
               <div class="modal-body">
                 <div class="text-center" id="message-box"> </div>

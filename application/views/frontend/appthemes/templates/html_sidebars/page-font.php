@@ -1,17 +1,17 @@
 <div id="page-font">
     <div class="setting-bg">
         <div class="form-group">
-            <p>Phông tiêu đề</p>
+            <p>{{_Lang.APP_THEME_L_THEME_FONT_TITLE}}</p>
             <select ng-options="item.name for item in fonts track by item.id" class="form-control" id="font-family" ng-model="theme.font">
               <option value="" class="">-- chọn một mục --</option>
             </select>
         </div> 
         <div class="form-group">
-            <p>Size chữ tiêu đề</p>
+            <p>{{_Lang.APP_THEME_L_THEME_FONT_SIZE_TITLE}}</p>
             <input id="font_title_size" sliderbootstrap data-unit="px" ng-model="theme.size_title"  data-sliderbootstrap-value="{{theme.size_title}}" data-value="{{theme.size_title}}" value="{{theme.size_title}}" type="text" data-sliderbootstrap-min="12" data-sliderbootstrap-max="150" data-sliderbootstrap-step="1">
         </div>
         <div class="form-group">
-            <p>Màu chữ tiêu đề</p>
+            <p>{{_Lang.APP_THEME_L_THEME_COLOR_TITLE}}</p>
             <input style="background-color:{{theme.color_title}}" class="colorpicker" colorpicker type="text" ng-model="theme.color_title" value="">
         </div>    
     </div>
