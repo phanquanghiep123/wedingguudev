@@ -4,7 +4,8 @@
     <div class="container">
         <?php if($this->input->get('alert')):?>
             <div class="alert alert-warning">
-              <strong>Thông báo!</strong> Tài khoản của bạn đã hết hạn, Vui lòng chọn gói dich vụ bên dưới để gia hạn tài khoản!
+
+              <strong>[{]PACKAGE_STRING_002[}] !</strong>[{]PACKAGE_STRING_003[}] !
             </div>
         <?php endif;?>
         <div class="section-body">

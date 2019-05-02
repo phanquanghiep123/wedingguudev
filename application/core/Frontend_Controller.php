@@ -40,6 +40,9 @@ class Frontend_Controller extends CI_Controller{
             $this->get_setting();
             $this->get_title();
         }
+        $this->js_ajax = $this->input->is_ajax_request();
+        $l = new Hook_Languages();
+        $this->data["_Lang_Content"] = $l->langData;
         if (!$this->input->is_ajax_request() && @$this->data["hiddenHeader"] != TRUE) {
             $this->load->view($this->asset.'/block/header',$this->data);
         }
@@ -51,12 +54,18 @@ class Frontend_Controller extends CI_Controller{
             }
         }
         $this->get_meta();
-        $this->js_ajax = $this->input->is_ajax_request();
-        $l = new Hook_Languages(1);
+
         $lang = $this->Common_model->get_record("languages",['slug' => $l->get_cookie()]);
         $this->langId = $lang["id"];
         $this->load_c = $this->load;
         $this->data['asset'] = $this->asset;
+        $this->form_validation->set_message('required','[{]VALIDATE_REQUIRED|{field}[}]');
+        $this->form_validation->set_message('is_unique','[{]VALIDATE_UNIQUE|{field}[}]');
+        $this->form_validation->set_message('valid_email','[{]VALIDATE_EMAIL_COREET|{field}[}]');
+        $this->form_validation->set_message('valid_url','[{]VALIDATE_URL|{field}[}]');
+        $this->form_validation->set_message('min_length','[{]VALIDATE_MIN_LENGTH|{field}[}]');
+        $this->form_validation->set_message('max_length','[{]VALIDATE_MAX_LENGTH|{field}[}]');
+
     }
 
     public function __destruct(){

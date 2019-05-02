@@ -3,93 +3,68 @@
 		<div class="section-body">
 			<div class="row">
 				<div class="col-sm-12">
-					<form class="form form-account" action="<?php echo base_url('/account/signup'); ?>">
-						<input type="hidden" name="<?php echo @$this->security->get_csrf_token_name(); ?>" value="<?php echo @$this->security->get_csrf_hash(); ?>" />
-						<div class="form-header">
-					        <h1 class="modal-title text-center">Đăng ký tài khoản</h1>
-					        <p class="text-center">Bạn đã có tài khoản? <a href="<?php echo base_url('/account/login'); ?>">Đăng nhập</a> ngay</p>
-							<hr>
-							<div style="height: 10px;"></div>
-						</div>
-						<div class="form-content">
-							<div class="message" style="disaplay:none;margin-bottom: 30px;"></div>
-				        	<!--<div class="form-group">
-				        		<input class="form-control inputText" type="text" name="first_name" maxlength="50" required>
-				        		<div class="pladehoder">Họ đệm</div>
-				        	</div>
-
-				        	<div class="form-group">
-				        		<input class="form-control inputText" type="text" name="last_name" maxlength="50">
-				        		<div class="pladehoder">Họ và tên</div>
-				        	</div>-->
-
+					<div class="form-account">
+						<h1 class="text-center">[{]L_SIGNIN[}]</h1>
+					    <p class="text-center">[{]L_SIGNIN_HAS_ACCOUNT[}] <a href="<?php echo base_url("account/login")?>" class="login-button">[{]L_LOGIN[}]</a></p>
+						<form class="form" method="post" action="<?php echo base_url('/account/signup'); ?>">
+				        	<input type="hidden" name="<?php echo @$this->security->get_csrf_token_name(); ?>" value="<?php echo @$this->security->get_csrf_hash(); ?>" />
+				        	<div class="message" style="display:none;"></div>
 				        	<div class="form-group">
 				        		<input class="form-control inputText" type="email" name="email" required>
-				        		<div class="pladehoder">Địa chỉ Email</div>
+				        		<div class="pladehoder">[{]L_LOGIN_EMAIL[}]</div>
 				        	</div>
-
-				        	<!--
-				        	<div class="form-group">
-				        		<input class="form-control inputText" type="text" maxlength="12" name="phone_number">
-				        		<div class="pladehoder">Số điện thoại</div>
-				        	</div>-->
-
 				        	<div class="form-group remove-margin">
 				        		<input class="form-control inputText" type="password" maxlength="50" name="pwd" required>
-				        		<div class="pladehoder">Mật khẩu</div>
+				        		<div class="pladehoder">[{]L_LOGIN_PASSWORD[}]</div>
 				        	</div>
-
-				        	<div style="height: 10px;"></div>
-				        	<div class="row">
-				        		<div class="col-xs-12">
-						        	<div class="form-group">
-		                            	<div class="checkbox" style="padding-left: 15px;">
-					        				<input id="is_dealer" type="checkbox" name="is_dealer" value="1">
-			                        		<label for="is_dealer">Đăng ký Cộng tác viên => <a href="<?php echo base_url('trang/cong-tac-vien'); ?>"> Xem thêm</a></label>
-				        				</div>
-		                            </div>
-		                   		</div> 
-		                   	</div>
-
 				        	<div class="form-group">
-				        		<label style="font-size: 12px;">TÊN WEBSITE CƯỚI</label>
+				        		<label style="font-size: 12px;">[{]L_SIGNIN_DOMAIN[}] </label>
 				        		<div class="input-group input-domain">
 		                            <input type="text" class="form-control" name="subdomain" placeholder="abc123" aria-describedby="basic-addon2" required>
 		                            <span class="input-group-addon" id="basic-addon2">.weddingguu.com</span>
 		                        </div>
 				        	</div>
-
+			
+							<div class="checkbox checkbox-signup">
+		                    	<div class="checkbox" style="padding-left: 0;">
+			        				<input id="is_dealer" type="checkbox" name="is_dealer" value="1">
+		                    		<label for="is_dealer">[{]L_SINGIN_CTV[}], <a target="_blank" href="<?php echo base_url('trang/cong-tac-vien'); ?>">[{]L_SINGIN_CTV_PRICE[}]</a></label>
+		        				</div>
+		                    </div>
+		    
 				        	<div class="checkbox checkbox-signup">
 		                        <input id="checkbox" type="checkbox" required>
 		                        <label for="checkbox">
-		                            Tôi đồng ý với <a href="<?php echo base_url('/trang/chinh-sach-bao-mat/'); ?>">chính sách bảo mật</a> và <a href="<?php echo base_url('/trang/dieu-khoan-su-dung/'); ?>">điều khoản sử dụng</a>
+		                        	[{]L_SINGIN_AGREE[}]
+		                             <a href="<?php echo base_url('/trang/chinh-sach-bao-mat/'); ?>">[{]L_SINGIN_PRIVACY_POLICY[}]</a> [{]L_SINGIN_AND[}] <a href="<?php echo base_url('/trang/dieu-khoan-su-dung/'); ?>">[{]L_SINGIN_TERMS_OF_USER[}]</a>
 		                        </label>
 		                    </div>
 				        	
 				        	<div class="row">
-				        		<div class="col-md-12">
-				        			<input type="hidden" name="promo_code" value="<?php echo @$promo_code; ?>">
-				        			<button class="btn btn-primary btn-lg" type="submit" name="submit">Đăng ký</button>
+				        		<div class="col-md-12 text-center">
+				        			<button class="btn btn-primary btn-lg" type="submit" name="submit">[{]L_SIGNIN[}]</button>
 				        		</div>
 				        	</div>
-				        	<input type="hidden" name="fbclid" value="<?php echo $this->input->get("fbclid")?>">
-						</div>
-						<hr>
-						<div class="form-footer">
-							<div class="signin-social text-center">
-				        		<p class="text-center">Đăng ký qua mạng xã hội</p>
+				        	<hr>
+				        	<div class="signin-social text-center">
+				        		<p class="text-center">[{]L_SINGIN_FOR_SOCIAL[}]</p>
 				        		<ul class="list-inline text-center">
 				        			<li><a href="<?php echo base_url('/social/facebook'); ?>" class="btn btn-facebook">&nbsp;<i class="fa fa-facebook" ></i> Facebook&nbsp;</a></li>
 				        			<li><a href="<?php echo base_url('/social/google'); ?>" class="btn btn-google"><i class="fa fa-google-plus"></i> Google +</a></li>
 				        		</ul>
 				        	</div>
-						</div>
-					</form>
+				        </form>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
+<style type="text/css">
+	body .form-account{
+		max-width: 440px;
+	}
+</style>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("form.form-account").submit(function(){

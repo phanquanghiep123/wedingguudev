@@ -1093,7 +1093,8 @@ class Themes extends CI_Controller {
   			"public"          => $theme["public"],
             "status"          => $theme["status"],
             "sound_example"   => $theme["sound_example"],
-            "sound_play"      => $theme["sound_play"]
+            "sound_play"      => $theme["sound_play"],
+            "lang"            => $theme["lang"]
   		];
   		$this->Common_model->update($this->_fix.$this->_table,$u,["id" => $theme["id"]]);
   		if(@$theme["style"]){
@@ -1530,7 +1531,8 @@ class Themes extends CI_Controller {
 	      "page-section",
 	      "page-style",
 	      "page-info",
-          "page-screen"
+          "page-screen",
+          "page-lang"
 	    ];
 	    if(in_array($template, $args)){
 	      $this->load->view($this->_view."/".$folder."/".$template);

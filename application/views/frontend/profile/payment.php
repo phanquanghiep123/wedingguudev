@@ -3,19 +3,19 @@
         <div class="row">
             <main class="site-main col-sm-10 col-sm-push-1 col-sm-pull-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Lịch sử thanh toán</div>
+                    <div class="panel-heading">[{]payment_history[}]</div>
                     <div class="panel-body">
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Gói dịch vụ</th>
-                                        <th>Số tháng</th>
-                                        <th>Tổng tiền</th>
-                                        <th>Ngày bắt đầu</th>
-                                        <th>Ngày hết hạn</th>
-                                        <th>Trạng thái</th>
+                                        <th>[{]payment_histor_package[}]</th>
+                                        <th>[{]payment_number_month[}]</th>
+                                        <th>[{]payment_total_price[}]</th>
+                                        <th>[{]payment_start_day[}]</th>
+                                        <th>[{]payment_end_day[}]</th>
+                                        <th>[{]payment_status[}]</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -32,17 +32,17 @@
                                                 <td>
                                                     <?php 
                                                         if(@$item["status"] == 1) {
-                                                            echo 'Hoàn thành';
+                                                            echo '[{]payment_status_finish[}]';
                                                         }
                                                         else if(@$item["status"] == 2){
-                                                            echo 'Đã Hủy';
+                                                            echo '[{]payment_status_cancelled[}]';
                                                         }
                                                         else{
-                                                            echo 'Đang chờ';
+                                                            echo '[{]payment_status_pedding[}]';
                                                         } 
                                                     ?>
                                                 </td>
-                                                <td><a href="<?php echo backend_url('profile/payment/'.@$item['id'])?>">Xem chi tiết</a></td>
+                                                <td><a href="<?php echo backend_url('profile/payment/'.@$item['id'])?>">[{]L_MESS_MORE[}]</a></td>
                                             </tr>
                                         <?php endforeach; ?>
                                     <?php endif; ?>

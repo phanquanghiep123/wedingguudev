@@ -11,16 +11,14 @@ class Hook_Languages
 		$CI->load->helper('cookie');
 		if($type == 0){
 			$this->get_cookie();
-			$this->get_language();
 		}
+		$this->get_language();
 	}
-	public function get_cookie(){
-		
+	public function get_cookie(){		
 		$this->lang = get_cookie($this->cookie_Key) ? get_cookie($this->cookie_Key) : "vn";
 		return $this->lang;
 	}
 	public function set_cookie ($data){
-
 		$CI =& get_instance();
 		$expire = strtotime('NOW+7DAYS');
         $path  = '/';
@@ -41,8 +39,7 @@ class Hook_Languages
 				$this->LangContent = $content;
 				$this->langData = json_decode($content,true);
 				return true;
-			}
-			
+			}		
 		}
 		return false;
 	}
@@ -73,8 +70,14 @@ class Hook_Languages
 		    				$value_string = str_replace("{".( $key - 1 )."}",$value,$value_string );
 		    			}
 		    		}
-		    		$arrayValue [] = $value_string;
-		    		$arrayKey   [] = "[{]".$valueS."[}]"; 
+		    		if(@$CI->input->get("debuglang") == 1){
+		    			$arrayValue [] = '['.$valueS.'] : ' .$value_string;
+		    		    $arrayKey   [] = "[{]".$valueS."[}]"; 
+		    		}else{
+		    			$arrayValue [] = $value_string;
+		    			$arrayKey   [] = "[{]".$valueS."[}]"; 
+		    		}
+		    		
 	    		}	
 	    	}	 
 	    }

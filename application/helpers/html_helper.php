@@ -30,9 +30,9 @@ if ( ! function_exists('get_packages')){
                     </div>
                     <div class="card-footer text-center">
                         <?php if($item['price'] != 0): ?>
-                            <a href="<?php echo base_url('payment/index/'.@$item['id']); ?>" class="btn btn-lg btn-secondary">Chọn gói</a>
+                            <a href="<?php echo base_url('payment/index/'.@$item['id']); ?>" class="btn btn-lg btn-secondary">[{]CHOSSE_PACKAGE[}]</a>
                         <?php else: ?>
-                        	<a href="javascript:void(0);" data-toggle="modal" data-target="#modal-signup" class="btn btn-lg btn-secondary">Dùng thử</a>
+                        	<a href="javascript:void(0);" data-toggle="modal" data-target="#modal-signup" class="btn btn-lg btn-secondary">[{]CHOSSE_PACKAGE_USER[}]</a>
                         <?php endif; ?>
                     </div>
                 </div>

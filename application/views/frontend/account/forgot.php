@@ -6,8 +6,8 @@
 					<form class="form form-account" action="<?php echo base_url('/account/send_forgot'); ?>">
 						<input type="hidden" name="<?php echo @$this->security->get_csrf_token_name(); ?>" value="<?php echo @$this->security->get_csrf_hash(); ?>" />
 						<div class="form-header">
-					        <h1 class="modal-title text-center">Quên mật khẩu</h1>
-					        <p class="text-center">Bạn chưa có tài khoản? <a  href="<?php echo base_url('/account/register'); ?>" >Đăng ký</a> ngay</p>
+					        <h1 class="modal-title text-center">[{]L_LOGIN_FORGOT[}]</h1>
+					        <p class="text-center">[{]L_LOGIN_NOT_ACCOUNT[}] <a  href="<?php echo base_url('/account/register'); ?>" >[{]L_SIGNIN_NOW[}]</a></p>
 							<hr>
 							<div style="height: 10px;"></div>
 						</div>
@@ -15,12 +15,12 @@
 							<div class="message" style="disaplay:none;margin-bottom: 30px;"></div>
 				        	<div class="form-group">
 				        		<input class="form-control inputText" type="email" name="email" required>
-				        		<div class="pladehoder">Địa chỉ email</div>
+				        		<div class="pladehoder">[{]L_LOGIN_EMAIL[}]</div>
 				        	</div>
 
 				        	<div class="row">
 				        		<div class="col-md-12 text-center">
-				        			<button class="btn btn-primary btn-lg" type="submit" name="submit">Gửi yêu cầu</button>
+				        			<button class="btn btn-primary btn-lg" type="submit" name="submit">[{]L_FORGOT_SEND_EMAIL[}]</button>
 				        		</div>
 				        	</div>
 						</div>
@@ -44,12 +44,7 @@
 		        url: url,
 		        data: data_form,
 		        success: function(data) {
-		            if(data['status'] == 'success'){
-		           	   form.find('.message').html(data['message']).show();
-		            }
-		            else if(data['status'] == 'fail'){
-		           	   form.find('.message').html(data['message']).show();
-		            }
+		            form.find('.message').html(data['message']).show();
 		        },
 		        error: function(data){
 		            console.log(data['responseText']);

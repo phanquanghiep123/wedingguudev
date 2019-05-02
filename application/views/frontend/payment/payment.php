@@ -4,7 +4,7 @@
           	<div class="container">
               	<div class="row">
                   	<div class="col-md-12">
-                      	<h1 class="title text-center" style="padding-top: 10px;">Thanh toán</h1>
+                      	<h1 class="title text-center" style="padding-top: 10px;">[{]PAYMENT[}]</h1>
                   	</div>
               	</div>
           	</div>
@@ -32,27 +32,27 @@
 		                            ?>
 		                            <div class="row">
 		                            	<div class="col-sm-12">	
-		                            		<p><strong>BƯỚC 1: ĐĂNG KÝ THÔNG TIN DỊCH VỤ</strong></p>	
+		                            		<p><strong>[{]PAYMENT_STEP_01[}]:</strong></p>	
 				                		    <div class="row form-group">
-				                                <label class="col-sm-12">Họ và tên <sup>*</sup></label>
+				                                <label class="col-sm-12">[{]PAYMENT_FULL_NAME[}] <sup>*</sup></label>
 				                                <div class="col-sm-12">
 				                                    <input class="required form-control" maxlength="255" type="text" name="name" value="<?php echo @$record['name']; ?>" required>  
 				                                </div>
 				                            </div>
 				                            <div class="row form-group">
-				                                <label class="col-sm-12">Email <sup>*</sup></label>
+				                                <label class="col-sm-12">[{]PAYMENT_EMAIL[}] <sup>*</sup></label>
 				                                <div class="col-sm-12">
 				                                    <input class="required form-control" maxlength="255" type="email" name="email" value="<?php echo @$record['email']; ?>" required>  
 				                                </div>
 				                            </div>
 				                            <div class="row form-group">
-				                                <label class="col-sm-12">Số điện thoại <sup>*</sup></label>
+				                                <label class="col-sm-12">[{]PAYMENT_PHONE[}] <sup>*</sup></label>
 				                                <div class="col-sm-12">
 				                                    <input class="required form-control" maxlength="255" type="text" name="phone" value="<?php echo @$record['phone']; ?>" required>  
 				                                </div>
 				                            </div>
 				                            <div class="row form-group">
-				                                <label class="col-sm-12">Ghi chú</label>
+				                                <label class="col-sm-12">[{]PAYMENT_NOTE[}] </label>
 				                                <div class="col-sm-12">
 				                                    <textarea class="required form-control" maxlength="500" name="comment" rows="4"><?php echo @$record['comment']; ?></textarea>  
 				                                </div>
@@ -97,8 +97,8 @@
 		                            </div>
 		                            <div class="row">
 		                                <div class="col-sm-12 text-right">
-		                                    <a class="btn btn-back" href="<?php echo base_url('/pricing'); ?>">← Trở về</a>
-		                                    <button class="btn btn-primary" id="payment-success" type="submit" style="cursor: pointer;">Gửi yêu cầu</button>
+		                                    <a class="btn btn-back" href="<?php echo base_url('/pricing'); ?>">← [{]PAYMENT_BACK[}]</a>
+		                                    <button class="btn btn-primary" id="payment-success" type="submit" style="cursor: pointer;">[{]PAYMENT_SUBMIT[}]</button>
 		                                	<input type="hidden" name="<?php echo @$this->security->get_csrf_token_name(); ?>" value="<?php echo @$this->security->get_csrf_hash(); ?>" />
 		                                </div>
 		                            </div>

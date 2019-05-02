@@ -58,9 +58,6 @@ class themesys extends MY_Controller {
 	    $this->load->model($this->_model);
 	    $this->load->model("Sections_model");
 	    $this->load->model("Blocks_model");
-	    //!create new theme;
-	    //get all section default ;
-
 	    $theme = $this->Common_model->get_record($this->_fix."themes",["id" => $id ]);
 	    if(!$theme) {
 	    	echo 'Xóa không thành công';
@@ -302,7 +299,7 @@ class themesys extends MY_Controller {
             $theme_id = 0;
             if($is_create == 1){
                 $clone_theme = $this->Common_model->get_recode_for_select(
-                    $this->_fix.'themes','id,clone_id,effect,effect_file,effect_media_id,name,description,user_fonts,thumb,font_file,style_file,sound_file,size_title,color_title,is_system,folder,sound_play,sound_example',
+                    $this->_fix.'themes','id,clone_id,effect,effect_file,effect_media_id,name,description,user_fonts,thumb,font_file,style_file,sound_file,size_title,color_title,is_system,folder,sound_play,sound_example,version',
                     ['id' => $id]
                 );
                 $clone_theme['clone_id']  = $clone_theme['id'];

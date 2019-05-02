@@ -27,11 +27,15 @@ class Profile extends Frontend_Controller {
 	public function index(){ 
         $user = $this->Common_model->get_record($this->table,array('id' => $this->user_id));
         if($this->input->post()){
+            $data['status'] = 0;
             $this->load->library('form_validation');
-            $this->form_validation->set_rules('last_name', 'Họ và tên', 'required|trim');
-            $this->form_validation->set_rules('gender', 'Giới tính', 'required|trim');
+            $this->form_validation->set_rules('last_name', '[{]FULL_NAME[}]', 'required|trim');
+            $this->form_validation->set_rules('gender', '[{]PROFILE_GENDER[}]', 'required|trim');
+            $this->form_validation->set_rules('sub_domain', '[{]PROFILE_SUB_DOMAIN[}]','trim|is_unique[member.sub_domain.id.'.$this->user_id.']');
+            $this->form_validation->set_rules('domain', '[{]PROFILE_DOMAIN[}]', 'trim|is_unique[member.domain.id.'.$this->user_id.']');
             if ($this->form_validation->run() == FALSE) {
-                $this->session->set_flashdata('message',$this->message('Vui lòng nhập đầy đủ thông tin.'));
+                $data['status']  = 0;
+                $data['message'] = $this->form_validation->error_array();
             } else {
             	$date = str_replace('/', '-', $this->input->post('wedding_date'));
                 $arr = array(
@@ -44,15 +48,15 @@ class Profile extends Frontend_Controller {
             	$subdomain = strtolower($this->input->post('subdomain'));
             	if($subdomain != null){
             		if (!ctype_alnum($subdomain)){
-		                $this->session->set_flashdata('message',$this->message('Vui lòng nhập tên miền không có ký tự đặc biệt.'));
-		                redirect('/profile/');
+		                $data['status'] = 0;
+                        $data['message']["subdomain"] = "[{]VALIDATE_DOMAIN[}]";
 		            }
 		            $record = $this->Common_model->get_record($this->table, array(
 		                'sub_domain' => $subdomain
 		            ));
 		            if (isset($record) && $record != null){
-		                $this->session->set_flashdata('message',$this->message('Tên miền đã tồn tại.Vui lòng nhập tên miền khác.'));
-		                redirect('/profile/');
+		                $data['status'] = 0;
+                        $data['message']["subdomain"] = "[{]VALIDATE_SUBDOMAIN_EXIST[}]";
 		            }
 		            $arr['sub_domain'] = $subdomain;
             	}
@@ -61,16 +65,21 @@ class Profile extends Frontend_Controller {
 		                'domain' => $this->input->post('domain')
 		            ));
 		            if (isset($record) && $record != null){
-		                $this->session->set_flashdata('message',$this->message('Tên miền đã tồn tại.Vui lòng nhập tên miền khác.'));
-		                redirect('/profile/');
+                        $data['status'] = 0;
+                        $data['message']["domain"] = "[{]VALIDATE_DOMAIN_EXIST[}]";
 		            }
 		            $arr['domain'] = $this->input->post('domain');
             	}
                 $this->Common_model->update($this->table, $arr,array('id' => $this->user_id));
-                $this->session->set_flashdata('message', $this->message('Lưu thay đổi thành công.','success'));
+                $data['status'] = 1;
+                $data['message'] = "[{]PROFILE_SUCCESS[}]";
             }
-            redirect('/profile/');
+            $code = [
+                "code" => $data
+            ] ;
+            return $this->load->view($this->asset.'/appthemes/code',$code); 
         }
+        $this->data['title_page'] = "[{]PROFILE[}]";
         $this->data['user1'] = $user;
         $this->load->view($this->asset.'/block/header',$this->data);
 		$this->load->view($this->asset.'/profile/index',$this->data);
@@ -105,34 +114,34 @@ class Profile extends Frontend_Controller {
 	public function change_password(){
         $user = $this->Common_model->get_record($this->table,array('id' => $this->user_id));
         if($this->input->post()){
+            $data['status'] = 0;
             $this->load->library('form_validation');
-            $this->form_validation->set_rules('password', 'Mật khẩu', 'required|trim');
-            $this->form_validation->set_rules('new_password', 'Mật khẩu mới', 'required|trim');
-            $this->form_validation->set_rules('configure_new_password', 'Xác nhận lại mật khẩu', 'required|trim');
-            $password   = $this->input->post('password');
+            $this->form_validation->set_rules('pwd','[{]PROFILE_PASSWORD[}]','required|trim|min_length[6]');
+            $this->form_validation->set_rules('new_password','[{]PROFILE_NEW_PASSWORD[}]','required|trim|min_length[6]|matches[configure_new_password]');
+            $this->form_validation->set_rules('configure_new_password','[{]PROFILE_CF_PASSWORD[}]','required|trim|min_length[6]');
+            $password   = $this->input->post('pwd');
             $new_password = $this->input->post('new_password');
             $configure_new_password = $this->input->post('configure_new_password');
             if ($this->form_validation->run() == FALSE) {
-                $this->session->set_flashdata('message',$this->message('Vui lòng nhập đầy đủ thông tin.'));
+                $data['status']  = 0;
+                $data['message'] = $this->form_validation->error_array();
             }
             else if($user['pwd'] != md5($user['email'] . ':' . $password)){
-                $this->session->set_flashdata('message',$this->message('Mật khẩu hiện tại không đúng.'));
+                $data['status']  = 0;
+                $data['message']["pwd"] = '[{]VALIDATE_PASSWORD_NOT_MATCH[}]';
+                
             } else {
-                if (strlen($new_password) < 6) {
-                	$this->session->set_flashdata('message', $this->message('Mật khẩu mới phải trên 6 ký tự.'));
-                } 
-                else if ($new_password != $configure_new_password) {                    
-                    $this->session->set_flashdata('message', $this->message('Mật khẩu xác nhận không đúng.'));
-                }
-                else{
-                	$arr   = array(
-	                    'pwd' => md5($user['email'] .':'.$new_password)
-	                );
-	                $this->Common_model->update($this->table, $arr,array('id' => $this->user_id));
-	                $this->session->set_flashdata('message', $this->message('Mật khẩu thay đổi thành công.','success'));
-                }
+                $arr   = array(
+                    'pwd' => md5($user['email'] .':'.$new_password)
+                );
+                $data['status']  = 1;
+                $this->Common_model->update($this->table, $arr,array('id' => $this->user_id));
+                $data['message']="'[{]UPDATE_PASSWORD_SUCCESS[}]";
             }
-            redirect('/profile/change_password');
+            $code = [
+                "code" => $data
+            ] ;
+            return $this->load->view($this->asset.'/appthemes/code',$code); 
         }
         $this->load->view($this->asset.'/block/header',$this->data);
 		$this->load->view($this->asset.'/profile/password',$this->data);
@@ -170,13 +179,13 @@ class Profile extends Frontend_Controller {
         $config['per_page'] = $per_page;
         $config['page_query_string'] = TRUE;
         $config['segment'] = 2;
-        $this->data["title_page"] = "Lịch sử thanh toán";
+        $this->data["title_page"] = "[{]payment_history[}]";
         $this->load->library('pagination');
         $this->pagination->initialize(_get_paging($config));
         $this->data["package"] = $this->Common_model->query_raw($sql);
         $this->load->view($this->asset.'/block/header',$this->data);
         $this->load->view($this->asset.'/profile/payment',$this->data);
-        $this->load->view($this->_view ."/block/footer",$this->data);
+        $this->load->view($this->asset ."/block/footer",$this->data);
     }
 
     public function save_media() {

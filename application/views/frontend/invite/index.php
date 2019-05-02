@@ -11,7 +11,7 @@
                                 <div class="type-account-wrap">
                                     <div class="avatar-bg" style="background-image:url('<?php echo @$user['avatar']; ?>');z-index:1;"></div>
                                 </div>
-                                <h3 class="text-white">Chia sẻ cho bạn bè về trang web</h3>
+                                <h3 class="text-white">[{]invite_title[}]</h3>
                             </div>
                         </div>
                     </div>
@@ -24,45 +24,45 @@
                                 <div style="height:20px;"></div>
                                 <div id="refer">
                                     <div class="alert alert-success" style="display:none;">
-                                        Send email successfully.
+                                      [{]SEND_EMAIL_SUCCESS[}].
                                     </div>
                                     <div class="alert alert-danger" style="display:none;">
-                                        Send email Error.
+                                        [{]SEND_EMAIL_ERROR[}].
                                     </div>
                                     <div class="input-group">
-                                         <input type="text" class="form-control tagsinput" name='text' data-role="tagsinput" placeholder="Nhập địa chỉ email">
+                                         <input type="text" class="form-control tagsinput" name='text' data-role="tagsinput" placeholder="[{]invite_enter_mail[}]">
                                          <span class="input-group-btn">
-                                            <button class="btn btn-primary btn-send-invite" type='submit'>Gửi chia sẻ</button>
+                                            <button class="btn btn-primary btn-send-invite" type='submit'>[{]invite_send_link[}]</button>
                                          </span>
                                     </div>
                                 </div>
                                 <div class="contact-importers" style="line-height: 25px;">
-                                    Nhập email muốn chia sẻ từ: &nbsp;&nbsp;&nbsp;
+                                    [{]invite_mail_you_want[}]: &nbsp;&nbsp;&nbsp;
                                     <a href="<?php echo base_url('/invite/contact_google/'); ?>"><img width="20" src="<?php echo skin_frontend('/images/gmail.png'); ?>"> Gmail</a>  &nbsp;&nbsp;|&nbsp;&nbsp;
                                     <a href="<?php echo base_url('/invite/contact_yahoo/'); ?>" ><img width="20" src="<?php echo skin_frontend('/images/yahoo.png'); ?>"> Yahoo! Mail</a>  &nbsp;&nbsp;|&nbsp;&nbsp;
                                     <a href="<?php echo base_url('/invite/contact_outlook/'); ?>"><img width="20" src="<?php echo skin_frontend('/images/outlook.png'); ?>"> Outlook Mail </a>
                                 </div>
                                 <div class="or-separator">
                                     <span class="h6 or-separator--text">
-                                        <span>Hoặc</span>
+                                        <span>[{]invite_or[}]</span>
                                     </span>
                                     <hr>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <p style="line-height: 35px;">Chia sẻ liên kết:</p>
+                                        <p style="line-height: 35px;">[{]invite_share_link[}]:</p>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="input-group">
                                             <input type="text" class="form-control" id="input-copy" value="<?php echo base_url('account/register/'.@$record['promo_code']); ?>" readonly="">
                                             <span class="input-group-btn">
-                                               <button class="btn btn-primary btn-copy" style="min-height:none; background-color: #428bca;border-color: #357ebd;">Copy</button>
+                                               <button class="btn btn-primary btn-copy" style="min-height:none; background-color: #428bca;border-color: #357ebd;">[{]invite_copy[}]</button>
                                             </span>
                                         </div>
                                     </div>
                                     <div class="col-sm-2">
                                         <a class="btn btn-primary social-share-btn btn-facebook-messenger send-message-facebook">
-                                           <i class="fa fa-weixin" aria-hidden="true"></i> Messenger
+                                           <i class="fa fa-weixin" aria-hidden="true"></i> [{]invite_messenger[}]
                                         </a>
                                     </div>
                                     <div class="col-sm-2">
@@ -74,10 +74,10 @@
                                 <hr>
                                 <div class="results">
                                   <div class="row">
-                                    <div class="col-md-5"><h4>Danh sách người dùng đăng ký</h4></div>
+                                    <div class="col-md-5"><h4>[{]invite_list_signin[}]</h4></div>
                                     <div class="col-md-7 text-right">
-                                      <span>Tổng thành viên: <?php echo $dataPlus["numberMember"]?></span>,
-                                      <span>Tổng phí hoa hồng: <?php echo $dataPlus["sum_money"]?>VND</span>
+                                      <span>[{]invite_total_member[}]: <?php echo $dataPlus["numberMember"]?></span>,
+                                      <span>[{]invite_total_commission[}]: <?php echo $dataPlus["sum_money"]?>VND</span>
                                     </div>
                                   </div>
                                     
@@ -88,11 +88,11 @@
                                             <thead>
                                                 <tr class="headings">
                                                   <th>#</th>
-                                                  <th>Họ và tên</th>
-                                                  <th>Email</th>
-                                                  <th>Số ngày cộng thêm</th>
-                                                  <th>Phí hoa hồng</th>
-                                                  <th>Lần thanh toán</th>
+                                                  <th>[{]FULL_NAME[}]</th>
+                                                  <th>[{]PAYMENT_EMAIL[}]</th>
+                                                  <th>[{]invite_number_plus[}]</th>
+                                                  <th>[{]invite_commission[}]</th>
+                                                  <th>[{]invite_number_pay[}]</th>
                                                   <th></th>
                                                 </tr>
                                             </thead>
@@ -106,7 +106,7 @@
                                                             <td><?php echo $item['plus_day']; ?></td>
                                                             <td><?php echo ($item['sum_money'] ? $item['sum_money'] : 0) ." VND"; ?></td>
                                                             <td><?php echo ($item['numberpay'] ? $item['numberpay'] : 0); ?></td>
-                                                            <td><a href="<?php echo base_url("invite/detail/".$item["id"])?>">Chi tiết</a></td>
+                                                            <td><a href="<?php echo base_url("invite/detail/".$item["id"])?>">[{]COMMON_L_DETAIL[}]</a></td>
                                                         </tr>
                                                     <?php endforeach; ?> 
                                                 <?php endif; ?>
@@ -137,23 +137,23 @@
               <div class="modal-body" style="padding:0;">
                   <div class="panel-header">
                     <a href="#" class="panel-close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></a>
-                    Chọn bạn bè muốn gửi
+                    [{]invite_select_friend[}]
                 </div>
                 <div class="panel-header contact-search-wrapper">
                     <i class="fa fa-search contact-search-icon" aria-hidden="true"></i>
                     <input class="contact-search" id="contact-search" type="text" placeholder="Tìm kiếm...">
                 </div>
                 <div class="alert alert-success" style="display:none;">
-                    Gửi thành công.
+                    [{]SEND_EMAIL_SUCCESS[}].
                 </div>
                 <div class="alert alert-danger" style="display:none;">
-                    Lỗi không thể gửi được.
+                    [{]SEND_EMAIL_ERROR[}].
                 </div>
                 <div class="panel-body-scroll panel-body-fixed panel-body">
                    <div class="panel-body panel-body-list">
                       <ul class="row list-layout">
                            <li id="no-contact-found-message" class="contact-row hide">
-                              Sorry, we cannot find contact from this account. Please use a different account.
+                              [{]invite_not_find_contact[}]
                            </li>
                            <?php foreach ($result as $key => $item): ?>
                              <li class="col-sm-12">
@@ -171,7 +171,7 @@
                              </li>
                          <?php endforeach; ?>
                          <li id="empty-message" class="contact-row hide">
-                              Không tồn tại địa chỉ email.
+                              [{]EMAIL_NOT_EXITS[}].
                          </li>
                       </ul>
                    </div>
@@ -183,15 +183,15 @@
                     <div style="height:10px;"></div>
                     <label class="checkbox text-left">
                         <input class="check-all-checkbox" id="invite-all" type="checkbox">
-                        <label for="invite-all">Tất cả</label>
+                        <label for="invite-all">[{]ALL[}]</label>
                     </label>
                  </div>
                  <div class="col-sm-7 col-md-9 text-right">
                     <div class="modal-status-section modal-sent hide icon-lima">
-                       <h5>Chia sẻ.</h5>
+                       <h5>[{]SHARE[}].</h5>
                     </div>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Hủy bỏ</button>
-                    <button class="btn btn-primary send-invites" disabled style="border-color: #ff5a5f;background-color: #ff5a5f;">Chia sẻ đến 0 bạn bè</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">[{]CANCEL[}]</button>
+                    <button class="btn btn-primary send-invites" disabled style="border-color: #ff5a5f;background-color: #ff5a5f;">[{]invite_send_to_member|0[}]</button>
                  </div>
               </div>
               </div>
@@ -210,7 +210,7 @@
             var email = event.item;
             var pattern = /^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
             if(email == '' || email == null || !pattern.test(email) ){
-               alert('Vui lòng nhập đúng định dạng email.');
+               alert('[{]VALIDATE_EMAIL_COREET[}].');
                event.cancel = true;
             }     
         });
@@ -300,7 +300,7 @@
                             $("#invite-modal .panel-body-list input[type='checkbox']").each(function(){
                                 $(this).prop('checked',false);
                             });
-                            $(".send-invites").text('Chia sẻ đến 0 bạn bè').attr('disabled','disabled');
+                            $(".send-invites").text('[{]invite_send_to_member|0[}]').attr('disabled','disabled');
                         }
                         else if(data['status'] == 'fail'){
                             $("#invite-modal .alert-danger").html(data['message']).show();
@@ -356,7 +356,7 @@
                    index++;
                 }
             });
-            $(".send-invites").text('Chia sẻ đến '+index+' bạn bè').removeAttr('disabled');
+            $(".send-invites").text('[{]invite_send_to_member|'+index+'[}]').removeAttr('disabled');
             if(index == 0){
                 $(".send-invites").attr('disabled','disabled');
             }
@@ -379,7 +379,7 @@
 
         $('.btn-copy').click(function(){
             if(copyToClipboard(document.getElementById("input-copy"))){
-                alert('Copy thành công.');
+                alert('[{]invite_copy_successfuly[}]');
             }
             return false;
         });

@@ -3,9 +3,9 @@
         <div class="row">
             <div class="col-sm-12">
             	<div class="notify successbox text-center">
-				    <h1><span>Thành công!</span></h1>
+				    <h1><span>[{]PAYMENT_SUCCESS[}]!</span></h1>
 				    <span class="alerticon"><img src="<?php echo skin_url('frontend/images/check.png'); ?>" alt="checkmark" /></span>
-				    <p class="text-center">Chúc mừng bạn đã nâng cấp gói dịch vụ thành công. Vui lòng xem lại thông tin tài khoản của bạn.</p>
+				    <p class="text-center">[{]PAYMENT_SUCCESS_STRING_001[}]</p>
 				</div>
             </div>
         </div>

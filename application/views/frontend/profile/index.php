@@ -2,13 +2,13 @@
     <div class="container">
         <div class="row">
             <main class="site-main col-sm-10 col-sm-push-1 col-sm-pull-1 col-md-8 col-md-push-2 col-md-pull-2">
-                <form class="form-horizontal form-profile" method="post" action="">
+                <form class="form-horizontal form-profile form" method="post" action="<?php echo base_url("profile")?>">
                     <input type="hidden" name="<?php echo @$this->security->get_csrf_token_name(); ?>" value="<?php echo @$this->security->get_csrf_hash(); ?>" />
                     <div class="panel panel-default">
                         <div class="panel-heading">
     						<div class="row">
-    							<div class="col-sm-6">Thông tin cá nhân</div>
-    							<div class="col-sm-6 text-right">Ngày hết hạn: <?php echo date('d/m/Y', strtotime(@$user["expired_date"])); ?></div>
+    							<div class="col-sm-6">[{]PROFILE[}]</div>
+    							<div class="col-sm-6 text-right">[{]PROFILE_DAY_END[}]: <?php echo date('d/m/Y', strtotime(@$user["expired_date"])); ?></div>
     						</div>
     					</div>
                         <div class="panel-body">
@@ -26,7 +26,7 @@
                                             <div class="box-table-cell box-table-cell-middle">
                                                 <a class="text-white" href="#" onclick="$('#ImageUploader_image').click();return false;">
                                                     <i class="fa fa-3 fa-plus-circle"></i><br> 
-                                                    <small>Ảnh đại diện</small>
+                                                    <small>[{]PROFILE_AVATAR[}]</small>
                                                 </a>
                                             </div>
                                         </div>
@@ -34,30 +34,35 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="user_last_name" class="col-sm-3 control-label">Họ và tên</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control required" value="<?php echo @$user['last_name']; ?>" maxlength="50" name="last_name" required>
+                                <div class="col-sm-12">
+                                    <div class="message"></div>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-3 control-label">Ngày cưới</label>
+                                <label for="user_last_name" class="col-sm-3 control-label">[{]FULL_NAME[}]</label>
                                 <div class="col-sm-9">
-                                    <input type="text" style="padding: .375rem .75rem;" class="form-control datepicker" value="<?php echo @$user['wedding_date'] != null && @$user['wedding_date'] != '0000-00-00' ? date('d/m/Y',strtotime($user['wedding_date'])) : ''; ?>" name="wedding_date" required>
+                                    <input type="text" class="form-control required" validate="true"data-validate="required|max:50" value="<?php echo @$user['last_name']; ?>" name="last_name">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="email" class="col-sm-3 control-label">Địa chỉ email</label>
+                                <label class="col-sm-3 control-label">[{]PROFILE_WEDDING_DAY[}]</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control required" value="<?php echo @$user['email']; ?>" id="email" placeholder="Địa chỉ email" required readonly>
+                                    <input type="text" style="padding: .375rem .75rem;" class="form-control datepicker" value="<?php echo @$user['wedding_date'] != null && @$user['wedding_date'] != '0000-00-00' ? date('d/m/Y',strtotime($user['wedding_date'])) : ''; ?>" name="wedding_date" validate="true" data-validate="required|date">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="user_sex" class="col-sm-3 control-label">Giới tính</label>
+                                <label for="email" class="col-sm-3 control-label">[{]PROFILE_MAIL[}]</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control required" value="<?php echo @$user['email']; ?>" id="email" placeholder="[{]PROFILE_MAIL[}]" required readonly>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="user_sex" class="col-sm-3 control-label">[{]PROFILE_GENDER[}]</label>
                                 <div class="col-sm-9">
                                     <div class="select-wrapper">
-                                        <select id="user_sex" name="gender" class="form-control">
-                                            <option value="1" <?php echo @$user['gender'] == 1 ? 'selected' : ''; ?>>Nam</option>
-                                            <option value="0" <?php echo @$user['gender'] != null && @$user['gender'] == 0 ? 'selected' : ''; ?>>Nữ</option>
+                                        <select id="user_sex" name="gender" class="form-control" validate="true" data-validate="required">
+                                            <option value="1" <?php echo @$user['gender'] == 1 ? 'selected' : ''; ?>>[{]PROFILE_GENDER_MALE[}]</option>
+                                            <option value="0" <?php echo @$user['gender'] != null && @$user['gender'] == 0 ? 'selected' : ''; ?>>[{]PROFILE_GENDER_FEMALE[}]</option>
                                         </select>
                                     </div>
                                 </div>
@@ -66,21 +71,21 @@
                             <div class="form-group">
                             	<div class="checkbox" style="padding-left: 0;">
 			        				<input id="remenber" type="checkbox" name="is_dealer" value="1" <?php echo @$user['is_dealer'] == 1 ? 'checked' : ''; ?>>
-	                        		<label for="remenber">Đăng ký Cộng tác viên</label>
+	                        		<label for="remenber">[{]PROFILE_SIGNUP_CUSTOMER[}]</label>
 		        				</div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="user_phone" class="col-sm-3 control-label">Số điện thoại</label>
+                                <label for="user_phone" class="col-sm-3 control-label">[{]PHONE[}]</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" value="<?php echo @$user['phone']; ?>" name="phone" >
+                                    <input type="text" class="form-control" value="<?php echo @$user['phone']; ?>" name="phone" validate="true" data-validate="phone">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="content-box-cented">
                                     <div class="row">
-                                        <div class="col-sm-12"><p style="margin-bottom: 10px;">Bạn chưa có tên miền? Bạn có thể sử dụng tên miền phụ của weddingguu.<br> Vui lòng gõ tên mà bạn muốn vào ô dưới đây <br>(Ví dụ bạn gõ abc, hệ thống sẽ cung cấp cho bạn tên miền: abc.weddingguu.com)</p></div>   
+                                        <div class="col-sm-12"><p style="margin-bottom: 10px;">[{]PROFILE_ADD_SUB_DOMAIN_EXPLAIN[}]</p></div>   
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-1 text-center">
@@ -95,10 +100,10 @@
                                                     $sub_domain = @$user['sub_domain'];
                                                     if(@$sub_domain){
                                                         $sub_domain = str_replace(".weddingguu.com","", $sub_domain);
-                                                        echo '<input type="text" class="form-control is_has_string" id="subdomain-name" value="'.$sub_domain.'" placeholder="Vui lòng nhập tên" aria-describedby="basic-addon2" disabled="" readonly>';
+                                                        echo '<input type="text" class="form-control is_has_string" id="subdomain-name" value="'.$sub_domain.'" placeholder="[{]PROFILE_ENTER_NAME[}]" aria-describedby="basic-addon2" disabled="" readonly>';
                                                     }
                                                     else{
-                                                        echo '<input type="text" class="form-control" id="subdomain-name" name="subdomain" placeholder="Vui lòng nhập tên" aria-describedby="basic-addon2" disabled>';
+                                                        echo '<input type="text" class="form-control" id="subdomain-name" name="subdomain" placeholder="[{]PROFILE_ENTER_NAME[}]" aria-describedby="basic-addon2" disabled>';
                                                     }
                                                 ?>
                                                 <span class="input-group-addon" id="basic-addon2">.weddingguu.com</span>
@@ -108,8 +113,9 @@
                                     <hr>
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <p style="margin-bottom: 10px;">Bạn đã có tên miền hoặc bạn muốn có tên miền riêng (ví dụ http://abc.com)<br>
-                                            Hãy liên hệ với đội ngũ của chúng tôi qua số điện thoại <a href="tel:0234-629-6688">0234-629-6688</a>, chúng tôi sẽ hỗ trợ để website của bạn có tên miền riêng</p>
+                                            <p style="margin-bottom: 10px;">
+                                                [{]PROFILE_ADD_DOMAIN_EXPLAIN|<a href="tel:0234-629-6688">0234-629-6688</a>[}]
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -125,13 +131,13 @@
                                                     <?php
                                                         $domain = @$user['domain'];
                                                         if(@$domain){
-                                                            echo '<input type="text" class="form-control input-domain is_has_string" id="domain-name" value="'.$domain.'" placeholder="Vui lòng nhập domain(vd: example.com)" disabled readonly>';
+                                                            echo '<input type="text" class="form-control input-domain is_has_string" validate="true" data-validate="url" id="domain-name" value="'.$domain.'" placeholder="[{]PROFILE_PLEASE_ENTER_DOMAIN[}]" disabled readonly>';
                                                         }
                                                         else{
-                                                            echo '<input type="text" class="form-control input-domain" id="domain-name" name="domain" placeholder="Vui lòng nhập domain (vd: abc.com)" disabled="">';
+                                                            echo '<input type="text" class="form-control input-domain" id="domain-name" validate="true" data-validate="url" name="domain" placeholder="[{]PROFILE_PLEASE_ENTER_DOMAIN[}]" disabled="">';
                                                         }
                                                     ?>
-                                                    <p class="text-right" style="margin-top: 10px;"><a href="<?php echo base_url('trang/hoi-dap'); ?>?id=collapse-8" target="_blank">Xem hướng dẫn</a></p>
+                                                    <p class="text-right" style="margin-top: 10px;"><a href="<?php echo base_url('trang/hoi-dap'); ?>?id=collapse-8" target="_blank">[{]PROFILE_SEE_GUIDE[}]</a></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -141,7 +147,7 @@
 
                             <div class="form-group text-right row">
                                 <div class="col-sm-12">
-                                    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                                    <button type="submit" class="btn btn-primary">[{]PROFILE_SAVE[}]</button>
                                 </div>
                             </div>
                         </div>
@@ -158,7 +164,7 @@
          <form class="custom" enctype="multipart/form-data" id="crop-avatar-forms" action="<?php echo base_url("profile/save_media"); ?>" method="post">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h4 class="modal-title" id="modal-label">Đổi ảnh đại diện</h4>
+                <h4 class="modal-title" id="modal-label">[{]PROFILE_CHANGE_AVATAR[}]</h4>
             </div>
             <div class="modal-body" style="position: relative;">
                 <input type="hidden" id="x" name="x">
@@ -182,12 +188,60 @@
 <script src="<?php echo skin_frontend('js/jquery.form.js'); ?>" type="text/javascript"></script>
 <script src="<?php echo skin_frontend('js/jquery.Jcrop.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo skin_backend('bootstrap-datepicker/js/bootstrap-datepicker.js'); ?>"></script>
+<script src="<?php echo skin_frontend('js/form-validation.js'); ?>"></script>
+<script src="<?php echo skin_frontend('js/jquery.form.js'); ?>"></script>
 <script type="text/javascript">
+    function ValidURL(str) {
+        var re = new RegExp(/^((?:(?:(?:\w[\.\-\+]?)*)\w)+)((?:(?:(?:\w[\.\-\+]?){0,62})\w)+)\.(\w{2,6})$/); 
+        return str.match(re);
+    }
+     
     $(document).ready(function() {
+        var form = $(".form.form-profile");
+        var validate = form.validateform({
+            message : {
+                "email" : _LANG.VALIDATE_EMAIL_COREET,
+                "required" : _LANG.VALIDATE_REQUIRED, 
+                "min" : _LANG.VALIDATE_MIN_LENGTH,
+                "url" : _LANG.VALIDATE_URL,
+                "date" : _LANG.VALIDATE_DATE,
+                "phone" : _LANG.VALIDATE_PHONE
+            },
+            phone : function($pramte1,$pramte2,$pramte3,$pramte4){
+                var filter = /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/;
+                return filter.test($pramte2);
+            }
+        });
+        form.submit(function(){  
+            var url  = $(this).attr('action');
+            if(validate.checkInvalid()){
+                $(".custom-loading").show();
+                $(this).ajaxSubmit({
+                    dataType:"json",
+                    type:"post",
+                    success: function(response){
+                        if(response['status'] == 1){
+                            var tt = `<div class="alert alert-success alert-dismissible fade show" role="alert">
+                              <strong>`+_LANG.MESSAGER+`! </strong>`+response['message']+`
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>`;
+                            form.find('.message').html(tt); 
+                        }
+                        else if(response['status'] == 0){
+                            $.each(response['message'],function(k,v){
+                                validate.addError(k,v);
+                            })
+                            validate.showError();
+                        }
+                        $(".custom-loading").hide();
+                    }
+                });
+            }
+            return false;
+        })
         $('.datepicker').datepicker({ format: 'dd/mm/yyyy' });
-        //------------------
-        //Crop Image
-        //------------------
         $("#crop-avatar-forms").submit(function(){
             $(".custom-loading").show();
             var options = {
@@ -215,7 +269,6 @@
             $(this).ajaxSubmit(options);
             return false;
         });
-
         $(".theme-type").change(function(){
             if($(this).is(":checked")){
                 $("#domain-name").prop('disabled', false).val("");
@@ -223,7 +276,6 @@
                 $("#domain-name").prop('disabled', true).val("");
             }
         });
-
         $("#theme-type1").change(function(){
             if($(this).is(":checked")){
                 $("#subdomain-name").removeAttr('disabled');
@@ -231,25 +283,7 @@
                 $("#subdomain-name").attr('disabled','');
             }
         });
-
-        function ValidURL(str) {
-	        var re = new RegExp(/^((?:(?:(?:\w[\.\-\+]?)*)\w)+)((?:(?:(?:\w[\.\-\+]?){0,62})\w)+)\.(\w{2,6})$/); 
-	        return str.match(re);
-	    }
-
-        $('form.form-profile').submit(function(){
-            var type      = $("input.theme-type").is(":checked") ? 1 : 0;
-            var domain    = $("#domain-name").val();
-            console.log(type + ' : ' + domain);
-            if(type == 1 && domain.trim() == ""){
-                alert("Vui lòng nhập vào một url");
-                return false;
-            }
-            if(type == 1 && !ValidURL(domain.trim())){
-                alert("Vui lòng nhập vào một url(vd: example.com)");
-                return false;
-            }
-        });
+        
     });
 
     //---------------------

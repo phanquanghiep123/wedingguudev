@@ -21,8 +21,9 @@ class Themes_model extends CI_Model {
     }
     public function getsys($offset = 0, $limit = 30,$where = null){
         $this->db->from($this->_fix.$this->_table);
-        $this->db->select($this->_fix.$this->_table.".*,".$this->_fix."medias.thumb AS thumbpath");
+        $this->db->select($this->_fix.$this->_table.".*,".$this->_fix."medias.thumb AS thumbpath,languages.name as langname");
         $this->db->join($this->_fix."medias","".$this->_fix."medias.id = ".$this->_fix.$this->_table.".thumb","left");
+        $this->db->join("languages","languages.id = ".$this->_fix.$this->_table.".lang");
         if($where != null){
             $this->db->where($where);
         }

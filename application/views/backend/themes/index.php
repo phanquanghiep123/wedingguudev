@@ -35,6 +35,7 @@
 				<th>#</th>
 				<th>Tên</th>
 				<th>Trạng thái</th>
+				<th>Ngôn ngữ</th>
 				<th>Ngày tạo</th>
 				<th>Hành động</th>
 			</tr>
@@ -47,6 +48,7 @@
 					echo '<td>'. ($i++) .'</td>';
 					echo '<td>'. $value["name"] .'</td>';
 					echo '<td>'. ($value["status"] == 1 ? "hiện": " ẩn") .'</td>';
+					echo '<td>'. $value["langname"] .'</td>';
 					echo '<td>'. $value["created_at"] .'</td>';
 					echo '<td>
 						<a href="'.backend_url("themesys/clone/".$value["id"]).'">clone</a> | 

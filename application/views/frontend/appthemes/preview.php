@@ -21,21 +21,21 @@
                   <img class="img-circle" width="40" height="40" src="<?php echo @$user['avatar']; ?>">
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a href="<?php echo base_url('/profile'); ?>"><i class="fa fa-user-circle" aria-hidden="true"></i> Thông tin cá nhân</a></li>
+                  <li><a href="<?php echo base_url('/profile'); ?>"><i class="fa fa-user-circle" aria-hidden="true"></i> [{]PROFILE[}]</a></li>
                   <?php if( @$user['sub_domain'] || @$user['domain']):?>
                     <?php if(@$user['domain'] == null):?>
                       <?php if(@$user['sub_domain']):?>
-                        <li><a href="//<?php echo @$user['sub_domain']; ?>"><i class="fa fa-tripadvisor" aria-hidden="true"></i> Trang tường</a></li>
+                        <li><a href="//<?php echo @$user['sub_domain']; ?>"><i class="fa fa-tripadvisor" aria-hidden="true"></i> [{]HEADER_WALL_PAGE[}]</a></li>
                       <?php endif;?>
                     <?php else : ?>
-                      <li><a href="//<?php echo @$user['domain']; ?>"><i class="fa fa-tripadvisor" aria-hidden="true"></i> Trang tường</a></li>
+                      <li><a href="//<?php echo @$user['domain']; ?>"><i class="fa fa-tripadvisor" aria-hidden="true"></i> [{]HEADER_WALL_PAGE[}]</a></li>
                     <?php endif;?>
                   <?php endif;?>
-                  <li><a href="<?php echo base_url('/themes/my/'); ?>"><i class="fa fa-themeisle" aria-hidden="true"></i> Giao diện của bạn</a></li>
-                  <li><a href="<?php echo base_url('/profile/change_password'); ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Đổi mật khẩu</a></li>
-                  <li><a href="<?php echo base_url('/profile/payment_history'); ?>"><i class="fa fa-credit-card" aria-hidden="true"></i> Lịch sử thanh toán</a></li>
-                  <li><a href="<?php echo base_url('/invite/'); ?>"><i class="fa fa-user-plus" aria-hidden="true"></i> Mời bạn bè</a></li>
-                  <li><a href="<?php echo base_url('/profile/logout/'); ?>"><i class="fa fa-sign-out" aria-hidden="true"></i> Đăng xuất</a></li>
+                  <li><a href="<?php echo base_url('/themes/my/'); ?>"><i class="fa fa-themeisle" aria-hidden="true"></i> [{]HEADER_MY_THEMES[}]</a></li>
+                  <li><a href="<?php echo base_url('/profile/change_password'); ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> [{]HEADER_CHANGE_PASSWORD[}]</a></li>
+                  <li><a href="<?php echo base_url('/profile/payment_history'); ?>"><i class="fa fa-credit-card" aria-hidden="true"></i> [{]HEADER_HISTORY_PAYMENT[}]</a></li>
+                  <li><a href="<?php echo base_url('/invite/'); ?>"><i class="fa fa-user-plus" aria-hidden="true"></i> [{]HEADER_INVER_FRIEND[}]</a></li>
+                  <li><a href="<?php echo base_url('/profile/logout/'); ?>"><i class="fa fa-sign-out" aria-hidden="true"></i> [{]HEADER_LOGOUT[}]</a></li>
                 </ul>
               </div>
           </li>
@@ -48,8 +48,8 @@
           <?php endif; ?>
       </ul>
       <ul class="inline-block right">
-        <li ng-if="theme.is_system == 1"><a ng-href="<?php echo base_url("appthemes/clone/")?>{{theme.slug}}" href="#" class="btn btn-info"><i class="fa fa-check" aria-hidden="true"></i> Dùng</a></li>
-        <li><a href="<?php echo base_url("themes");?>" class="btn btn-info"><i class="fa fa-chevron-left" aria-hidden="true"></i> Trở về</a></li>
+        <li ng-if="theme.is_system == 1"><a ng-href="<?php echo base_url("appthemes/clone/")?>{{theme.slug}}" href="#" class="btn btn-info"><i class="fa fa-check" aria-hidden="true"></i> [{]USE[}]</a></li>
+        <li><a href="<?php echo base_url("themes");?>" class="btn btn-info"><i class="fa fa-chevron-left" aria-hidden="true"></i> [{]BACK[}]</a></li>
       </ul>
     </div>
     <div id="sidebar" class="priview-sidebar">

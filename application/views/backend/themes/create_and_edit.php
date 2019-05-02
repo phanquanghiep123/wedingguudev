@@ -4,7 +4,9 @@
     <style type="text/css">
       #iframe-content {
         width:{{currentScreen.size}}px!important;
-        height:{{currentScreen.height < currentScreen.size ? currentScreen.height + (currentScreen.height - (currentScreen.height * scaleScreen)) : currentScreen.height}}px!important;  
+        height:{{
+          scaleScreen < 1  ? currentScreen.height  + (currentScreen.height - currentScreen.height * scaleScreen) : currentScreen.height
+        }}px!important;  
         -ms-transform: scale({{scaleScreen}});
         -moz-transform: scale({{scaleScreen}});
         -o-transform: scale({{scaleScreen}});
@@ -25,7 +27,6 @@
       </div>
       <div id="nav-menu" class="content-fix">
         <ul class="nav nav-tabs setting-box">
-
           <li ng-class="(taggetTab == 0) ? 'active' : ''"><a ng-click="taggetTab=0;" data-toggle="tab" href="#theme-setting">Cài đặt</a></li>
           <li ng-class="(taggetTab == 1) ? 'active' : ''"><a ng-click="taggetTab=1;" data-toggle="tab" href="#sections-setting">Thành phần</a></li>
         </ul>
@@ -456,5 +457,5 @@ var AppTemplatesContent = AppTemplates + "content/";
 <script type="text/javascript" src="<?php echo skin_url("themes/tinymce/jquery.tinymce.min.js")?>"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_rQqp15I-s5F0f9gmPp2G3bFeFaeHE1k&libraries=places"></script>
 <script type="text/javascript" src="<?php echo skin_url("themes/angular/ng-map.min.js")?>"></script>
-<script type="text/javascript" src="<?php echo skin_url("themes/skins/js/new-main.js")?>"></script>
+<script type="text/javascript" src="<?php echo skin_url("themes/skins/js/main.js")?>"></script>
 <?php $this->load->view("/backend/themes/block/footer");?>

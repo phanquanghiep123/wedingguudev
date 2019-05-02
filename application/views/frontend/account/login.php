@@ -6,8 +6,8 @@
 					<form class="form form-account" action="<?php echo base_url('/account/signin'); ?>">
 						<input type="hidden" name="<?php echo @$this->security->get_csrf_token_name(); ?>" value="<?php echo @$this->security->get_csrf_hash(); ?>" />
 						<div class="form-header">
-					        <h1 class="modal-title text-center">Đăng nhập</h1>
-					        <p class="text-center">Bạn chưa có tài khoản? <a  href="<?php echo base_url('/account/register'); ?>" >Đăng ký</a> ngay</p>
+					        <h1 class="modal-title text-center">[{]L_LOGIN[}]</h1>
+					        <p class="text-center">[{]L_LOGIN_NOT_ACCOUNT[}]<a  href="<?php echo base_url('/account/register'); ?>" > [{]L_SIGNIN_NOW[}]</a></p>
 							<hr>
 							<div style="height: 10px;"></div>
 						</div>
@@ -15,12 +15,12 @@
 							<div class="message" style="disaplay:none;margin-bottom: 30px;"></div>
 				        	<div class="form-group">
 				        		<input class="form-control inputText" type="email" name="email" required>
-				        		<div class="pladehoder">Địa chỉ email</div>
+				        		<div class="pladehoder">[{]L_LOGIN_EMAIL[}] </div>
 				        	</div>
 
 				        	<div class="form-group remove-margin">
 				        		<input class="form-control inputText" type="password" name="pwd" required>
-				        		<div class="pladehoder">Mật khẩu</div>
+				        		<div class="pladehoder">[{]L_LOGIN_PASSWORD[}]</div>
 				        	</div>
 
 				        	<div class="form-group">
@@ -28,18 +28,18 @@
 				        			<div class="col-6">
 				        				<div class="checkbox">
 					        				<input id="remenber" type="checkbox" name="remember" value="1">
-			                        		<label for="remenber">Lưu đăng nhập</label>
+			                        		<label for="remenber">[{]L_LOGIN_REMIMEMBER[}]</label>
 		                        		</div>
 				        			</div>
 				        			<div class="col-6 text-right">
-				        				<a href="<?php echo base_url('/account/forgot'); ?>">Quên mật khẩu</a>
+				        				<a href="<?php echo base_url('/account/forgot'); ?>">[{]L_LOGIN_FORGOT[}]</a>
 				        			</div>
 				        		</div>
 		                    </div>
 				        	
 				        	<div class="row">
 				        		<div class="col-md-12 text-center">
-				        			<button class="btn btn-primary btn-lg" type="submit" name="submit">Đăng nhập</button>
+				        			<button class="btn btn-primary btn-lg" type="submit" name="submit">[{]L_LOGIN[}]</button>
 				        			<input type="hidden" name="redirect" value="<?php echo $this->input->get('redirect'); ?>">
 				        		</div>
 				        	</div>
@@ -47,7 +47,7 @@
 						<hr>
 						<div class="form-footer">
 							<div class="signin-social text-center">
-				        		<p class="text-center">Đăng nhập qua mạng xã hội</p>
+				        		<p class="text-center">[{]L_LOGIN_FOR_SOCIAL[}]</p>
 				        		<ul class="list-inline text-center">
 				        			<li><a href="<?php echo base_url('/social/facebook'); ?>" class="btn btn-facebook">&nbsp;<i class="fa fa-facebook" ></i> Facebook&nbsp;</a></li>
 				        			<li><a href="<?php echo base_url('/social/google'); ?>" class="btn btn-google"><i class="fa fa-google-plus"></i> Google +</a></li>

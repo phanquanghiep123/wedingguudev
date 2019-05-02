@@ -30,6 +30,7 @@
             <?php //echo @$setting['javascript']; ?>
             var base_url = '<?php echo base_url(); ?>';
             var is_login = '<?php echo @$is_login;?>';
+            var _LANG  = <?php echo json_encode(@$_Lang_Content);?>
         </script>
          <?php echo(@$setting['javascript'])?>
         <style type="text/css">
